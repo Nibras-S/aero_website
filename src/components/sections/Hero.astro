@@ -1,0 +1,170 @@
+---
+// Hero Section — structure inspired by reference layout
+---
+
+<section id="hero" class="hero">
+  <!-- Geometric decoration (top-right, CSS only) -->
+  <div class="hero-geo" aria-hidden="true">
+    <div class="geo-shape geo-1"></div>
+    <div class="geo-shape geo-2"></div>
+    <div class="geo-shape geo-3"></div>
+    <div class="geo-shape geo-4"></div>
+    <div class="geo-shape geo-5"></div>
+  </div>
+
+  <div class="hero-content">
+    <h1 class="hero-headline">
+      Fly High with<br/>
+      <span class="hero-accent">Flyger Aviation</span>
+    </h1>
+    <p class="hero-sub">
+      We support international operators and private clients with seamless
+      trip support, fuel solutions, and expert aviation consultancy.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get a Quote ↗</a>
+      <a href="#about" class="btn-ghost">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 5rem 2rem;
+    background: var(--bg-main);
+  }
+
+  /* ── Geometric decoration ── */
+  .hero-geo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .geo-shape {
+    position: absolute;
+    opacity: 0.12;
+  }
+  .geo-1 {
+    width: 280px; height: 280px;
+    top: -60px; right: -40px;
+    background: var(--color-primary);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+  .geo-2 {
+    width: 200px; height: 200px;
+    top: 80px; right: 140px;
+    background: var(--color-secondary-start);
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    opacity: 0.1;
+  }
+  .geo-3 {
+    width: 150px; height: 150px;
+    top: 200px; right: 0;
+    background: var(--color-primary);
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    opacity: 0.08;
+  }
+  .geo-4 {
+    width: 100px; height: 100px;
+    top: 320px; right: 200px;
+    background: var(--color-secondary-end);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    opacity: 0.15;
+  }
+  .geo-5 {
+    width: 60px; height: 60px;
+    top: 60px; right: 300px;
+    background: var(--color-primary);
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    opacity: 0.2;
+  }
+
+  /* ── Content ── */
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+  }
+
+  .hero-headline {
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 900;
+    color: var(--color-text);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-accent {
+    color: var(--color-primary);
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--color-muted);
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── Buttons ── */
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.85rem 2rem;
+    background: var(--color-primary);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 0.25rem;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.88; }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.85rem 2rem;
+    border: 1.5px solid rgba(75, 163, 195, 0.4);
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-radius: 0.25rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 4rem 1.5rem;
+      min-height: auto;
+    }
+    .hero-geo {
+      width: 100%;
+      height: 40%;
+      top: 0;
+      opacity: 0.5;
+    }
+  }
+</style>

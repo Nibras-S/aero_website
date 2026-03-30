@@ -1,0 +1,74 @@
+---
+// CompanyOverview Section
+---
+
+<section class="overview">
+  <div class="container">
+    <div class="grid">
+      
+      <div class="card">
+        <h3 class="title">Our Mission</h3>
+        <p class="text">
+          To provide proactive, seamless, and cost-effective aviation solutions globally, ensuring client safety and operational efficiency at every step.
+        </p>
+      </div>
+      
+      <div class="card">
+        <h3 class="title">Our Vision</h3>
+        <p class="text">
+          To become the most trusted and innovative partner in the international aviation support sector, setting industry benchmarks for excellence.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .overview {
+    padding: 5rem 2rem;
+    background: white;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .card {
+    background: var(--bg-main);
+    padding: 3rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(75, 163, 195, 0.1);
+  }
+  .title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .title::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: var(--color-primary);
+    border-radius: 50%;
+  }
+  .text {
+    color: var(--color-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: 1fr; }
+    .card { padding: 2rem; }
+  }
+</style>

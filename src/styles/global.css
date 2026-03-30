@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+/* ============================================================
+   FLYGER — Global Color System
+   ============================================================ */
+
+:root {
+  /* 🎨 Brand Colors */
+  --color-primary: #4BA3C3;
+  --color-secondary-start: #2E86AB;
+  --color-secondary-end: #A8DADC;
+
+  /* 📝 Text */
+  --color-text: #0D2137;
+  --color-muted: #3A6B85;
+
+  /* 🌑 Background */
+  --bg-main: #F0F8FF;
+}
+
+/* ============================================================
+   Tailwind v4 Theme Extension via @theme
+   ============================================================ */
+@theme {
+  --color-primary: #4BA3C3;
+  --color-secondary: #2E86AB;
+  --color-text: #0D2137;
+  --color-muted: #3A6B85;
+  --color-bg-main: #F0F8FF;
+}
+
+/* ============================================================
+   Base Styles
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--color-text);
+  font-family: 'Inter', 'Roboto', system-ui, sans-serif;
+  line-height: 1.6;
+}
