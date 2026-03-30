@@ -371,12 +371,47 @@
   }
 
   /* Responsive */
+  @media (max-width: 1024px) {
+    .nav-inner {
+      padding: 0 1.5rem;
+      gap: 1rem;
+    }
+  }
+
   @media (max-width: 900px) {
     .nav-links { display: none; }
     .hamburger { display: flex; }
-    .mobile-menu { display: block; }
+    .mobile-menu { 
+      display: block; 
+      bottom: 0;
+      height: auto;
+    }
   }
+
   @media (max-width: 480px) {
+    .nav-inner {
+      padding: 0 1rem;
+      gap: 0.5rem;
+    }
+    
+    .nav-cta {
+      padding: 0.4rem 0.75rem;
+      font-size: 0.8rem;
+    }
+    
+    .nav-cta svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .logo-accent {
+      font-size: 1.25rem;
+    }
+    
+    .logo-sub {
+      font-size: 0.5rem;
+    }
+
     /* Optional: fallback to 1 column on extremely small phones, but 2 col fits fine usually */
     .mobile-grid {
       grid-template-columns: 1fr 1fr;
