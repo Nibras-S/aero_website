@@ -1,0 +1,22 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+import ContactCTA from '../components/sections/ContactCTA.astro';
+
+// Trip Support modular components
+import TripSupportIntro from '../components/sections/trip-support/TripSupportIntro.astro';
+import ServicesGrid from '../components/sections/trip-support/ServicesGrid.astro';
+import GlobalReach from '../components/sections/trip-support/GlobalReach.astro';
+---
+
+<MainLayout title="Trip Support | Flyger Aviation Services">
+  <Navbar />
+  <main>
+    <TripSupportIntro />
+    <ServicesGrid />
+    <GlobalReach />
+    <ContactCTA />
+  </main>
+  <Footer />
+</MainLayout>

@@ -1,0 +1,92 @@
+---
+// GlobalReach Section - For Trip Support
+---
+
+<section class="global-reach">
+  <div class="container">
+    <div class="content">
+      <h2 class="heading">A True <span>Global Footprint</span></h2>
+      <p class="desc">
+        Wherever your flight path takes you, our dedicated local representatives and vetted partners ensure exceptional service quality and compliance with local regulations.
+      </p>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="number">100+</div>
+          <div class="label">Countries Covered</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">24/7</div>
+          <div class="label">Operations Center</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">500+</div>
+          <div class="label">Partner FBOs</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .global-reach {
+    padding: 6rem 2rem;
+    background: white;
+  }
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .heading {
+    font-size: clamp(2.25rem, 3.5vw, 3rem);
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+  }
+  .heading span {
+    color: var(--color-primary);
+  }
+  .desc {
+    font-size: 1.15rem;
+    color: var(--color-muted);
+    line-height: 1.7;
+    margin-bottom: 4rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .stats-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+  .stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .number {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+  .label {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 768px) {
+    .stats-grid {
+      flex-direction: column;
+      gap: 3rem;
+    }
+  }
+</style>

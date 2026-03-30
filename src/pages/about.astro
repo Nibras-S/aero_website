@@ -1,0 +1,53 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+import ContactCTA from '../components/sections/ContactCTA.astro';
+
+// About Us modular components
+import AboutIntro from '../components/sections/about/AboutIntro.astro';
+import CompanyOverview from '../components/sections/about/CompanyOverview.astro';
+import Leadership from '../components/sections/about/Leadership.astro';
+import Careers from '../components/sections/about/Careers.astro';
+---
+
+<MainLayout title="About Us | Flyger Aviation Services">
+  <Navbar />
+  <main>
+    <div class="page-header">
+      <h1>About <span>Flyger</span></h1>
+      <p>Discover our story, mission, and the global team driving aviation excellence.</p>
+    </div>
+
+    <!-- Modular Sections -->
+    <AboutIntro />
+    <CompanyOverview />
+    <Leadership />
+    <Careers />
+    <ContactCTA />
+  </main>
+  <Footer />
+</MainLayout>
+
+<style>
+  .page-header {
+    background: #0D2137;
+    color: white;
+    text-align: center;
+    padding: 8rem 2rem 5rem;
+  }
+  .page-header h1 {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 900;
+    margin-bottom: 1rem;
+  }
+  .page-header h1 span {
+    color: var(--color-primary);
+  }
+  .page-header p {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+</style>

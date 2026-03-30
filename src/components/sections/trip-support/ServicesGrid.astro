@@ -1,0 +1,69 @@
+---
+// Trip Support Services Grid
+const services = [
+  { title: "Permits & Regulatory", desc: "Fast-track overflight and landing permits globally, ensuring total compliance with local civil aviation authorities." },
+  { title: "Flight Planning", desc: "Expert, optimized routing through complex airspace to improve efficiency, fuel consumption, and safety." },
+  { title: "Ground Handling", desc: "Reliable coordination of ramp services, fueling, and FBO arrangements at any airport worldwide." },
+  { title: "Crew & Passenger Logistics", desc: "VIP concierge services including luxury transport, premium catering, and five-star hotel accommodations." },
+  { title: "Flight Monitoring", desc: "24/7 proactive global tracking and real-time operational support to handle airspace restrictions or weather changes." }
+];
+---
+
+<section class="services-grid-section">
+  <div class="container">
+    <div class="grid">
+      {services.map(service => (
+        <div class="service-card">
+          <div class="icon-placeholder"></div>
+          <h3 class="title">{service.title}</h3>
+          <p class="desc">{service.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-grid-section {
+    padding: 5rem 2rem;
+    background: var(--bg-main);
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .service-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(75, 163, 195, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+  }
+  .icon-placeholder {
+    width: 48px;
+    height: 48px;
+    background: rgba(75, 163, 195, 0.1);
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+  .desc {
+    color: var(--color-muted);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+</style>
