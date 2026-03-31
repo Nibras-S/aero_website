@@ -60,7 +60,7 @@
         <div class="mobile-col">
           <div class="mobile-section">
             <span class="mobile-heading">Company</span>
-            <a href="#about" class="mobile-link">About Us</a>
+            <a href="/about" class="mobile-link">About Us</a>
             <a href="#company-profile" class="mobile-link">Company Profile</a>
             <a href="#careers" class="mobile-link">Careers</a>
           </div>
@@ -383,8 +383,10 @@
     .hamburger { display: flex; }
     .mobile-menu { 
       display: block; 
-      height: calc(100vh - 70px);
-      height: calc(100dvh - 70px);
+      height: auto;
+      max-height: calc(100dvh - 70px);
+      border-bottom-left-radius: 1.5rem;
+      border-bottom-right-radius: 1.5rem;
     }
   }
 
