@@ -1,111 +1,527 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import Navbar from '../components/layout/Navbar.astro';
-import Footer from '../components/layout/Footer.astro';
-import ContactCTA from '../components/sections/ContactCTA.astro';
-
-// About Us modular components
-import AboutTabsNav from '../components/sections/about/AboutTabsNav.astro';
-import AboutIntro from '../components/sections/about/AboutIntro.astro';
-import CompanyOverview from '../components/sections/about/CompanyOverview.astro';
-import Leadership from '../components/sections/about/Leadership.astro';
-import Careers from '../components/sections/about/Careers.astro';
 ---
 
 <MainLayout title="About Us | Flyger Aviation Services">
   <Navbar />
-  <main>
-    <div class="page-header">
-      <div class="header-content">
-        <h1>About <span>Flyger</span></h1>
-        <p>Discover our story, mission, and the global team driving aviation excellence.</p>
-      </div>
-      <!-- Tabs Navigation Merged into Hero -->
-      <AboutTabsNav />
-    </div>
+  
+  <main class="modern-about" id="about-scroller">
+    
+    <div class="scroll-tracker-layer">
+      <!-- VISUAL LAYER: Natively Sticky on Desktop, Normal flow on Mobile -->
+      <div class="visual-layer">
+        
+        <!-- Right Image Backgrounds -->
+        <div class="bg-image-wrapper">
+          <div class="bg-gradient"></div>
+          <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=2000" class="bg-image active" id="bg-tab-overview"/>
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000" class="bg-image" id="bg-tab-leadership"/>
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=2000" class="bg-image" id="bg-tab-careers"/>
+          <img src="https://images.unsplash.com/photo-1569032608460-6dc8b093f412?auto=format&fit=crop&q=80&w=2000" class="bg-image" id="bg-tab-contact"/>
+        </div>
 
-    <!-- Tab Sections Container -->
-    <div class="tabs-content-wrapper">
+        <!-- Left Interface Area -->
+        <div class="interface-wrapper">
+          
+          <!-- MOBILE TABS -->
+          <div class="mobile-tabs hide-on-desktop">
+            <button class="pill-tab active" data-tab="tab-overview">Company Overview</button>
+            <button class="pill-tab" data-tab="tab-leadership">Leadership</button>
+            <button class="pill-tab" data-tab="tab-careers">Flyger Careers</button>
+            <button class="pill-tab" data-tab="tab-contact">Contact Us</button>
+          </div>
+
+          <!-- DESKTOP TITLES (Navigation Menu) -->
+          <div class="desktop-slides-nav hide-on-mobile">
+            <button class="slide-title active" data-tab="tab-overview">Company Overview</button>
+            <button class="slide-title" data-tab="tab-leadership">Leadership</button>
+            <button class="slide-title" data-tab="tab-careers">Flyger Careers</button>
+            <button class="slide-title" data-tab="tab-contact">Contact Us</button>
+          </div>
+
+          <!-- CONTENT STACK (Crossfading grids at the bottom) -->
+          <div class="content-stack-wrapper">
+            
+            <!-- Company Profile -->
+            <div class="content-group active" id="vis-tab-overview">
+              <div class="feature-list">
+                <div class="feature-item">
+                  <h3>Our Vision</h3>
+                  <p>Founded by aviation professionals with a clear vision, FLYGER was created to streamline flight support through smart systems and real operational insight.</p>
+                </div>
+                <div class="feature-item">
+                  <h3>Operational Precision</h3>
+                  <p>In an industry where timing, accuracy, and coordination are critical, we focus on bridging the gaps that commonly lead to delays and inefficiencies.</p>
+                </div>
+                <div class="feature-item">
+                  <h3>Financial Transparency</h3>
+                  <p>With the support of our in-house CRM, clients benefit from real-time proforma generation and fast, accurate invoicing immediately after each turnaround.</p>
+                </div>
+                <div class="feature-item">
+                  <h3>Flexible Solutions</h3>
+                  <p>We deliver aviation support solutions tailored to the dynamic needs of operators, brokers, and pilots—ensuring every mission is handled with efficiency.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Leadership -->
+            <div class="content-group" id="vis-tab-leadership">
+              <div class="prose">
+                <p class="greeting">To our valued clients, partners, and team,</p>
+              </div>
+              <div class="feature-list">
+                <div class="feature-item">
+                  <h3>Building Trust</h3>
+                  <p>As we step forward into a rapidly evolving aviation landscape, we recognize that true progress is not only measured by growth, but by the trust we build.</p>
+                </div>
+                <div class="feature-item">
+                  <h3>Operational Focus</h3>
+                  <p>Our journey began with a simple vision — to create a more streamlined and responsive flight support system guiding us across every mission.</p>
+                </div>
+                <div class="feature-item">
+                  <h3>Team Dedication</h3>
+                  <p>We believe our strength lies not in past milestones, but in the confidence our clients place in us and the dedication of our team who go beyond expectations.</p>
+                </div>
+                <div class="feature-item">
+                  <h3>Transparent Processes</h3>
+                  <p>With our focus on hands-on support, real-time responsiveness, and transparent processes powered by our in-house systems, we bring clarity to operations.</p>
+                </div>
+              </div>
+              <div class="feature-list" style="margin-top: 1.5rem;">
+                <div class="feature-item outline-item">
+                  <ul class="direction-list">
+                    <li>Deliver reliable and precise operational support</li>
+                    <li>Build long-term partnerships based on trust</li>
+                    <li>Continuously enhance systems to meet dynamic demands</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Careers -->
+            <div class="content-group" id="vis-tab-careers">
+              <div class="feature-list">
+                <div class="feature-item outline-item">
+                  <h3>Join Our Journey</h3>
+                  <p>We're currently updating our Careers section. Please check back soon for opportunities to join the Flyger team.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Us -->
+            <div class="content-group" id="vis-tab-contact">
+              <div class="feature-list">
+                <div class="feature-item outline-item">
+                  <h3>Ready to Fly with Us?</h3>
+                  <p>Contact our team and let us handle every detail of your next flight operations seamlessly.</p>
+                  <div style="margin-top: 1.5rem;">
+                    <a href="mailto:ops@flyger.com" class="contact-btn">Email Operations</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div> <!-- End Visual Layer -->
       
-      <!-- TAB 1: Company Overview (Default Active) -->
-      <div id="tab-overview" class="tab-section active">
-        <AboutIntro />
-        <CompanyOverview />
-      </div>
-
-      <!-- TAB 2: Leadership -->
-      <div id="tab-leadership" class="tab-section">
-        <Leadership />
-      </div>
-
-      <!-- TAB 3: Careers -->
-      <div id="tab-careers" class="tab-section">
-        <Careers />
-      </div>
-
-      <!-- TAB 4: Contact -->
-      <div id="tab-contact" class="tab-section">
-        <ContactCTA />
+      <!-- HIDDEN TRIGGERS FOR NATIVE SCROLL SNAPPING -->
+      <div class="trigger-overlay hide-on-mobile">
+        <div class="scroll-trigger" id="trigger-tab-overview"></div>
+        <div class="scroll-trigger" id="trigger-tab-leadership"></div>
+        <div class="scroll-trigger" id="trigger-tab-careers"></div>
+        <div class="scroll-trigger" id="trigger-tab-contact"></div>
       </div>
 
     </div>
   </main>
-  <Footer />
 </MainLayout>
 
-<style is:global>
-  .tabs-content-wrapper {
-    min-height: 600px; /* Keep height stable avoiding severe layout shifts */
+<style>
+  :root {
+    --bg-dark: #121212;
+    --text-primary: #ffffff;
+    --text-muted: #a0a0a0;
+    --pill-bg: #2a2a2a;
+  }
+
+  /* BASE MOBILE STYLES */
+  .modern-about {
+    width: 100%;
+    background: var(--bg-dark);
+  }
+
+  .scroll-tracker-layer {
+    width: 100%;
     position: relative;
-    background: var(--bg-main);
   }
-  
-  .tab-section {
-    display: none;
+
+  .visual-layer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Backgrounds */
+  .bg-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 35vh;
+    z-index: 1;
+  }
+  .bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     opacity: 0;
-    animation: fadeContent 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transition: opacity 1s ease-in-out;
   }
-  
-  .tab-section.active {
-    display: block;
+  .bg-image.active {
+    opacity: 1;
+    z-index: 2;
   }
-
-  @keyframes fadeContent {
-    0% {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .bg-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--bg-dark) 0%, transparent 100%);
+    z-index: 5;
   }
 
-  .page-header {
-    background: #0D2137;
-    color: white;
-    text-align: center;
-    padding-top: 2.5rem;
+  /* Interface */
+  .interface-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
     position: relative;
     z-index: 10;
   }
+
+  .mobile-tabs {
+    display: flex;
+    position: sticky;
+    top: 70px;
+    background: var(--bg-dark);
+    gap: 0.75rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    z-index: 50;
+  }
+  .mobile-tabs::-webkit-scrollbar { display: none; }
   
-  .header-content {
-    padding: 0 1rem 0.75rem;
+  .pill-tab {
+    background: var(--pill-bg);
+    color: var(--text-muted);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .pill-tab.active {
+    background: var(--color-primary);
+    color: white;
   }
 
-  .page-header h1 {
-    font-size: clamp(2rem, 3.5vw, 2.75rem);
-    font-weight: 900;
-    margin-bottom: 0.25rem;
+  /* Content */
+  .content-stack-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5rem;
   }
-  .page-header h1 span {
-    color: var(--color-primary);
+  .content-group {
+    display: none;
+    animation: fadeIn 0.4s forwards;
   }
-  .page-header p {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
-    max-width: 600px;
-    margin: 0 auto;
+  .content-group.active {
+    display: block;
+  }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  /* Feature Stylings */
+  .feature-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem 2rem;
+  }
+  .feature-item {
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08); 
+  }
+  .outline-item { grid-column: 1 / -1; }
+  .feature-item h3 {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .feature-item p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .direction-list { list-style: none; padding: 0; margin: 0; }
+  .direction-list li {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.25rem;
+  }
+  .direction-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-primary);
+  }
+  .prose p.greeting {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin-bottom: 1.5rem;
+  }
+  .contact-btn {
+    display: inline-flex; 
+    align-items: center; 
+    padding: 0.85rem 2.5rem; 
+    background: var(--color-primary); 
+    color: white; 
+    text-decoration: none; 
+    font-weight: 600; 
+    border-radius: 999px; 
+    transition: opacity 0.2s;
+  }
+  .contact-btn:hover { opacity: 0.9; }
+
+  /* 
+   * THE "STICKY SCROLLER" ARCHITECTURE FOR DESKTOP
+   * Uses real native scrolling on an invisible 400vh container,
+   * while the visual layer sticks to the top and just crossfades elements!
+   */
+  @media (min-width: 900px) {
+    .modern-about {
+      height: calc(100vh - 70px);
+      overflow-y: auto;   /* Natively scrollable! */
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none; /* optional: hides scrollbar for cleaner look */
+    }
+    .modern-about::-webkit-scrollbar { display: none; }
+
+    .hide-on-desktop { display: none !important; }
+
+    /* The invisible track measuring 4 slides worth of 100vh */
+    .scroll-tracker-layer {
+      height: calc(400vh - 280px); /* 4 * (100vh - 70px) */
+      position: relative;
+    }
+
+    /* The visual layer stays permanently frozen in the viewport! */
+    .visual-layer {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 70px);
+      flex-direction: row;
+      overflow: hidden;
+    }
+
+    /* Fixed Right Background spanning exactly 50% */
+    .bg-image-wrapper {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      z-index: 1;
+    }
+    .bg-gradient {
+      background: linear-gradient(to right, var(--bg-dark) 0%, transparent 100%);
+    }
+
+    /* Fixed Left Interface */
+    .interface-wrapper {
+      width: 50%;
+      height: 100%;
+      padding: 5rem 4rem;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    /* Top Left Menu Titles */
+    .desktop-slides-nav {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 3rem; /* Separates titles from content below it */
+    }
+    .slide-title {
+      background: none;
+      border: none;
+      text-align: left;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.3);
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 0.8rem;
+      transition: all 0.4s ease;
+      font-family: inherit;
+    }
+    .slide-title:hover { color: rgba(255,255,255,0.6); }
+    .slide-title.active {
+      font-size: 2.2rem;
+      color: var(--text-primary);
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+    }
+
+    /* Bottom Left Fixed Content Grids (Crossfading) */
+    .content-stack-wrapper {
+      flex: 1;
+      position: relative; 
+      /* They sit securely underneath the Navigation Menu without moving */
+    }
+    
+    .content-group {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      display: block !important;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(15px);
+      transition: all 0.5s ease;
+      pointer-events: none;
+    }
+    .content-group.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .feature-list {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* The Invisible Snap Zones that drive the native scroll */
+    .trigger-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .scroll-trigger {
+      height: 25%; /* 100vh each */
+      width: 100%;
+      scroll-snap-align: start;
+    }
+  }
+
+  @media (max-width: 899px) {
+    .hide-on-mobile { display: none !important; }
   }
 </style>
+
+<script>
+  function initSlideshow() {
+    // DOM Elements
+    const triggers = document.querySelectorAll('.scroll-trigger');
+    const bgImages = document.querySelectorAll('.bg-image');
+    const slideTitles = document.querySelectorAll('.slide-title');
+    const contentGroups = document.querySelectorAll('.content-group');
+    const pillTabs = document.querySelectorAll('.pill-tab');
+
+    const scroller = document.getElementById('about-scroller');
+    if (!scroller || triggers.length === 0) return;
+
+    // --- INTERSECTION OBSERVER ON INVISIBLE SCROLL TRIGGERS ---
+    const observerOptions = {
+      root: scroller,
+      rootMargin: '0px',
+      threshold: 0.5 // Switch when slide trigger is 50% in view
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      if (window.innerWidth < 900) return; // Leave mobile alone
+      
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // trigger-tab-overview -> tab-overview
+          const targetId = entry.target.id.replace('trigger-', '');
+          
+          // Reset all Desktop UI elements
+          bgImages.forEach(img => img.classList.remove('active'));
+          slideTitles.forEach(t => t.classList.remove('active'));
+          contentGroups.forEach(cg => cg.classList.remove('active'));
+          
+          // Activate new states securely in the fixed view
+          document.getElementById(`bg-${targetId}`)?.classList.add('active');
+          document.querySelector(`.slide-title[data-tab="${targetId}"]`)?.classList.add('active');
+          document.getElementById(`vis-${targetId}`)?.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    triggers.forEach(t => sectionObserver.observe(t));
+
+    // --- CLICK HANDLERS ---
+    function handleTabClick(e) {
+      e.preventDefault();
+      const targetId = e.currentTarget.getAttribute('data-tab');
+      
+      if (window.innerWidth < 900) {
+        // MOBILE LOGIC: Disregards scrolling entirely, pure click-toggle
+        contentGroups.forEach(sec => sec.classList.remove('active'));
+        document.getElementById(`vis-${targetId}`)?.classList.add('active');
+        
+        pillTabs.forEach(pill => {
+          if (pill.getAttribute('data-tab') === targetId) {
+            pill.classList.add('active');
+            pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          } else {
+            pill.classList.remove('active');
+          }
+        });
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        // DESKTOP LOGIC: Smooth native scrolling down the invisible track!
+        const triggerElement = document.getElementById(`trigger-${targetId}`);
+        if (triggerElement) {
+          triggerElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
+
+    pillTabs.forEach(pill => pill.addEventListener('click', handleTabClick));
+    slideTitles.forEach(title => title.addEventListener('click', handleTabClick));
+  }
+
+  // Double trigger for reliability, perfectly harmless due to query selector safety
+  initSlideshow();
+  document.addEventListener('astro:page-load', initSlideshow);
+</script>
