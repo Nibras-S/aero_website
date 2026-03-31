@@ -1,0 +1,171 @@
+---
+// AboutTabsNav Section
+// Pill-shaped dynamic tab switcher
+---
+
+<nav class="about-tabs-wrapper" aria-label="About Navigation">
+  <div class="tabs-container">
+    <div class="tabs-pill" id="tabs-wrapper">
+      <div class="active-indicator" id="tabs-indicator"></div>
+      <button class="tab-btn active" data-target="tab-overview">Company Overview</button>
+      <button class="tab-btn" data-target="tab-leadership">Leadership</button>
+      <button class="tab-btn" data-target="tab-careers">Careers</button>
+      <button class="tab-btn" data-target="tab-contact">Contact</button>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .about-tabs-wrapper {
+    position: relative;
+    z-index: 10;
+    padding: 0 0 1rem 0; /* Tightened padding */
+    background: transparent;
+    border-bottom: none;
+  }
+
+  .tabs-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .tabs-pill {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    background: #1C1C1E; /* Deep premium grey */
+    padding: 0.4rem;
+    border-radius: 999px;
+    max-width: 100%;
+    overflow-x: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+
+  .tabs-pill::-webkit-scrollbar {
+    display: none;
+  }
+
+  .active-indicator {
+    position: absolute;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    left: 0; /* Updated via JS */
+    border-radius: 999px;
+    background: #FFFFFF;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .tab-btn {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1.75rem;
+    color: #9CA3AF;
+    font-weight: 500;
+    font-size: 0.95rem;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 999px;
+    transition: color 0.3s ease;
+    user-select: none;
+  }
+
+  .tab-btn.active {
+    color: #111827;
+    font-weight: 600;
+  }
+
+  .tab-btn:hover:not(.active) {
+    color: #FFFFFF;
+  }
+
+  @media (max-width: 768px) {
+    .about-tabs-wrapper {
+      padding: 0 0 1rem 0;
+    }
+    .tabs-container {
+      justify-content: flex-start;
+      padding: 0 1rem;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .tabs-container::-webkit-scrollbar {
+      display: none;
+    }
+    .tabs-pill {
+      /* On mobile keep it inline-flex but ensure no clipping */
+      flex-shrink: 0;
+    }
+    .tab-btn {
+      padding: 0.65rem 1.25rem;
+      font-size: 0.85rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const wrapper = document.getElementById('tabs-wrapper');
+    const indicator = document.getElementById('tabs-indicator');
+    const buttons = document.querySelectorAll('.tab-btn');
+    const contentSections = document.querySelectorAll('.tab-section'); // Defined in about.astro
+
+    function updateIndicator(activeBtn) {
+      if (!indicator || !activeBtn || !wrapper) return;
+      
+      const leftPos = activeBtn.offsetLeft;
+      const width = activeBtn.offsetWidth;
+
+      indicator.style.transform = `translateX(${leftPos}px)`;
+      indicator.style.width = `${width}px`;
+    }
+
+    function setActiveTab(button) {
+      // 1. Update Buttons
+      buttons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      updateIndicator(button);
+
+      // 2. Update Content
+      const targetId = button.getAttribute('data-target');
+      contentSections.forEach(section => {
+        if (section.id === targetId) {
+          section.classList.add('active');
+        } else {
+          section.classList.remove('active');
+        }
+      });
+    }
+
+    // Attach Clicks
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => setActiveTab(btn));
+    });
+
+    // Initialize Default States
+    // Give layout time to render exact widths for indicator
+    setTimeout(() => {
+      const defaultActiveBtn = document.querySelector('.tab-btn.active');
+      if (defaultActiveBtn) {
+        updateIndicator(defaultActiveBtn);
+      }
+    }, 100);
+
+    // Re-calculate on window resize
+    window.addEventListener('resize', () => {
+      const activeBtn = document.querySelector('.tab-btn.active');
+      if (activeBtn) updateIndicator(activeBtn);
+    });
+  });
+</script>

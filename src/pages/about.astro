@@ -5,6 +5,7 @@ import Footer from '../components/layout/Footer.astro';
 import ContactCTA from '../components/sections/ContactCTA.astro';
 
 // About Us modular components
+import AboutTabsNav from '../components/sections/about/AboutTabsNav.astro';
 import AboutIntro from '../components/sections/about/AboutIntro.astro';
 import CompanyOverview from '../components/sections/about/CompanyOverview.astro';
 import Leadership from '../components/sections/about/Leadership.astro';
@@ -15,37 +16,94 @@ import Careers from '../components/sections/about/Careers.astro';
   <Navbar />
   <main>
     <div class="page-header">
-      <h1>About <span>Flyger</span></h1>
-      <p>Discover our story, mission, and the global team driving aviation excellence.</p>
+      <div class="header-content">
+        <h1>About <span>Flyger</span></h1>
+        <p>Discover our story, mission, and the global team driving aviation excellence.</p>
+      </div>
+      <!-- Tabs Navigation Merged into Hero -->
+      <AboutTabsNav />
     </div>
 
-    <!-- Modular Sections -->
-    <AboutIntro />
-    <CompanyOverview />
-    <Leadership />
-    <Careers />
-    <ContactCTA />
+    <!-- Tab Sections Container -->
+    <div class="tabs-content-wrapper">
+      
+      <!-- TAB 1: Company Overview (Default Active) -->
+      <div id="tab-overview" class="tab-section active">
+        <AboutIntro />
+        <CompanyOverview />
+      </div>
+
+      <!-- TAB 2: Leadership -->
+      <div id="tab-leadership" class="tab-section">
+        <Leadership />
+      </div>
+
+      <!-- TAB 3: Careers -->
+      <div id="tab-careers" class="tab-section">
+        <Careers />
+      </div>
+
+      <!-- TAB 4: Contact -->
+      <div id="tab-contact" class="tab-section">
+        <ContactCTA />
+      </div>
+
+    </div>
   </main>
   <Footer />
 </MainLayout>
 
-<style>
+<style is:global>
+  .tabs-content-wrapper {
+    min-height: 600px; /* Keep height stable avoiding severe layout shifts */
+    position: relative;
+    background: var(--bg-main);
+  }
+  
+  .tab-section {
+    display: none;
+    opacity: 0;
+    animation: fadeContent 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  
+  .tab-section.active {
+    display: block;
+  }
+
+  @keyframes fadeContent {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .page-header {
     background: #0D2137;
     color: white;
     text-align: center;
-    padding: 8rem 2rem 5rem;
+    padding-top: 2.5rem;
+    position: relative;
+    z-index: 10;
   }
+  
+  .header-content {
+    padding: 0 1rem 0.75rem;
+  }
+
   .page-header h1 {
-    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
     font-weight: 900;
-    margin-bottom: 1rem;
+    margin-bottom: 0.25rem;
   }
   .page-header h1 span {
     color: var(--color-primary);
   }
   .page-header p {
-    font-size: 1.15rem;
+    font-size: 1rem;
     color: rgba(255, 255, 255, 0.8);
     max-width: 600px;
     margin: 0 auto;
