@@ -384,15 +384,17 @@ import Navbar from '../components/layout/Navbar.astro';
       cursor: pointer;
       padding: 0;
       margin-bottom: 0.8rem;
-      transition: all 0.4s ease;
+      transform-origin: left center;
+      transition: color 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), margin 0.4s ease;
       font-family: inherit;
+      will-change: transform, color;
     }
     .slide-title:hover { color: rgba(255,255,255,0.6); }
     .slide-title.active {
-      font-size: 2.2rem;
       color: var(--text-primary);
       font-weight: 800;
-      margin-bottom: 1.2rem;
+      transform: scale(1.25); /* 1.25 * 1.8rem ≈ 2.25rem smoothly */
+      margin-bottom: 1.4rem;
     }
 
     /* Bottom Left Fixed Content Grids (Crossfading) */
@@ -411,15 +413,19 @@ import Navbar from '../components/layout/Navbar.astro';
       display: block !important;
       opacity: 0;
       visibility: hidden;
-      transform: translateY(15px);
-      transition: all 0.5s ease;
+      transform: none; /* No floaty movement */
+      /* Exiting Slide: Instant "Blink" out */
+      transition: opacity 0.1s ease, visibility 0.1s;
       pointer-events: none;
+      will-change: opacity;
     }
     .content-group.active {
       opacity: 1;
       visibility: visible;
-      transform: translateY(0);
+      transform: none;
       pointer-events: auto;
+      /* Entering Slide: Fast "Blink" in directly after overlap clears */
+      transition: opacity 0.2s ease 0.1s, visibility 0s 0.1s;
     }
 
     .feature-list {
