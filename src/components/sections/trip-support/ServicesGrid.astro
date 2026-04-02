@@ -1,69 +1,483 @@
 ---
-// Trip Support Services Grid
+// src/components/sections/trip-support/ServicesGrid.astro
+// Cinematic Full-Viewport Scroll-Jacking Layout
+
 const services = [
-  { title: "Permits & Regulatory", desc: "Fast-track overflight and landing permits globally, ensuring total compliance with local civil aviation authorities." },
-  { title: "Flight Planning", desc: "Expert, optimized routing through complex airspace to improve efficiency, fuel consumption, and safety." },
-  { title: "Ground Handling", desc: "Reliable coordination of ramp services, fueling, and FBO arrangements at any airport worldwide." },
-  { title: "Crew & Passenger Logistics", desc: "VIP concierge services including luxury transport, premium catering, and five-star hotel accommodations." },
-  { title: "Flight Monitoring", desc: "24/7 proactive global tracking and real-time operational support to handle airspace restrictions or weather changes." }
+  {
+    title: "Trip Planning",
+    label: "OPERATIONAL EXCELLENCE",
+    desc: "Every successful operation begins with precise planning. We provide fast, reliable trip support tailored to your mission, ensuring optimized routing, cost control, and full regulatory compliance.",
+    desc2: "Our trip planning covers all essential requirements, including flight clearances, slot coordination, fuel arrangements, and accurate flight plan filing—allowing you to operate with confidence and efficiency.",
+    image: "/images/trip-support-hero.png",
+  },
+  {
+    title: "Flight Permits",
+    label: "GLOBAL COMPLIANCE",
+    desc: "Securing permits on time is critical to any operation. We manage the entire process with speed and accuracy, coordinating directly with aviation authorities to obtain approvals even within tight timeframes.",
+    desc2: "From overflight and landing permits to block and seasonal clearances, we ensure all regulatory requirements are met without delays or disruptions.",
+    image: "/images/svc-flight-permits.png",
+  },
+  {
+    title: "Flight Dispatch",
+    label: "PRECISION EXECUTION",
+    desc: "Our dispatch support is built around precision and real-time coordination. Working closely with flight crews and operational stakeholders, we ensure every flight is planned, monitored, and executed efficiently.",
+    desc2: "This includes route optimization, weather analysis, fuel planning (including EDTO/ETOPS), and continuous tracking—ensuring smooth operations from departure to arrival.",
+    image: "/images/svc-dispatch.png",
+  },
+  {
+    title: "Diversion Support",
+    label: "RAPID RESPONSE",
+    desc: "Unplanned situations demand immediate and effective solutions. We provide rapid response support for flight diversions, ensuring minimal disruption to both crew and passengers.",
+    desc2: "From accommodation and transportation to airport coordination, our team manages every aspect with speed and reliability, supported by 24/7 operational availability.",
+    image: "/images/svc-hotac.png", 
+  },
+  {
+    title: "Flight Supervision",
+    label: "SEAMLESS TURNAROUNDS",
+    desc: "We oversee ground operations to ensure every turnaround is executed seamlessly. By coordinating with all service providers and monitoring activities in real time, we maintain full control over quality and compliance.",
+    desc2: "Detailed reporting and proactive communication ensure transparency and consistency throughout the handling process.",
+    image: "/images/svc-ground.png", 
+  },
+  {
+    title: "Smart Operations with FLYGER CRM",
+    label: "DIGITAL PLATFORM",
+    desc: "At FLYGER, our operations are powered by a purpose-built CRM system designed to enhance efficiency and transparency.",
+    desc2: "Clients benefit from real-time proforma generation, immediate post-turn invoicing, and centralized coordination—providing complete visibility and control over both operational and financial aspects.",
+    image: "/images/trip-support-hero.png", 
+  }
 ];
 ---
 
-<section class="services-grid-section">
-  <div class="container">
-    <div class="grid">
-      {services.map(service => (
-        <div class="service-card">
-          <div class="icon-placeholder"></div>
-          <h3 class="title">{service.title}</h3>
-          <p class="desc">{service.desc}</p>
+<!-- Outer tall track allowing you to scroll "through" all items length  -->
+<section id="services-pin-container" class="services-showcase" aria-labelledby="services-heading" style={`--num-items: ${services.length};`}>
+  
+  <header class="sr-only">
+    <h2 id="services-heading">Trip Support Services</h2>
+  </header>
+
+  <!-- Invisible snap track so CSS mandatory snapping flawlessly registers the 6 slides -->
+  <div class="snap-track" aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none;">
+    {services.map(() => <div style="height: 100svh; scroll-snap-align: start; scroll-snap-stop: always;"></div>)}
+  </div>
+
+  <!-- Sticky viewport locks to the screen -->
+  <div class="services-viewport">
+    
+    <div class="services-list" id="services-list">
+      {services.map((service, index) => (
+        <div class={`service-row ${index === 0 ? 'is-active' : ''}`} data-index={index}>
+          
+          <!-- Cinematic Full Bleed Background -->
+          <div class="full-screen-bg">
+            <img 
+              src={service.image} 
+              alt=""
+              class="bg-img" 
+              loading={index < 2 ? "eager" : "lazy"} 
+            />
+            <div class="bg-overlay" aria-hidden="true"></div>
+          </div>
+          
+          <!-- Foreground Content Container -->
+          <div class="container container-viewport content-container">
+            <div class="glass-card">
+              <span class="service-label">{service.label}</span>
+              <h3 class="service-title">{service.title}</h3>
+              <p class="service-desc">{service.desc}</p>
+              <p class="service-desc" style="margin-top: -1rem; margin-bottom: 2rem;">{service.desc2}</p>
+
+              <div class="service-action">
+                <a href={`/contact?service=${encodeURIComponent(service.title)}`} class="btn-navigate" aria-label={`Request ${service.title}`} tabindex={index === 0 ? "0" : "-1"} data-service-btn>
+                  Request Service
+                  <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
         </div>
       ))}
     </div>
+    
+    <div class="flight-path-indicator" aria-hidden="true" id="flight-path">
+      <div class="flight-track"></div>
+      <div class="airplane-icon" id="progress-airplane">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 16v-2l-8-5V3.53a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+        </svg>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <style>
-  .services-grid-section {
-    padding: 5rem 2rem;
-    background: var(--bg-main);
+  :root {
+    --color-primary-soft: #F0F6F9;
   }
-  .container {
-    max-width: 1200px;
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;
+  }
+
+  /* ========================================================
+     GLOBAL STICKY SCROLL BEHAVIOR
+     ======================================================== */
+  .services-showcase {
+    height: calc(100svh * var(--num-items)); 
+    background-color: #07131F; /* Dark background under images */
+    position: relative;
+  }
+
+  /* The sticky window that locks to viewport */
+  .services-viewport {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Absolute stacking container */
+  .services-list {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  /* Stacked rows */
+  .service-row {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.8s ease, visibility 0.8s;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Active State (Visible) */
+  .service-row.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 5;
+  }
+
+  /* Past State (Scrolled Up/Away) - Prepares it nicely if scrolling back up */
+  .service-row.is-past {
+    opacity: 0;
+    visibility: hidden;
+    z-index: 4;
+  }
+
+  /* ========================================================
+     BACKGROUND AND OVERLAY
+     ======================================================== */
+  .full-screen-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center right; /* Focus bright right area */
+    transform: scale(1.05); /* Slight zoom for subtle scale-in animation */
+    transition: transform 1.8s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  /* Solid Blackout Split Layout */
+  .bg-overlay {
+    position: absolute;
+    inset: 0;
+    /* Rich dark blue/black gradient split strictly on the left */
+    background: linear-gradient(to right, #0A1118 0%, #0A1118 45%, rgba(10, 17, 24, 0.8) 55%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .service-row.is-active .bg-img {
+    transform: scale(1);
+  }
+
+  /* ========================================================
+     glass CARD CONTENT OVERLAY (Desktop Base)
+     ======================================================== */
+  .content-container {
+    position: relative;
+    width: 100%;
+    max-width: 1240px;
     margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
   }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+
+  .glass-card {
+    max-width: 650px;
+    padding: 3.5rem 0; /* Remove horizontal padding since there's no visible box */
+    
+    transform: translateY(30px);
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.2, 0, 0, 1), opacity 0.8s ease;
   }
-  .service-card {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 1rem;
-    border: 1px solid rgba(75, 163, 195, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+
+  .service-row.is-active .glass-card {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.15s;
   }
-  .service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-  }
-  .icon-placeholder {
-    width: 48px;
-    height: 48px;
-    background: rgba(75, 163, 195, 0.1);
-    border-radius: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-text);
+
+  /* Content Typography Overrides (White/Light mode inside card) */
+  .service-label {
+    display: inline-block; 
+    color: var(--color-primary, #4BA3C3); 
+    font-size: 0.8125rem; 
+    font-weight: 700; 
+    letter-spacing: 0.15em; 
+    text-transform: uppercase; 
     margin-bottom: 1rem;
   }
-  .desc {
-    color: var(--color-muted);
-    line-height: 1.6;
-    font-size: 0.95rem;
+  
+  .service-title {
+    font-size: clamp(2rem, 3.5vw, 3rem); 
+    font-weight: 800; 
+    color: #ffffff; /* pure white for contrast */
+    line-height: 1.15; 
+    margin: 0 0 1.5rem; 
+    letter-spacing: -0.02em;
+  }
+  
+  .service-desc {
+    font-size: 1.125rem; 
+    color: rgba(255, 255, 255, 0.8); /* Off-white */
+    line-height: 1.7; 
+    margin: 0 0 2rem;
+  }
+  
+  .service-features {
+    list-style: none; 
+    padding: 0; 
+    margin: 0 0 2.5rem; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1rem;
+  }
+  
+  .feature-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 0.75rem; 
+  }
+  
+  .feature-text { 
+    font-size: 1.15rem; 
+    color: #ffffff; 
+    font-weight: 400; 
+  }
+  
+  .text-muted {
+    opacity: 0.8;
+  }
+
+  /* Pill Navigation Button — matches brand button style */
+  .btn-navigate {
+    display: inline-flex; 
+    align-items: center; 
+    gap: 0.75rem; 
+    font-size: 0.78rem; 
+    font-weight: 600; 
+    color: #1a2e1a;
+    background: #dce8e0;
+    padding: 0.9rem 1.75rem; 
+    border-radius: 9999px;
+    text-decoration: none;
+    cursor: pointer; 
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+    border: none;
+    white-space: nowrap;
+  }
+  
+  .btn-icon { 
+    transition: transform 0.25s ease; 
+  }
+  
+  .btn-navigate:hover { 
+    background: #c6dad1;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+  
+  .btn-navigate:hover .btn-icon { 
+    transform: translateX(4px); 
+  }
+  
+  .btn-navigate:focus-visible { 
+    outline: 2px solid var(--color-primary, #4BA3C3); 
+    outline-offset: 4px; 
+  }
+
+  /* ========================================================
+     FLIGHT PATH INDICATOR (Desktop Only)
+     ======================================================== */
+  .flight-path-indicator {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 300px; /* Fixed height for the track */
+    width: 2px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .flight-track {
+    position: absolute;
+    inset: 0;
+    border-left: 2px solid rgba(255, 255, 255, 0.4); /* Solid white line */
+  }
+  
+  .airplane-icon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    /* Use transform for both rotation and movement (smooth driving) */
+    transform: translateX(-50%) translateY(0) rotate(180deg);
+    color: #FFFFFF; /* High contrast White */
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 900px) {
+    .flight-path-indicator {
+      display: none; 
+    }
+
+    .bg-overlay {
+      /* On mobile, gradient from bottom (not left) since content sits at the bottom */
+      background: linear-gradient(to top, #0A1118 0%, #0A1118 50%, rgba(10, 17, 24, 0.6) 70%, transparent 100%);
+    }
+
+    .content-container {
+      padding: 0;
+      align-items: flex-end; /* Push card to the bottom on mobile */
+    }
+
+    .glass-card {
+      width: 100%;
+      max-width: 100%;
+      padding: 0 1.5rem 3rem 1.5rem;
+    }
+
+    .service-title {
+      font-size: 2rem;
+    }
+    
+    .service-desc {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-features {
+      margin-bottom: 2rem;
+    }
+    
+    .btn-navigate {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .service-row, .glass-card, .bg-img { transition: none !important; animation: none !important; }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Scroll-Jacking Animation Logic
+    const initScrollEngine = () => {
+      const container = document.getElementById('services-pin-container');
+      const rows = document.querySelectorAll('.service-row');
+      const dots = document.querySelectorAll('.progress-dot');
+      if (!container || rows.length === 0) return;
+
+      const numItems = rows.length;
+
+      const handleScroll = () => {
+        // Calculate scroll bounds
+        const rect = container.getBoundingClientRect();
+        
+        // Progress starts exactly when the container hits the top of viewport
+        const trackHeight = rect.height - window.innerHeight; 
+        
+        let progress = 0;
+        if (rect.top <= 0) {
+          progress = Math.abs(rect.top) / trackHeight;
+        }
+
+        progress = Math.max(0, Math.min(1, progress));
+
+        // Determine active index
+        let activeIndex = Math.floor(progress * numItems);
+        if (activeIndex >= numItems) activeIndex = numItems - 1; 
+
+        // Update classes
+        rows.forEach((row, i) => {
+          row.classList.remove('is-active', 'is-past');
+          const btn = row.querySelector('[data-service-btn]');
+          
+          if (i === activeIndex) {
+            row.classList.add('is-active');
+            if(btn) btn.setAttribute('tabindex', '0');
+          } else if (i < activeIndex) {
+            row.classList.add('is-past'); 
+            if(btn) btn.setAttribute('tabindex', '-1'); 
+          } else {
+             if(btn) btn.setAttribute('tabindex', '-1'); 
+          }
+        });
+
+        const progressAirplane = document.getElementById('progress-airplane');
+        if (progressAirplane) {
+          // Use translateY for butter-smooth movement (progress * 300px track)
+          const yPos = progress * 300; 
+          progressAirplane.style.transform = `translateX(-50%) translateY(${yPos}px) rotate(180deg)`;
+        }
+      };
+
+      // requestAnimationFrame optimization
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            handleScroll();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+      
+      // Initialize
+      handleScroll();
+    };
+
+    initScrollEngine();
+  });
+</script>

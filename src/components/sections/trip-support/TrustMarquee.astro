@@ -1,0 +1,209 @@
+---
+// src/components/sections/trip-support/TrustMarquee.astro
+// An infinite scrolling marquee with premium typography and icons, 
+// acting as a professional bridge between the mission statement and the content grid.
+---
+
+<section class="trust-marquee-section" aria-label="Key performance indicators">
+  <div class="marquee-container">
+    <div class="marquee-track">
+      <!-- We duplicate the items enough times to allow infinite seamless scrolling -->
+      <div class="marquee-content highlight-blur" aria-hidden="true">
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>190+ Countries Served</span>
+        </div>
+        <div class="trust-divider"></div>
+        
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Zero Compromise Safety</span>
+        </div>
+        <div class="trust-divider"></div>
+        
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>24/7 Operations Control</span>
+        </div>
+        <div class="trust-divider"></div>
+        
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>98.7% First-Time Approvals</span>
+        </div>
+        <div class="trust-divider"></div>
+      </div>
+      
+      <!-- Duplicate for looping -->
+      <div class="marquee-content" aria-hidden="true">
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>190+ Countries Served</span>
+        </div>
+        <div class="trust-divider"></div>
+        
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Zero Compromise Safety</span>
+        </div>
+        <div class="trust-divider"></div>
+        
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>24/7 Operations Control</span>
+        </div>
+        <div class="trust-divider"></div>
+        
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>98.7% First-Time Approvals</span>
+        </div>
+        <div class="trust-divider"></div>
+      </div>
+      
+       <!-- Triplicate for seamless looping on ultrawide arrays -->
+       <div class="marquee-content" aria-hidden="true">
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>190+ Countries Served</span>
+        </div>
+        <div class="trust-divider"></div>
+        
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Zero Compromise Safety</span>
+        </div>
+        <div class="trust-divider"></div>
+        
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>24/7 Operations Control</span>
+        </div>
+        <div class="trust-divider"></div>
+        
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>98.7% First-Time Approvals</span>
+        </div>
+        <div class="trust-divider"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .trust-marquee-section {
+    padding: 2rem 0; /* Add nice breathing room */
+    background-color: #ffffff;
+    border-top: 1px solid rgba(13, 33, 55, 0.05); /* very subtle top border */
+    overflow: hidden;
+    position: relative;
+    /* Faded edges using mask-image */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .marquee-container {
+    width: 100vw;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: fit-content;
+    animation: scroll 40s linear infinite;
+  }
+
+  /* Pause on hover to allow users to read */
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .marquee-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-width: 100%;
+    flex-shrink: 0;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0 3rem;
+    color: var(--color-text, #0D2137);
+    font-size: 1.125rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .trust-item:hover {
+    opacity: 1;
+    color: var(--color-primary, #4BA3C3); /* highlight on hover */
+  }
+
+  .trust-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--color-primary, #4BA3C3);
+  }
+
+  .trust-divider {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-primary, #4BA3C3);
+    opacity: 0.3;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.3333%);
+    }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .trust-marquee-section {
+      padding: 1.5rem 0;
+    }
+    .trust-item {
+      font-size: 1rem;
+      padding: 0 1.5rem;
+    }
+    .trust-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .trust-marquee-section {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    .marquee-content:not(:first-child) {
+      display: none;
+    }
+    .marquee-content {
+      flex-wrap: wrap;
+      gap: 1.5rem 0;
+      justify-content: center;
+    }
+    .trust-divider {
+      display: none;
+    }
+  }
+</style>

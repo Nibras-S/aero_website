@@ -1,0 +1,434 @@
+---
+// src/components/sections/trip-support/ClienteleStatement.astro
+// Clean, horizontal statement with a Shadcn-inspired modal form
+---
+
+<section class="clientele-section" aria-label="Our Clientele">
+  <div class="container statement-container">
+    <h2 class="statement-text">
+      Delivering seamless support to heads of state, corporate flight departments, and commercial operators across the globe.
+    </h2>
+    
+    <div class="button-wrapper">
+      <button type="button" class="btn-talk" id="talk-to-us-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="trip-modal">
+        <span>Talk to us</span>
+        <svg fill="none" width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Shadcn-Inspired Modal Dialog -->
+<div class="shadcn-dialog-overlay" id="trip-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+  <div class="shadcn-dialog-content">
+    
+    <!-- Close Button -->
+    <button class="shadcn-dialog-close" id="close-modal-btn" aria-label="Close form">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    
+    <div class="shadcn-dialog-header">
+      <h3 class="shadcn-dialog-title" id="dialog-title">Request Trip Support</h3>
+      <p class="shadcn-dialog-description">Fill out the details below for your upcoming trip and our dispatch team will contact you immediately.</p>
+    </div>
+
+    <form class="shadcn-form" id="trip-support-form">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" required placeholder="John Doe" />
+        </div>
+        
+        <div class="form-group">
+          <label for="company">Company / Operator</label>
+          <input type="text" id="company" name="company" placeholder="Acme Aviation LLC" />
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="john@example.com" />
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="departure">Departure Airport</label>
+          <input type="text" id="departure" name="departure" required placeholder="e.g. KTEB" />
+        </div>
+        
+        <div class="form-group">
+          <label for="destination">Destination Airport</label>
+          <input type="text" id="destination" name="destination" required placeholder="e.g. EGSS" />
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="details">Additional Requirements</label>
+        <textarea id="details" name="details" rows="3" placeholder="Handling, Permits, Fuel requests..."></textarea>
+      </div>
+
+      <div class="shadcn-dialog-footer">
+        <button type="submit" class="shadcn-btn shadcn-btn-primary">Submit Request</button>
+      </div>
+    </form>
+    
+    <!-- Success State (hidden by default) -->
+    <div class="form-success-state" id="form-success" aria-hidden="true" style="display: none;">
+      <svg class="success-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+      </svg>
+      <h4>Request Received</h4>
+      <p>Our global operations team is reviewing your details and will be in touch shortly.</p>
+    </div>
+    
+  </div>
+</div>
+
+<style>
+  /* ==========================================================
+     STATEMENT SECTION STYLES
+  ========================================================== */
+  .clientele-section {
+    min-height: 100svh; /* Changed to full viewport size */
+    padding: 2rem 1.5rem;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05); /* very subtle break */
+  }
+
+  .statement-container {
+    max-width: 1240px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3rem;
+    justify-content: space-between;
+  }
+
+  .statement-text {
+    flex: 1;
+    min-width: 300px;
+    margin: 0;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--color-text, #0D2137);
+    letter-spacing: -0.02em;
+  }
+
+  /* The Pill Button */
+  .button-wrapper {
+    flex-shrink: 0;
+  }
+
+  .btn-talk {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.75rem;
+    background-color: #dce8e0;
+    color: #1a2e1a;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .btn-talk:hover {
+    background-color: #c6dad1;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .btn-talk svg {
+    transition: transform 0.2s ease;
+  }
+
+  .btn-talk:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  @media (max-width: 768px) {
+    .statement-container {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+  }
+
+  /* ==========================================================
+     SHADCN-INSPIRED MODAL FORM
+  ========================================================== */
+  .shadcn-dialog-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.5); /* backdrop-blur equivalent */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    
+    /* Animation defaults */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-out;
+  }
+  
+  .shadcn-dialog-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .shadcn-dialog-content {
+    position: relative;
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 0.5rem; /* rounded-lg */
+    border: 1px solid rgba(0,0,0,0.1); /* border */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+    padding: 1.5rem; /* p-6 */
+    
+    /* Entry animation */
+    transform: scale(0.95);
+    transition: transform 0.2s ease-out;
+  }
+
+  .shadcn-dialog-overlay.is-open .shadcn-dialog-content {
+    transform: scale(1);
+  }
+
+  .shadcn-dialog-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    border: none;
+    background: transparent;
+    color: #64748b; /* text-muted-foreground */
+    opacity: 0.7;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+    transition: opacity 0.2s, background 0.2s;
+  }
+
+  .shadcn-dialog-close:hover {
+    opacity: 1;
+    background-color: #f1f5f9; /* bg-accent */
+  }
+
+  .shadcn-dialog-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .shadcn-dialog-title {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    color: #0f172a;
+    letter-spacing: -0.025em;
+  }
+
+  .shadcn-dialog-description {
+    margin: 0;
+    font-size: 0.875rem; /* text-sm */
+    color: #64748b; /* text-muted-foreground */
+    line-height: 1.5;
+  }
+
+  .shadcn-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* space-y-4 */
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+    color: #0f172a;
+    line-height: 1;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    display: flex;
+    width: 100%;
+    border-radius: 0.375rem; /* rounded-md */
+    border: 1px solid #e2e8f0; /* border-input */
+    background-color: transparent;
+    padding: 0.5rem 0.75rem; /* px-3 py-2 */
+    font-size: 0.875rem; /* text-sm */
+    color: #0f172a;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #94a3b8; /* text-muted-foreground */
+  }
+
+  .form-group input:focus-visible,
+  .form-group textarea:focus-visible {
+    outline: none;
+    border-color: #0f172a; /* ring foreground */
+    box-shadow: 0 0 0 1px #0f172a; /* ring offset */
+  }
+
+  .shadcn-dialog-footer {
+    display: flex;
+    justify-content: stretch;
+    margin-top: 0.5rem;
+  }
+
+  .shadcn-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.375rem; /* rounded-md */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+    height: 2.5rem; /* h-10 */
+    padding: 0 1rem; /* px-4 */
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .shadcn-btn-primary {
+    background-color: #0f172a; /* bg-primary */
+    color: #f8fafc; /* text-primary-foreground */
+    border: none;
+  }
+
+  .shadcn-btn-primary:hover {
+    background-color: #1e293b; /* bg-primary/90 */
+  }
+
+  /* Success State */
+  .form-success-state {
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .success-icon {
+    color: #10b981; /* emerald-500 */
+    margin: 0 auto 1rem;
+  }
+
+  .form-success-state h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  .form-success-state p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #64748b;
+    line-height: 1.5;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modalBtn = document.getElementById('talk-to-us-btn');
+    const modalOverlay = document.getElementById('trip-modal');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const form = document.getElementById('trip-support-form') as HTMLFormElement | null;
+    const successState = document.getElementById('form-success');
+
+    // Open Modal
+    if (modalBtn && modalOverlay) {
+      modalBtn.addEventListener('click', () => {
+        modalOverlay.classList.add('is-open');
+        modalOverlay.setAttribute('aria-hidden', 'false');
+        modalBtn.setAttribute('aria-expanded', 'true');
+        
+        // Reset form state heavily if reopened
+        if (form && successState) {
+          form.style.display = 'flex';
+          successState.style.display = 'none';
+          (form as HTMLFormElement).reset();
+        }
+      });
+    }
+
+    // Close Modal
+    const closeModal = () => {
+      if(modalOverlay) {
+        modalOverlay.classList.remove('is-open');
+        modalOverlay.setAttribute('aria-hidden', 'true');
+        if(modalBtn) modalBtn.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    
+    // Close on backdrop click
+    if (modalOverlay) {
+      modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) closeModal();
+      });
+    }
+    
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Form Submission Simulation
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Show loading state on button
+        const submitBtn = (form as HTMLFormElement).querySelector<HTMLButtonElement>('button[type="submit"]');
+        if (!submitBtn) return;
+        
+        const originalText = submitBtn.textContent || '';
+        submitBtn.innerHTML = 'Sending...';
+        submitBtn.disabled = true;
+
+        // Simulate API delay
+        setTimeout(() => {
+          form.style.display = 'none';
+          if(successState) successState.style.display = 'block';
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }, 800);
+      });
+    }
+  });</script>

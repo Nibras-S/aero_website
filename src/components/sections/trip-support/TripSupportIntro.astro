@@ -1,66 +1,828 @@
 ---
-// TripSupportIntro Section
-// Shared between the Home Page and the top of the Trip Support Page
+// TripSupportIntro — Premium Aviation Hero
+// Clean cinematic hero matching reference design
 ---
 
-<section id="trip-support" class="trip-intro">
-  <div class="container">
-    <div class="content">
-      <p class="overline">Global Trip Support</p>
-      <h2 class="heading">Seamless Flight Operations, <span>Anywhere You Fly</span></h2>
-      <p class="description">
-        We provide end-to-end trip support tailored to international operators, VIP flights, and executive travel. From permits and flight planning to on-the-ground coordination, we ensure every journey is flawless.
-      </p>
-      <a href="/trip-support" class="btn-primary">Explore Services ↗</a>
+<section id="trip-support" class="hero" aria-label="Trip Support Hero">
+  <!-- Background -->
+  <div class="hero__bg" aria-hidden="true">
+    <img
+      src="/images/trip-support-hero.png"
+      alt=""
+      class="hero__img"
+      loading="eager"
+      decoding="async"
+    />
+  </div>
+
+  <!-- Gradient overlay -->
+  <div class="hero__overlay" aria-hidden="true"></div>
+
+  <!-- Content: Split bottom layout -->
+  <div class="hero__container">
+    <div class="hero__content">
+      <!-- Left: Large heading -->
+      <div class="hero__left">
+        <h1 class="hero__heading">
+          Seamless flight<br />
+          operations, anywhere<br />
+          <span class="text-highlight">you fly</span>
+        </h1>
+      </div>
+
+      <!-- Right: Description + CTA -->
+      <div class="hero__right">
+        <p class="hero__desc">
+          End-to-end operational support designed to keep every flight
+          efficient, compliant, and on schedule.
+        </p>
+        <button
+          type="button"
+          class="hero__cta"
+          id="open-trip-modal"
+          aria-haspopup="dialog"
+        >
+          Request trip support
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- Modal Backdrop -->
+<div class="modal-backdrop" id="trip-modal-backdrop" aria-hidden="true"></div>
+
+<!-- Modal Form -->
+<dialog class="modal" id="trip-modal" aria-labelledby="modal-title">
+  <div class="modal__inner">
+    <div class="modal__header">
+      <div>
+        <h2 id="modal-title" class="modal__title">Request Trip Support</h2>
+        <p class="modal__subtitle">
+          Our operations team will respond within 2 hours.
+        </p>
+      </div>
+      <button
+        type="button"
+        class="modal__close"
+        id="close-trip-modal"
+        aria-label="Close dialog"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <path d="M18 6L6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <form class="modal__form" id="trip-form" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="trip-name" class="form-label"
+            >Full Name <span class="req">*</span></label
+          >
+          <input
+            type="text"
+            id="trip-name"
+            name="name"
+            class="form-input"
+            placeholder="e.g. James Rodriguez"
+            required
+            autocomplete="name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="trip-company" class="form-label">Company</label>
+          <input
+            type="text"
+            id="trip-company"
+            name="company"
+            class="form-input"
+            placeholder="e.g. Meridian Aviation"
+            autocomplete="organization"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="trip-email" class="form-label"
+          >Email Address <span class="req">*</span></label
+        >
+        <input
+          type="email"
+          id="trip-email"
+          name="email"
+          class="form-input"
+          placeholder="e.g. ops@meridian.aero"
+          required
+          autocomplete="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="trip-details" class="form-label">Trip Details</label>
+        <textarea
+          id="trip-details"
+          name="details"
+          class="form-input form-textarea"
+          rows="4"
+          placeholder="Aircraft type, route, dates, number of pax, special requirements..."
+        ></textarea>
+      </div>
+
+      <button type="submit" class="modal__submit" id="submit-trip">
+        <span class="submit-text">Submit Request</span>
+        <span class="submit-loader" aria-hidden="true">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path
+              d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"
+            ></path>
+          </svg>
+        </span>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M22 2L11 13"></path>
+          <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+        </svg>
+      </button>
+    </form>
+
+    <!-- Success -->
+    <div class="modal__success" id="trip-success" hidden>
+      <div class="success-icon">
+        <svg
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M8 12l3 3 5-5"></path>
+        </svg>
+      </div>
+      <h3>Request Submitted</h3>
+      <p>Our operations team will reach out shortly.</p>
+      <button type="button" class="modal__submit" id="close-success"
+        >Done</button
+      >
+    </div>
+  </div>
+</dialog>
+
 <style>
-  .trip-intro {
-    padding: 6rem 2rem;
-    background: #0D2137;
-    color: white;
-    text-align: center;
+  /* =============================================
+     HERO SECTION
+     ============================================= */
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 100svh; /* Changed to full viewport size */
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    font-family: "Inter", "Roboto", system-ui, sans-serif;
+    color: #ffffff;
   }
-  .container {
-    max-width: 800px;
+
+  /* Background image */
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    animation: heroZoom 28s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  @keyframes heroZoom {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.06);
+    }
+  }
+
+  /* Gradient overlay — dark bottom + left-heavy */
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(
+        to top,
+        rgba(5, 12, 23, 0.95) 0%,
+        rgba(5, 12, 23, 0.7) 35%,
+        rgba(5, 12, 23, 0.3) 60%,
+        rgba(5, 12, 23, 0.1) 100%
+      ),
+      linear-gradient(
+        to right,
+        rgba(5, 12, 23, 0.55) 0%,
+        rgba(5, 12, 23, 0.2) 40%,
+        transparent 70%
+      );
+  }
+
+  /* Container */
+  .hero__container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1240px;
     margin: 0 auto;
+    padding: 0 2.5rem 8rem; /* Further 'left' (2.5rem) and 'top' (8rem bottom padding) */
   }
-  .overline {
-    color: var(--color-primary);
-    font-size: 0.85rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+
+  /* Split content layout */
+  .hero__content {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 3rem;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 900ms cubic-bezier(0.16, 1, 0.3, 1) 300ms forwards;
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Left — heading */
+  .hero__left {
+    flex: 1;
+    max-width: 850px;
+  }
+
+  .hero__heading {
+    font-size: clamp(2.25rem, 5.5vw, 3.8rem); /* Slightly smaller max to match right height */
     font-weight: 700;
-    margin-bottom: 1rem;
+    line-height: 1.35; /* Increased to stretch heading height */
+    letter-spacing: -0.035em;
+    margin: 0;
+    color: #ffffff;
   }
-  .heading {
-    font-size: clamp(2.5rem, 4.5vw, 4rem);
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
+
+  .text-highlight {
+    color: var(--color-primary, #4ba3c3);
   }
-  .heading span {
-    color: var(--color-primary);
+
+  /* Right — description + CTA */
+  .hero__right {
+    flex-shrink: 0;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between; /* Space out description and button */
+    padding-top: 0.5rem; /* Tiny top alignment offset */
+    padding-bottom: 0.5rem; /* Match bottom spacing */
+    height: auto;
+    min-height: 100%;
+    gap: 2.5rem; /* Increased to match heading height */
   }
-  .description {
-    font-size: 1.15rem;
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
+
+  .hero__desc {
+    font-size: 0.975rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
   }
-  .btn-primary {
+
+  .br-desktop {
+    display: inline;
+  }
+
+  /* CTA Button — outlined style matching reference */
+  .hero__cta {
     display: inline-flex;
     align-items: center;
-    padding: 0.9rem 2.5rem;
-    background: var(--color-primary);
-    color: white;
-    text-decoration: none;
+    gap: 0.75rem;
+    padding: 0.9rem 1.75rem;
+    font-size: 0.78rem;
     font-weight: 600;
-    font-size: 1rem;
-    border-radius: 0.25rem;
-    transition: opacity 0.2s;
+    font-family: inherit;
+    color: #1a2e1a;
+    background: #dce8e0;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .btn-primary:hover { opacity: 0.9; }
+
+  .hero__cta:hover {
+    background: #c6dad1;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero__cta:active {
+    transform: translateY(0);
+  }
+
+  .hero__cta:focus-visible {
+    outline: 2px solid var(--color-primary, #4ba3c3);
+    outline-offset: 3px;
+  }
+
+  .hero__cta svg {
+    transition: transform 200ms ease;
+  }
+
+  .hero__cta:hover svg {
+    transform: translate(3px, -3px);
+  }
+
+  /* =============================================
+     MODAL
+     ============================================= */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 998;
+    background: rgba(5, 12, 23, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 300ms ease,
+      visibility 300ms ease;
+  }
+
+  .modal-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.96);
+    z-index: 999;
+    width: 92vw;
+    max-width: 540px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1.125rem;
+    padding: 0;
+    box-shadow:
+      0 24px 80px -12px rgba(5, 12, 23, 0.35),
+      0 8px 24px -4px rgba(5, 12, 23, 0.12);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 350ms cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: "Inter", "Roboto", system-ui, sans-serif;
+    color: #0f172a;
+  }
+
+  .modal[open] {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .modal::backdrop {
+    display: none;
+  }
+
+  .modal__inner {
+    padding: 2.25rem;
+  }
+
+  .modal__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .modal__title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0d2137;
+    margin: 0 0 0.3rem;
+    letter-spacing: -0.02em;
+  }
+
+  .modal__subtitle {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0;
+  }
+
+  .modal__close {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+    border: none;
+    border-radius: 0.5rem;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 150ms ease;
+  }
+
+  .modal__close:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+  }
+
+  .modal__close:focus-visible {
+    outline: 2px solid var(--color-primary, #4ba3c3);
+    outline-offset: 2px;
+  }
+
+  /* Form */
+  .modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .form-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  .req {
+    color: #ef4444;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.7rem 0.875rem;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: #0f172a;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 0.5rem;
+    outline: none;
+    transition: all 200ms ease;
+  }
+
+  .form-input::placeholder {
+    color: #94a3b8;
+  }
+
+  .form-input:hover {
+    border-color: #cbd5e1;
+  }
+
+  .form-input:focus {
+    border-color: var(--color-primary, #4ba3c3);
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(75, 163, 195, 0.12);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 96px;
+  }
+
+  .modal__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.8rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--color-primary, #4ba3c3), #2e86ab);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 200ms ease;
+    margin-top: 0.375rem;
+    box-shadow: 0 2px 8px rgba(75, 163, 195, 0.25);
+  }
+
+  .modal__submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(75, 163, 195, 0.35);
+  }
+
+  .modal__submit:active {
+    transform: translateY(0);
+  }
+
+  .modal__submit:focus-visible {
+    outline: 2px solid var(--color-primary, #4ba3c3);
+    outline-offset: 3px;
+  }
+
+  .submit-loader {
+    display: none;
+    animation: spin 0.8s linear infinite;
+  }
+
+  .modal__submit.is-loading .submit-text {
+    opacity: 0;
+  }
+  .modal__submit.is-loading .submit-loader {
+    display: flex;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Success state */
+  .modal__success {
+    text-align: center;
+    padding: 1.5rem 0.5rem;
+  }
+  .modal__success[hidden] {
+    display: none;
+  }
+
+  .success-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: rgba(75, 163, 195, 0.1);
+    color: var(--color-primary, #4ba3c3);
+    border-radius: 50%;
+    margin-bottom: 1.25rem;
+  }
+
+  .modal__success h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.4rem;
+  }
+
+  .modal__success p {
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0 0 1.75rem;
+  }
+
+  /* =============================================
+     RESPONSIVE
+     ============================================= */
+  @media (max-width: 900px) {
+    .hero__content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.75rem;
+    }
+
+    .hero__right {
+      max-width: 100%;
+    }
+
+    .hero__container {
+      padding: 0 1.5rem 5rem; /* Shifted top/left for tablet */
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      height: 80vh;
+      min-height: 480px;
+    }
+
+    .hero__container {
+      padding: 0 1rem 4rem; /* Shifted top/left for mobile */
+    }
+
+    .hero__heading {
+      font-size: 1.6rem;
+    }
+
+    .hero__desc {
+      font-size: 0.9rem;
+    }
+
+    .br-desktop {
+      display: none;
+    }
+
+    .hero__cta {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .hero__overlay {
+      background: linear-gradient(
+        to top,
+        rgba(5, 12, 23, 0.95) 0%,
+        rgba(5, 12, 23, 0.65) 45%,
+        rgba(5, 12, 23, 0.2) 100%
+      );
+    }
+
+    .modal__inner {
+      padding: 1.5rem;
+    }
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* =============================================
+     ACCESSIBILITY
+     ============================================= */
+  @media (prefers-reduced-motion: reduce) {
+    .hero__img {
+      animation: none;
+    }
+    .hero__content {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    .modal,
+    .modal-backdrop {
+      transition-duration: 0.01ms;
+    }
+  }
+
+  @media (prefers-contrast: high) {
+    .hero__desc {
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .hero__cta {
+      border-width: 2px;
+    }
+  }
 </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const openBtn = document.getElementById(
+      "open-trip-modal",
+    ) as HTMLButtonElement | null;
+    const closeBtn = document.getElementById(
+      "close-trip-modal",
+    ) as HTMLButtonElement | null;
+    const closeSuccess = document.getElementById(
+      "close-success",
+    ) as HTMLButtonElement | null;
+    const modal = document.getElementById(
+      "trip-modal",
+    ) as HTMLDialogElement | null;
+    const backdrop = document.getElementById(
+      "trip-modal-backdrop",
+    ) as HTMLElement | null;
+    const form = document.getElementById("trip-form") as HTMLFormElement | null;
+    const successEl = document.getElementById(
+      "trip-success",
+    ) as HTMLElement | null;
+
+    if (!openBtn || !closeBtn || !modal || !backdrop || !form || !successEl)
+      return;
+
+    let previousFocus: HTMLElement | null = null;
+
+    function openModal(): void {
+      previousFocus = document.activeElement as HTMLElement;
+      modal!.setAttribute("open", "");
+      backdrop!.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => {
+        const firstInput = modal!.querySelector("input") as HTMLElement | null;
+        if (firstInput) firstInput.focus();
+      }, 350);
+    }
+
+    function closeModal(): void {
+      modal!.removeAttribute("open");
+      backdrop!.classList.remove("is-open");
+      document.body.style.overflow = "";
+      form!.reset();
+      form!.style.display = "";
+      successEl!.hidden = true;
+      const submitBtn = form!.querySelector(
+        ".modal__submit",
+      ) as HTMLElement | null;
+      if (submitBtn) submitBtn.classList.remove("is-loading");
+      if (previousFocus) previousFocus.focus();
+    }
+
+    openBtn.addEventListener("click", openModal);
+    closeBtn.addEventListener("click", closeModal);
+    if (closeSuccess) closeSuccess.addEventListener("click", closeModal);
+    backdrop.addEventListener("click", closeModal);
+
+    document.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Escape" && modal.hasAttribute("open")) closeModal();
+    });
+
+    // Focus trap
+    modal.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      const focusable = modal.querySelectorAll<HTMLElement>(
+        'button, input, textarea, [tabindex]:not([tabindex="-1"])',
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+
+    // Submit handler
+    form.addEventListener("submit", (e: Event) => {
+      e.preventDefault();
+      const submitBtn = form.querySelector(
+        ".modal__submit",
+      ) as HTMLElement | null;
+      if (submitBtn) submitBtn.classList.add("is-loading");
+      setTimeout(() => {
+        form.style.display = "none";
+        successEl.hidden = false;
+        if (submitBtn) submitBtn.classList.remove("is-loading");
+      }, 1500);
+    });
+  });
+</script>
