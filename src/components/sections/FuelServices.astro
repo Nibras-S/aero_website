@@ -1,8 +1,523 @@
 ---
-// FuelServices Section
+// FuelServices — Detail content section (body, cards, staff duo, stats)
+// Cinematic hero handled by FuelHero.astro on the /fuel page
 ---
 
-<section id="fuel" style="padding: 5rem 2rem; max-width: 1200px; margin: 0 auto;">
-  <p style="color: var(--color-primary); font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem;">Fuel Supply</p>
-  <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--color-text);">Fuel Services</h2>
+<section id="fuel" class="fuel-section">
+
+  <!-- ── 1. & 2. Grid Intro & Body Copy ── -->
+  <div class="fuel-intro-grid">
+    <div class="fuel-intro-text">
+      <h2 class="fuel-headline">
+        Reliable, Competitive &amp;&nbsp;<br/><span class="fuel-accent">Globally Coordinated.</span>
+      </h2>
+      <div class="fuel-body-copy" id="fuelBody">
+        <p class="fuel-lead">
+          Flyger provides seamless access to <strong>Jet A-1, TS-1, JP-8,</strong> and <strong>Avgas</strong> across
+          a vast global network — supporting commercial, charter, cargo, and specialized operations at
+          major airports worldwide.
+        </p>
+        <p class="fuel-sub">
+          Backed by strong supplier relationships and an efficient operational framework, we ensure timely
+          fuel arrangements, optimized pricing, and consistent quality aligned with international aviation
+          standards such as <em>ASTM</em> and <em>DEF STAN</em> specifications.
+        </p>
+      </div>
+    </div>
+    <div class="fuel-intro-img-wrap">
+       <img src="/images/flight_jet_fueling.jpg" alt="Flyger Aviation Global Operations" class="fuel-intro-img" />
+    </div>
+  </div>
+
+  <!-- ── 3. Feature Carousel (Offset Card Layout) ── -->
+  <div class="fuel-carousel-section" id="fuelFeatures">
+    <!-- Angled blue background slice -->
+    <div class="fuel-carousel-bg-slice" aria-hidden="true"></div>
+
+    <div class="fuel-carousel-header">
+      <h2 class="fuel-carousel-title">Our global fuel network guarantees a<br/>smooth and uninterrupted operation.</h2>
+    </div>
+
+    <div class="fuel-carousel-track">
+      <div class="fuel-carousel-inner">
+        {
+          [0, 1].map((setIndex) => (
+            <>
+              <!-- Card 1 -->
+              <div class="fuel-ccard" aria-hidden={setIndex === 1 ? 'true' : undefined}>
+                <div class="fuel-ccard-img-wrap">
+                  <img src="/images/feature_rapid_prices_1775113738886.png" alt="Rapid Quotations" class="fuel-ccard-img" />
+                </div>
+                <div class="fuel-ccard-content">
+                  <div class="fuel-ccard-text">
+                    <h3>Rapid Quotations</h3>
+                    <p>Fast, competitive pricing with flexible structures for both scheduled and short-notice uplift requirements.</p>
+                  </div>
+                  <button class="fuel-ccard-btn" aria-label="Explore" tabindex={setIndex === 1 ? -1 : 0}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="19" x2="19" y2="5"></line><polyline points="9 5 19 5 19 15"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="fuel-ccard" aria-hidden={setIndex === 1 ? 'true' : undefined}>
+                <div class="fuel-ccard-img-wrap">
+                  <img src="/images/feature_global_network_1775074612164.png" alt="Global Network" class="fuel-ccard-img" />
+                </div>
+                <div class="fuel-ccard-content">
+                  <div class="fuel-ccard-text">
+                    <h3>Global Network</h3>
+                    <p>Coverage at major international airports worldwide — including complex and remote operational environments.</p>
+                  </div>
+                  <button class="fuel-ccard-btn" aria-label="Explore" tabindex={setIndex === 1 ? -1 : 0}>
+                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="19" x2="19" y2="5"></line><polyline points="9 5 19 5 19 15"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="fuel-ccard" aria-hidden={setIndex === 1 ? 'true' : undefined}>
+                <div class="fuel-ccard-img-wrap">
+                  <img src="/images/fuel.png" alt="24/7 Operations" class="fuel-ccard-img" />
+                </div>
+                <div class="fuel-ccard-content">
+                  <div class="fuel-ccard-text">
+                    <h3>24/7 Operations</h3>
+                    <p>Round-the-clock support ensuring uninterrupted fuel availability and minimal ground time every flight.</p>
+                  </div>
+                  <button class="fuel-ccard-btn" aria-label="Explore" tabindex={setIndex === 1 ? -1 : 0}>
+                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="19" x2="19" y2="5"></line><polyline points="9 5 19 5 19 15"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="fuel-ccard" aria-hidden={setIndex === 1 ? 'true' : undefined}>
+                <div class="fuel-ccard-img-wrap">
+                  <img src="/images/fuel-staff-coordination.png" alt="Quality Assured" class="fuel-ccard-img" />
+                </div>
+                <div class="fuel-ccard-content">
+                  <div class="fuel-ccard-text">
+                    <h3>Quality Assured</h3>
+                    <p>Full compliance with ASTM and DEF STAN international aviation fuel standards at every uplift point.</p>
+                  </div>
+                  <button class="fuel-ccard-btn" aria-label="Explore" tabindex={setIndex === 1 ? -1 : 0}>
+                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="19" x2="19" y2="5"></line><polyline points="9 5 19 5 19 15"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. Staff + Ramp Photo Duo ── -->
+  <div class="fuel-duo" id="fuelDuo">
+    <div class="fuel-duo-text">
+      <p class="fuel-eyebrow">Our Ramp Team</p>
+      <h3 class="fuel-duo-heading">Integrated Fuel&nbsp;<br/>Management</h3>
+      <p class="fuel-duo-body">
+        Our approach goes beyond simple fuel supply. We focus on delivering operational efficiency
+        through coordinated uplift planning — ensuring cost control and clear visibility at every stage.
+        Our ramp agents in Flyger uniforms are on the ground so you don't have to worry.
+      </p>
+      <a href="#contact" class="btn-fuel-cta">Request a Fuel Quote ↗</a>
+    </div>
+
+    <div class="fuel-duo-images">
+      <div class="fuel-duo-img-wrap fuel-duo-main">
+        <img
+          src="/images/fuel-ramp-agent.png"
+          alt="Flyger ramp agent supervising fuel operations on tarmac"
+          class="fuel-duo-img"
+        />
+        <div class="fuel-duo-badge">
+          <span class="fuel-badge-dot"></span>
+          Live Coordination
+        </div>
+      </div>
+      <div class="fuel-duo-img-wrap fuel-duo-secondary">
+        <img
+          src="/images/fuel-staff-coordination.png"
+          alt="Flyger staff coordinating fuel plan near aircraft"
+          class="fuel-duo-img"
+        />
+        <div class="fuel-duo-tag">Flyger Ground Team</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 5. Bottom Stat Strip ── -->
+  <div class="fuel-stats" id="fuelStats">
+    <div class="fuel-stat">
+      <span class="fuel-stat-num">180+</span>
+      <span class="fuel-stat-label">Countries & Territories</span>
+    </div>
+    <div class="fuel-stat-divider"></div>
+    <div class="fuel-stat">
+      <span class="fuel-stat-num">4</span>
+      <span class="fuel-stat-label">Fuel Grades Covered</span>
+    </div>
+    <div class="fuel-stat-divider"></div>
+    <div class="fuel-stat">
+      <span class="fuel-stat-num">24/7</span>
+      <span class="fuel-stat-label">Operational Support</span>
+    </div>
+    <div class="fuel-stat-divider"></div>
+    <div class="fuel-stat">
+      <span class="fuel-stat-num">&lt;2h</span>
+      <span class="fuel-stat-label">Average Quote Response</span>
+    </div>
+  </div>
+
 </section>
+
+<style>
+  .fuel-section {
+    background: var(--bg-main);
+    overflow: hidden;
+    padding-bottom: 6rem;
+  }
+
+  /* ─── Intro Grid ─── */
+  .fuel-intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem 2rem;
+    align-items: center;
+  }
+  .fuel-intro-text {
+    text-align: left;
+  }
+  .fuel-intro-img-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(13, 33, 55, 0.12);
+    /* Simple entrance animation */
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fuel-intro-img-wrap.visible {
+    opacity: 1; transform: translateX(0);
+  }
+  .fuel-intro-img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .fuel-eyebrow {
+    display: inline-block;
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding: 0.3rem 1rem;
+    border: 1px solid rgba(75, 163, 195, 0.35);
+    border-radius: 999px;
+  }
+  .fuel-headline {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+    color: var(--color-text);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+  .fuel-accent { color: var(--color-primary); }
+
+  /* ─── Body Copy ─── */
+  .fuel-body-copy {
+    margin-top: 2rem;
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fuel-body-copy.visible { opacity: 1; transform: translateY(0); }
+  .fuel-lead {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: var(--color-text);
+    font-weight: 500;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+  .fuel-lead strong { color: var(--color-primary); }
+  .fuel-sub {
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+    color: var(--color-muted);
+    line-height: 1.8;
+  }
+
+  /* ─── Feature Offset Carousel (New Reference Style) ─── */
+  .fuel-carousel-section {
+    position: relative;
+    padding: 6rem 0 10rem;
+    overflow: hidden;
+  }
+  
+  .fuel-carousel-bg-slice {
+    position: absolute;
+    bottom: -15%;
+    left: 0;
+    right: 0;
+    height: 75%;
+    background: #2b5585; /* Solid mid-blue matching reference angled slice */
+    transform: skewY(-6deg);
+    transform-origin: left bottom;
+    z-index: 0;
+  }
+  
+  .fuel-carousel-header {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto 4rem;
+    padding: 0 2rem;
+  }
+  .fuel-carousel-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+  
+  /* Horizontal scrolling track */
+  .fuel-carousel-track {
+    position: relative;
+    z-index: 1;
+    overflow: hidden; /* Hide scrollbars, user can no longer manually scroll */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  }
+  
+  .fuel-carousel-inner {
+    display: flex;
+    width: max-content;
+    gap: 2.5rem;
+    padding: 2rem 2rem 6rem; /* Extra bottom padding for box shadow */
+    align-items: flex-start;
+    animation: fuelMarquee 40s linear infinite;
+  }
+  
+  .fuel-carousel-inner:hover {
+    animation-play-state: paused;
+  }
+  
+  @keyframes fuelMarquee {
+    0% { transform: translateX(0); }
+    /* Shifts exactly left by the width of exactly 4 cards + gaps (50% of 8 cards width, minus half a gap for perfect looping)*/
+    100% { transform: translateX(calc(-50% - 1.25rem)); }
+  }
+  .fuel-carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .fuel-ccard {
+    flex: 0 0 clamp(340px, 38vw, 500px);
+    position: relative;
+    padding-bottom: 2.5rem; /* Room for the overlapping box */
+  }
+  
+  .fuel-ccard-img-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    border-radius: 0.25rem; /* Reduced rounding for boxy touch */
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 16px 40px rgba(13, 33, 55, 0.15);
+  }
+  
+  .fuel-ccard-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .fuel-ccard:hover .fuel-ccard-img {
+    transform: scale(1.05);
+  }
+  
+  .fuel-ccard-content {
+    position: absolute;
+    bottom: 0; /* Overlaps bottom of the card */
+    left: 1.5rem;
+    width: calc(100% - 3rem); /* Doesn't span full width to show corner overlap */
+    background: white;
+    padding: 1.5rem 1.75rem;
+    border-radius: 0.25rem; /* Reduced rounding */
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .fuel-ccard-text h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .fuel-ccard-text p {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .fuel-ccard-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    color: var(--color-text);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .fuel-ccard-btn:hover {
+    background: #f8fafc;
+    transform: scale(1.08);
+  }
+
+  /* ─── Staff Duo ─── */
+  .fuel-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 5rem auto 0;
+    padding: 0 2rem;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fuel-duo.visible { opacity: 1; transform: translateY(0); }
+
+  .fuel-duo-text .fuel-eyebrow { margin-bottom: 0.75rem; }
+  .fuel-duo-heading {
+    font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 900;
+    color: var(--color-text); line-height: 1.1;
+    letter-spacing: -0.02em; margin-bottom: 1.25rem;
+  }
+  .fuel-duo-body {
+    font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+    color: var(--color-muted); line-height: 1.8; margin-bottom: 2rem;
+  }
+  .btn-fuel-cta {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.85rem 2rem; background: var(--color-primary);
+    color: white; text-decoration: none; font-weight: 600;
+    font-size: 0.95rem; border-radius: 0.375rem;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-fuel-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .fuel-duo-images { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  .fuel-duo-img-wrap {
+    position: relative; border-radius: 1.25rem; overflow: hidden;
+    box-shadow: 0 24px 60px rgba(13, 33, 55, 0.14);
+  }
+  .fuel-duo-main    { aspect-ratio: 16 / 10; }
+  .fuel-duo-secondary { aspect-ratio: 16 / 7; }
+  .fuel-duo-img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+  }
+  .fuel-duo-img-wrap:hover .fuel-duo-img { transform: scale(1.04); }
+
+  .fuel-duo-badge {
+    position: absolute; bottom: 1rem; left: 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
+    border-radius: 999px; padding: 0.4rem 1rem;
+    font-size: 0.8rem; font-weight: 600; color: var(--color-text);
+  }
+  .fuel-badge-dot {
+    width: 8px; height: 8px; background: #22c55e; border-radius: 50%;
+    animation: pulse-dot 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+    50%       { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+  }
+  .fuel-duo-tag {
+    position: absolute; bottom: 1rem; right: 1rem;
+    background: rgba(13, 33, 55, 0.75); backdrop-filter: blur(8px);
+    color: white; border-radius: 0.5rem; padding: 0.35rem 0.85rem;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+
+  /* ─── Stats Strip ─── */
+  .fuel-stats {
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap; gap: 0;
+    max-width: 1000px; margin: 4.5rem auto 0;
+    padding: 2.5rem 2rem; background: var(--color-text);
+    border-radius: 1.5rem;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fuel-stats.visible { opacity: 1; transform: translateY(0); }
+  .fuel-stat {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 0 3rem; flex: 1; min-width: 140px;
+  }
+  .fuel-stat-num {
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+    color: var(--color-primary); letter-spacing: -0.03em;
+    line-height: 1; margin-bottom: 0.4rem;
+  }
+  .fuel-stat-label {
+    font-size: 0.78rem; color: rgba(255,255,255,0.65);
+    text-transform: uppercase; letter-spacing: 0.12em;
+    font-weight: 500; text-align: center;
+  }
+  .fuel-stat-divider {
+    width: 1px; height: 2.5rem; background: rgba(255,255,255,0.15); flex-shrink: 0;
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 1024px) {
+    .fuel-intro-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+    .fuel-intro-text { text-align: center; }
+    .fuel-duo { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+  @media (max-width: 640px) {
+    .fuel-stat-divider { display: none; }
+    .fuel-stat { padding: 0.75rem 1rem; }
+    .fuel-carousel-track { padding: 1rem 1rem 3rem; scroll-padding-left: 1rem; }
+    .fuel-ccard { flex: 0 0 85vw; }
+  }
+</style>
+
+<script>
+  function handleReveal() {
+    const targets = document.querySelectorAll(
+      '.fuel-body-copy, .fuel-intro-img-wrap, .fuel-duo, .fuel-stats'
+    );
+    targets.forEach((el, i) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.88) {
+         el.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', handleReveal, { passive: true });
+  handleReveal();
+</script>
