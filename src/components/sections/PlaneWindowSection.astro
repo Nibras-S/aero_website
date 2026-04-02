@@ -1,0 +1,319 @@
+---
+// Plane Window Section — full-screen, black bg, centred window with video inside
+---
+
+<section class="pw-section">
+
+  <!-- Centred window stack -->
+  <div class="pw-window-wrap">
+    <!-- video plays inside the transparent window opening -->
+    <video class="pw-video" autoplay muted loop playsinline>
+      <source src="/images/296958_medium.mp4" type="video/mp4" />
+    </video>
+    <!-- window frame on top — must have transparent centre -->
+    <img src="/images/ChatGPT.png" alt="" class="pw-frame" />
+  </div>
+
+  <!-- Text overlaid on the left -->
+  <div class="pw-text scroll-reveal-target">
+    <div class="split-line"><span class="pw-tag split-inner">THE FLYGER EXPERIENCE</span></div>
+    
+    <h2 class="pw-heading">
+      <div class="split-line"><span class="split-inner">Be part of</span></div>
+      <div class="split-line"><span class="split-inner"><em>the journey</em></span></div>
+    </h2>
+    
+    <p class="pw-body split-fade">
+      Every flight is more than a destination — it's a new perspective.
+      From ground support to the sky above, Flyger puts you in the seat
+      that matters most.
+    </p>
+
+    <div class="split-fade" style="margin-top: 0.25rem;">
+      <a href="#contact" class="pw-link" style="margin-top: 0;">
+        Explore our services
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Rotating Circular Badge -->
+  <div class="pw-circular-badge">
+    <svg viewBox="0 0 100 100" class="rotating-text" width="100%" height="100%">
+      <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+      <text font-size="8.5" fill="currentColor" letter-spacing="0.15em" font-weight="500" style="text-transform: uppercase;">
+        <textPath href="#circlePath" startOffset="0">
+          Fly high with Flyger • Fly high with Flyger • 
+        </textPath>
+      </text>
+    </svg>
+    <div class="pw-arrow">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="4" x2="12" y2="20"></line>
+        <polyline points="19 13 12 20 5 13"></polyline>
+      </svg>
+    </div>
+  </div>
+
+</section>
+
+<style>
+  /* ── Section shell ── */
+  .pw-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: #000000;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── Window + video stack ── */
+  .pw-window-wrap {
+    position: relative;
+    /* fill the full height, let width scale naturally */
+    height: 100%;
+    /* keep original image aspect – 3:4 is typical plane-window portrait */
+    aspect-ratio: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* video sits behind the frame, filling the same box */
+  .pw-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; /* Tweak slightly up to prevent edge bleeds */
+    height: 65%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  /* Frame image sits on top of video */
+  .pw-frame {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    pointer-events: none;
+    display: block;
+  }
+
+  /* ── Left-side text overlay ── */
+  .pw-text {
+    position: absolute;
+    left: clamp(2.5rem, 7vw, 7rem);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    max-width: 380px;
+  }
+
+  .pw-tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .pw-heading {
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.15;
+    margin: 0;
+    font-family: 'Montserrat', 'Inter', system-ui, sans-serif;
+  }
+  .pw-heading em {
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .pw-body {
+    font-size: clamp(0.8rem, 1.1vw, 0.9rem);
+    color: rgba(255, 255, 255, 0.42);
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .pw-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.65);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-top: 0.25rem;
+    transition: color 0.2s;
+  }
+  .pw-link:hover { color: #ffffff; }
+  .pw-link svg { transition: transform 0.2s; }
+  .pw-link:hover svg { transform: translateX(4px); }
+
+
+
+  /* ── Rotating Badge ── */
+  .pw-circular-badge {
+    position: absolute;
+    right: clamp(2rem, 8vw, 8rem);
+    bottom: clamp(2rem, 15vh, 6rem);
+    width: 140px;
+    height: 140px;
+    color: rgba(255, 255, 255, 0.65);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .rotating-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    will-change: transform;
+  }
+  .pw-arrow {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+  }
+
+
+  /* ── Reveal Animations ── */
+  .split-line {
+    overflow: hidden;
+    display: flex; /* prevents line-height clipping issues */
+  }
+  .split-inner {
+    display: inline-block;
+    transform: translateY(110%);
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+  }
+  .split-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  }
+
+  /* Active State Triggered by JS */
+  .pw-text.is-visible .split-line:nth-child(1) .split-inner {
+    transform: translateY(0); opacity: 1; transition-delay: 0.1s;
+  }
+  .pw-text.is-visible .pw-heading .split-line:nth-child(1) .split-inner {
+    transform: translateY(0); opacity: 1; transition-delay: 0.25s;
+  }
+  .pw-text.is-visible .pw-heading .split-line:nth-child(2) .split-inner {
+    transform: translateY(0); opacity: 1; transition-delay: 0.35s;
+  }
+  .pw-text.is-visible .pw-body.split-fade {
+    transform: translateY(0); opacity: 1; transition-delay: 0.5s;
+  }
+  .pw-text.is-visible div.split-fade { /* The link wrapper */
+    transform: translateY(0); opacity: 1; transition-delay: 0.65s;
+  }
+
+  /* ── Mobile View ── */
+  @media (max-width: 768px) {
+    .pw-section {
+      height: auto;
+      flex-direction: column;
+      padding-bottom: 4rem;
+      padding-top: 0;
+    }
+    .pw-window-wrap {
+      position: relative;
+      inset: auto;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      max-height: 60vh;
+      z-index: 0;
+      margin-bottom: 1rem;
+    }
+    .pw-frame {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .pw-video {
+      top: 0;
+      left: 0;
+      transform: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0;
+    }
+    .pw-text {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      right: auto;
+      padding: 0 1.5rem;
+      max-width: 100%;
+      text-align: center;
+      align-items: center;
+      background: none;
+      padding-top: 0;
+      z-index: 10;
+    }
+    .pw-circular-badge {
+      right: 0;
+      bottom: auto;
+      top: -3rem; /* Push slightly over the image if desired or just relative */
+      transform: scale(0.6);
+      opacity: 0.9;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.45 });
+
+    const target = document.querySelector('.scroll-reveal-target');
+    if (target) {
+      observer.observe(target);
+    }
+
+    // Rotating Badge on Scroll
+    const rotatingText = document.querySelector('.rotating-text');
+    if (rotatingText) {
+      window.addEventListener('scroll', () => {
+        // Rotate 0.15 degrees per pixel scrolled
+        const rotation = window.scrollY * 0.15;
+        rotatingText.style.transform = `rotate(${rotation}deg)`;
+      }, { passive: true });
+    }
+  });
+</script>
