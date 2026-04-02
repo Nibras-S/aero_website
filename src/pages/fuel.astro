@@ -1,0 +1,28 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+
+import FuelHero from '../components/sections/FuelHero.astro';
+import FuelServices from '../components/sections/FuelServices.astro';
+import ContactCTA from '../components/sections/ContactCTA.astro';
+---
+
+<MainLayout
+  title="Fuel Services — Flyger Aviation"
+  description="Flyger provides Jet A-1, TS-1, JP-8, and Avgas across a global network. Competitive pricing, 24/7 coordination, and rapid quotations worldwide."
+>
+  <Navbar />
+  <main>
+    <!-- Cinematic auto-expanding hero -->
+    <FuelHero />
+
+    <!-- Fuel services detail content -->
+    <div id="fuel-content">
+      <FuelServices />
+    </div>
+
+    <ContactCTA />
+  </main>
+  <Footer />
+</MainLayout>
