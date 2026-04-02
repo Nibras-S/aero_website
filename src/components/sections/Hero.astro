@@ -89,6 +89,30 @@
 
   /* ── Content ── */
   .hero-content {
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(8, 14, 22, 0.55) 0%,
+      rgba(8, 14, 22, 0.35) 40%,
+      rgba(8, 14, 22, 0.75) 80%,
+      rgba(8, 14, 22, 1) 100%
+    );
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ── Center Brand Typography ── */
+  .hero-brand {
     position: relative;
     z-index: 1;
     max-width: 700px;
@@ -116,10 +140,76 @@
 
   /* ── Buttons ── */
   .hero-actions {
+    color: rgba(255, 255, 255, 0.82);
+    letter-spacing: 0.12em;
+    line-height: 0.88;
+    margin: 0 0 0.25em;
+    font-family: 'Montserrat', 'Inter', system-ui, sans-serif;
+    /* Slightly condensed, geometric feel matching reference */
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.2s;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.75rem, 2vw, 1.1rem);
+    font-weight: 400;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0 0 2.5rem;
+    opacity: 0;
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.4s;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.75rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 999px;  /* Pill shape */
+    color: rgba(255, 255, 255, 0.88);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.25s;
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.6s;
+  }
+  .hero-cta:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.8);
+    color: #ffffff;
+  }
+
+  /* ── Floating News Card ── */
+  .hero-news-card {
+    position: absolute;
+    bottom: 7rem;
+    left: 2.5rem;
+    z-index: 2;
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
     align-items: center;
+    gap: 1.25rem;
+    background: rgba(10, 15, 22, 0.62);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+    max-width: 420px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    opacity: 0;
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.8s;
   }
 
   .btn-primary {
@@ -136,8 +226,34 @@
     transition: opacity 0.2s;
   }
   .btn-primary:hover { opacity: 0.88; }
-
   .btn-ghost {
+  /* ── Bottom Text Columns ── */
+  .hero-text-cols {
+    position: absolute;
+    bottom: 3rem;
+    right: 2.5rem;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 700px;
+    opacity: 0;
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 1.0s;
+  }
+  .hero-text-col,
+  .hero-text-col-right p {
+    font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .hero-text-col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .hero-read-more {
     display: inline-flex;
     align-items: center;
     padding: 0.85rem 2rem;
