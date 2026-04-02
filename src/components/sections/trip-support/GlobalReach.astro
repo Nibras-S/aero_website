@@ -1,28 +1,44 @@
 ---
-// GlobalReach Section - For Trip Support
+// GlobalReach Section - Premium horizontal split layout
 ---
 
-<section class="global-reach">
-  <div class="container">
-    <div class="content">
-      <h2 class="heading">A True <span>Global Footprint</span></h2>
-      <p class="desc">
-        Wherever your flight path takes you, our dedicated local representatives and vetted partners ensure exceptional service quality and compliance with local regulations.
+<section class="gr-section">
+  <div class="gr-wrapper">
+
+    <!-- LEFT 60%: Editorial Content -->
+    <div class="gr-left">
+      <span class="gr-eyebrow">Global Network</span>
+      <h2 class="gr-heading">A True Global Footprint</h2>
+      <p class="gr-desc">
+        Wherever your flight path takes you, our dedicated local representatives
+        and vetted partners ensure exceptional service quality and strict
+        compliance with local regulations — across every continent.
       </p>
-      
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="number">100+</div>
-          <div class="label">Countries Covered</div>
-        </div>
-        <div class="stat-card">
-          <div class="number">24/7</div>
-          <div class="label">Operations Center</div>
-        </div>
-        <div class="stat-card">
-          <div class="number">500+</div>
-          <div class="label">Partner FBOs</div>
-        </div>
+    </div>
+
+    <!-- Vertical Divider -->
+    <div class="gr-divider" aria-hidden="true"></div>
+
+    <!-- RIGHT 40%: Metrics Stack -->
+    <div class="gr-right">
+
+      <div class="gr-metric">
+        <span class="gr-number">100+</span>
+        <span class="gr-label">Countries Covered</span>
+      </div>
+
+      <div class="gr-rule"></div>
+
+      <div class="gr-metric">
+        <span class="gr-number">24/7</span>
+        <span class="gr-label">Operations Center</span>
+      </div>
+
+      <div class="gr-rule"></div>
+
+      <div class="gr-metric">
+        <span class="gr-number">500+</span>
+        <span class="gr-label">Partner FBOs</span>
       </div>
 
     </div>
@@ -30,63 +46,159 @@
 </section>
 
 <style>
-  .global-reach {
-    padding: 6rem 2rem;
-    background: white;
-  }
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .heading {
-    font-size: clamp(2.25rem, 3.5vw, 3rem);
-    font-weight: 800;
-    color: var(--color-text);
-    margin-bottom: 1.5rem;
-  }
-  .heading span {
-    color: var(--color-primary);
-  }
-  .desc {
-    font-size: 1.15rem;
-    color: var(--color-muted);
-    line-height: 1.7;
-    margin-bottom: 4rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .stats-grid {
+  /* ── SECTION BASE ── */
+  .gr-section {
+    background-color: #ffffff;
+    min-height: 100svh; /* Changed to full viewport size */
+    padding: 2rem;
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 3rem;
-  }
-  .stat-card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  .number {
-    font-size: 3.5rem;
-    font-weight: 900;
-    color: var(--color-primary);
-    line-height: 1;
-  }
-  .label {
-    font-size: 1.1rem;
-    color: var(--color-text);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    align-items: center;
+    justify-content: center;
   }
 
+  /* ── 60 / divider / 40 GRID ── */
+  .gr-wrapper {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 60fr 1px 40fr;
+    gap: 0;
+    align-items: center;
+  }
+
+  /* ── LEFT SIDE ── */
+  .gr-left {
+    padding-right: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  /* Small blue label — the only blue element */
+  .gr-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-primary, #4BA3C3);
+    margin-bottom: 1.5rem;
+  }
+
+  .gr-heading {
+    font-size: clamp(5rem, 8vw, 8rem);
+    font-weight: 800;
+    color: #111111;
+    line-height: 1.0;
+    letter-spacing: -0.035em;
+    margin: 0 0 1.75rem 0;
+  }
+
+  .gr-desc {
+    font-size: 1.1rem;
+    color: #555555;
+    line-height: 1.8;
+    margin: 0;
+    max-width: 480px;
+  }
+
+  /* ── VERTICAL DIVIDER ── */
+  .gr-divider {
+    width: 1px;
+    background-color: #e0e0e0;
+    align-self: stretch;
+    margin: 0 4rem;
+  }
+
+  /* ── RIGHT SIDE ── */
+  .gr-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .gr-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 2rem 0;
+    width: 100%;
+  }
+
+  /* Large numbers — BLUE only */
+  .gr-number {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300;         /* thin = editorial premium */
+    color: var(--color-primary, #4BA3C3);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  /* Labels — BLACK */
+  .gr-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #111111;
+  }
+
+  /* Thin separator between metrics */
+  .gr-rule {
+    height: 1px;
+    width: 100%;
+    background: #ebebeb;
+  }
+
+  /* ── RESPONSIVE: TABLET ── */
+  @media (max-width: 1024px) {
+    .gr-left {
+      padding-right: 3rem;
+    }
+    .gr-divider {
+      margin: 0 2.5rem;
+    }
+  }
+
+  /* ── RESPONSIVE: MOBILE ── */
   @media (max-width: 768px) {
-    .stats-grid {
-      flex-direction: column;
-      gap: 3rem;
+    .gr-section {
+      padding: 5rem 1.5rem;
+    }
+
+    .gr-wrapper {
+      grid-template-columns: 1fr;
+    }
+
+    .gr-left {
+      padding-right: 0;
+      padding-bottom: 3.5rem;
+    }
+
+    /* Turn the vertical divider into a horizontal rule */
+    .gr-divider {
+      width: 100%;
+      height: 1px;
+      margin: 0 0 3.5rem 0;
+      align-self: auto;
+    }
+
+    .gr-heading {
+      font-size: clamp(3.5rem, 12vw, 5.5rem);
+    }
+
+    .gr-right {
+      align-items: center;
+      text-align: center;
+    }
+
+    .gr-metric {
+      padding: 1.75rem 0;
+      align-items: center;
     }
   }
 </style>
