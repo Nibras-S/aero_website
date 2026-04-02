@@ -102,11 +102,13 @@ const services = [
       ))}
     </div>
     
-    <!-- Progress indicator dots (Hidden on mobile) -->
-    <div class="scroll-progress-indicator" aria-hidden="true" id="progress-dots">
-      {services.map((_, index) => (
-        <span class={`progress-dot ${index === 0 ? 'is-active' : ''}`} data-dot-index={index}></span>
-      ))}
+    <div class="flight-path-indicator" aria-hidden="true" id="flight-path">
+      <div class="flight-track"></div>
+      <div class="airplane-icon" id="progress-airplane">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 16v-2l-8-5V3.53a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+        </svg>
+      </div>
     </div>
 
   </div>
@@ -327,44 +329,48 @@ const services = [
   }
 
   /* ========================================================
-     PROGRESS DOTS (Desktop Only)
+     FLIGHT PATH INDICATOR (Desktop Only)
      ======================================================== */
-  .scroll-progress-indicator {
+  .flight-path-indicator {
     position: absolute;
-    right: 2rem;
+    right: 3rem;
     top: 50%;
     transform: translateY(-50%);
+    height: 300px; /* Fixed height for the track */
+    width: 2px;
+    z-index: 10;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    z-index: 10;
+    align-items: center;
   }
   
-  .progress-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
+  .flight-track {
+    position: absolute;
+    inset: 0;
+    border-left: 2px solid rgba(255, 255, 255, 0.4); /* Solid white line */
   }
   
-  .progress-dot.is-active {
-    height: 24px;
-    border-radius: 4px;
-    background: var(--color-primary, #4BA3C3);
+  .airplane-icon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    /* Use transform for both rotation and movement (smooth driving) */
+    transform: translateX(-50%) translateY(0) rotate(180deg);
+    color: #FFFFFF; /* High contrast White */
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform;
   }
 
-  /* ========================================================
-     MOBILE RESPONSIVE ADJUSTMENTS (<900px)
-     ======================================================== */
+  /* Responsive Adjustments */
   @media (max-width: 900px) {
-    .bg-overlay {
-      /* On mobile, pitch black bottom half completely */
-      background: linear-gradient(to top, #0A1118 0%, #0A1118 60%, rgba(10, 17, 24, 0) 100%);
+    .flight-path-indicator {
+      display: none; 
     }
 
-    .scroll-progress-indicator {
-      display: none; 
+    .bg-overlay {
+      /* On mobile, gradient from bottom (not left) since content sits at the bottom */
+      background: linear-gradient(to top, #0A1118 0%, #0A1118 50%, rgba(10, 17, 24, 0.6) 70%, transparent 100%);
     }
 
     .content-container {
@@ -448,14 +454,12 @@ const services = [
           }
         });
 
-        // Update dots
-        dots.forEach((dot, i) => {
-          if (i === activeIndex) {
-            dot.classList.add('is-active');
-          } else {
-            dot.classList.remove('is-active');
-          }
-        });
+        const progressAirplane = document.getElementById('progress-airplane');
+        if (progressAirplane) {
+          // Use translateY for butter-smooth movement (progress * 300px track)
+          const yPos = progress * 300; 
+          progressAirplane.style.transform = `translateX(-50%) translateY(${yPos}px) rotate(180deg)`;
+        }
       };
 
       // requestAnimationFrame optimization

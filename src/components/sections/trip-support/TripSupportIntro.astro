@@ -24,14 +24,17 @@
       <!-- Left: Large heading -->
       <div class="hero__left">
         <h1 class="hero__heading">
-          Flight Support
+          Seamless flight<br />
+          operations, anywhere<br />
+          <span class="text-highlight">you fly</span>
         </h1>
       </div>
 
       <!-- Right: Description + CTA -->
       <div class="hero__right">
         <p class="hero__desc">
-          End-to-end operational support designed to keep every flight efficient, compliant, and on schedule.
+          End-to-end operational support designed to keep every flight
+          efficient, compliant, and on schedule.
         </p>
         <button
           type="button"
@@ -40,8 +43,18 @@
           aria-haspopup="dialog"
         >
           Request trip support
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
           </svg>
         </button>
       </div>
@@ -58,11 +71,26 @@
     <div class="modal__header">
       <div>
         <h2 id="modal-title" class="modal__title">Request Trip Support</h2>
-        <p class="modal__subtitle">Our operations team will respond within 2 hours.</p>
+        <p class="modal__subtitle">
+          Our operations team will respond within 2 hours.
+        </p>
       </div>
-      <button type="button" class="modal__close" id="close-trip-modal" aria-label="Close dialog">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M18 6L6 18M6 6l12 12"/>
+      <button
+        type="button"
+        class="modal__close"
+        id="close-trip-modal"
+        aria-label="Close dialog"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <path d="M18 6L6 18M6 6l12 12"></path>
         </svg>
       </button>
     </div>
@@ -70,35 +98,85 @@
     <form class="modal__form" id="trip-form" novalidate>
       <div class="form-row">
         <div class="form-group">
-          <label for="trip-name" class="form-label">Full Name <span class="req">*</span></label>
-          <input type="text" id="trip-name" name="name" class="form-input" placeholder="e.g. James Rodriguez" required autocomplete="name" />
+          <label for="trip-name" class="form-label"
+            >Full Name <span class="req">*</span></label
+          >
+          <input
+            type="text"
+            id="trip-name"
+            name="name"
+            class="form-input"
+            placeholder="e.g. James Rodriguez"
+            required
+            autocomplete="name"
+          />
         </div>
         <div class="form-group">
           <label for="trip-company" class="form-label">Company</label>
-          <input type="text" id="trip-company" name="company" class="form-input" placeholder="e.g. Meridian Aviation" autocomplete="organization" />
+          <input
+            type="text"
+            id="trip-company"
+            name="company"
+            class="form-input"
+            placeholder="e.g. Meridian Aviation"
+            autocomplete="organization"
+          />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="trip-email" class="form-label">Email Address <span class="req">*</span></label>
-        <input type="email" id="trip-email" name="email" class="form-input" placeholder="e.g. ops@meridian.aero" required autocomplete="email" />
+        <label for="trip-email" class="form-label"
+          >Email Address <span class="req">*</span></label
+        >
+        <input
+          type="email"
+          id="trip-email"
+          name="email"
+          class="form-input"
+          placeholder="e.g. ops@meridian.aero"
+          required
+          autocomplete="email"
+        />
       </div>
 
       <div class="form-group">
         <label for="trip-details" class="form-label">Trip Details</label>
-        <textarea id="trip-details" name="details" class="form-input form-textarea" rows="4" placeholder="Aircraft type, route, dates, number of pax, special requirements..."></textarea>
+        <textarea
+          id="trip-details"
+          name="details"
+          class="form-input form-textarea"
+          rows="4"
+          placeholder="Aircraft type, route, dates, number of pax, special requirements..."
+        ></textarea>
       </div>
 
       <button type="submit" class="modal__submit" id="submit-trip">
         <span class="submit-text">Submit Request</span>
         <span class="submit-loader" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path
+              d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"
+            ></path>
           </svg>
         </span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M22 2L11 13"/>
-          <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M22 2L11 13"></path>
+          <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
         </svg>
       </button>
     </form>
@@ -106,14 +184,23 @@
     <!-- Success -->
     <div class="modal__success" id="trip-success" hidden>
       <div class="success-icon">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M8 12l3 3 5-5"/>
+        <svg
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M8 12l3 3 5-5"></path>
         </svg>
       </div>
       <h3>Request Submitted</h3>
       <p>Our operations team will reach out shortly.</p>
-      <button type="button" class="modal__submit" id="close-success">Done</button>
+      <button type="button" class="modal__submit" id="close-success"
+        >Done</button
+      >
     </div>
   </div>
 </dialog>
@@ -129,7 +216,7 @@
     display: flex;
     align-items: flex-end;
     overflow: hidden;
-    font-family: 'Inter', 'Roboto', system-ui, sans-serif;
+    font-family: "Inter", "Roboto", system-ui, sans-serif;
     color: #ffffff;
   }
 
@@ -151,8 +238,12 @@
   }
 
   @keyframes heroZoom {
-    0%   { transform: scale(1); }
-    100% { transform: scale(1.06); }
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.06);
+    }
   }
 
   /* Gradient overlay — dark bottom + left-heavy */
@@ -164,14 +255,14 @@
       linear-gradient(
         to top,
         rgba(5, 12, 23, 0.95) 0%,
-        rgba(5, 12, 23, 0.70) 35%,
-        rgba(5, 12, 23, 0.30) 60%,
-        rgba(5, 12, 23, 0.10) 100%
+        rgba(5, 12, 23, 0.7) 35%,
+        rgba(5, 12, 23, 0.3) 60%,
+        rgba(5, 12, 23, 0.1) 100%
       ),
       linear-gradient(
         to right,
         rgba(5, 12, 23, 0.55) 0%,
-        rgba(5, 12, 23, 0.20) 40%,
+        rgba(5, 12, 23, 0.2) 40%,
         transparent 70%
       );
   }
@@ -183,7 +274,7 @@
     width: 100%;
     max-width: 1240px;
     margin: 0 auto;
-    padding: 0 3.5rem 4.5rem;
+    padding: 0 2.5rem 8rem; /* Further 'left' (2.5rem) and 'top' (8rem bottom padding) */
   }
 
   /* Split content layout */
@@ -207,16 +298,20 @@
   /* Left — heading */
   .hero__left {
     flex: 1;
-    max-width: 560px;
+    max-width: 850px;
   }
 
   .hero__heading {
-    font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+    font-size: clamp(2.25rem, 5.5vw, 3.8rem); /* Slightly smaller max to match right height */
     font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+    line-height: 1.35; /* Increased to stretch heading height */
+    letter-spacing: -0.035em;
     margin: 0;
     color: #ffffff;
+  }
+
+  .text-highlight {
+    color: var(--color-primary, #4ba3c3);
   }
 
   /* Right — description + CTA */
@@ -226,7 +321,12 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.75rem;
+    justify-content: space-between; /* Space out description and button */
+    padding-top: 0.5rem; /* Tiny top alignment offset */
+    padding-bottom: 0.5rem; /* Match bottom spacing */
+    height: auto;
+    min-height: 100%;
+    gap: 2.5rem; /* Increased to match heading height */
   }
 
   .hero__desc {
@@ -264,7 +364,7 @@
   .hero__cta:hover {
     background: #c6dad1;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   }
 
   .hero__cta:active {
@@ -272,7 +372,7 @@
   }
 
   .hero__cta:focus-visible {
-    outline: 2px solid var(--color-primary, #4BA3C3);
+    outline: 2px solid var(--color-primary, #4ba3c3);
     outline-offset: 3px;
   }
 
@@ -296,7 +396,9 @@
     -webkit-backdrop-filter: blur(8px);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 300ms ease, visibility 300ms ease;
+    transition:
+      opacity 300ms ease,
+      visibility 300ms ease;
   }
 
   .modal-backdrop.is-open {
@@ -318,11 +420,13 @@
     border: 1px solid #e2e8f0;
     border-radius: 1.125rem;
     padding: 0;
-    box-shadow: 0 24px 80px -12px rgba(5, 12, 23, 0.35), 0 8px 24px -4px rgba(5, 12, 23, 0.12);
+    box-shadow:
+      0 24px 80px -12px rgba(5, 12, 23, 0.35),
+      0 8px 24px -4px rgba(5, 12, 23, 0.12);
     opacity: 0;
     visibility: hidden;
     transition: all 350ms cubic-bezier(0.16, 1, 0.3, 1);
-    font-family: 'Inter', 'Roboto', system-ui, sans-serif;
+    font-family: "Inter", "Roboto", system-ui, sans-serif;
     color: #0f172a;
   }
 
@@ -351,7 +455,7 @@
   .modal__title {
     font-size: 1.3rem;
     font-weight: 700;
-    color: #0D2137;
+    color: #0d2137;
     margin: 0 0 0.3rem;
     letter-spacing: -0.02em;
   }
@@ -383,7 +487,7 @@
   }
 
   .modal__close:focus-visible {
-    outline: 2px solid var(--color-primary, #4BA3C3);
+    outline: 2px solid var(--color-primary, #4ba3c3);
     outline-offset: 2px;
   }
 
@@ -412,7 +516,9 @@
     color: #334155;
   }
 
-  .req { color: #ef4444; }
+  .req {
+    color: #ef4444;
+  }
 
   .form-input {
     width: 100%;
@@ -436,7 +542,7 @@
   }
 
   .form-input:focus {
-    border-color: var(--color-primary, #4BA3C3);
+    border-color: var(--color-primary, #4ba3c3);
     background: #ffffff;
     box-shadow: 0 0 0 3px rgba(75, 163, 195, 0.12);
   }
@@ -457,7 +563,7 @@
     font-weight: 600;
     font-family: inherit;
     color: #ffffff;
-    background: linear-gradient(135deg, var(--color-primary, #4BA3C3), #2E86AB);
+    background: linear-gradient(135deg, var(--color-primary, #4ba3c3), #2e86ab);
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
@@ -476,7 +582,7 @@
   }
 
   .modal__submit:focus-visible {
-    outline: 2px solid var(--color-primary, #4BA3C3);
+    outline: 2px solid var(--color-primary, #4ba3c3);
     outline-offset: 3px;
   }
 
@@ -485,17 +591,30 @@
     animation: spin 0.8s linear infinite;
   }
 
-  .modal__submit.is-loading .submit-text { opacity: 0; }
-  .modal__submit.is-loading .submit-loader { display: flex; }
+  .modal__submit.is-loading .submit-text {
+    opacity: 0;
+  }
+  .modal__submit.is-loading .submit-loader {
+    display: flex;
+  }
 
   @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   /* Success state */
-  .modal__success { text-align: center; padding: 1.5rem 0.5rem; }
-  .modal__success[hidden] { display: none; }
+  .modal__success {
+    text-align: center;
+    padding: 1.5rem 0.5rem;
+  }
+  .modal__success[hidden] {
+    display: none;
+  }
 
   .success-icon {
     display: inline-flex;
@@ -504,7 +623,7 @@
     width: 64px;
     height: 64px;
     background: rgba(75, 163, 195, 0.1);
-    color: var(--color-primary, #4BA3C3);
+    color: var(--color-primary, #4ba3c3);
     border-radius: 50%;
     margin-bottom: 1.25rem;
   }
@@ -538,7 +657,7 @@
     }
 
     .hero__container {
-      padding: 0 2rem 3.5rem;
+      padding: 0 1.5rem 5rem; /* Shifted top/left for tablet */
     }
   }
 
@@ -549,11 +668,11 @@
     }
 
     .hero__container {
-      padding: 0 1.25rem 2.5rem;
+      padding: 0 1rem 4rem; /* Shifted top/left for mobile */
     }
 
     .hero__heading {
-      font-size: 1.85rem;
+      font-size: 1.6rem;
     }
 
     .hero__desc {
@@ -570,104 +689,139 @@
     }
 
     .hero__overlay {
-      background:
-        linear-gradient(
-          to top,
-          rgba(5, 12, 23, 0.95) 0%,
-          rgba(5, 12, 23, 0.65) 45%,
-          rgba(5, 12, 23, 0.20) 100%
-        );
+      background: linear-gradient(
+        to top,
+        rgba(5, 12, 23, 0.95) 0%,
+        rgba(5, 12, 23, 0.65) 45%,
+        rgba(5, 12, 23, 0.2) 100%
+      );
     }
 
-    .modal__inner { padding: 1.5rem; }
-    .form-row { grid-template-columns: 1fr; }
+    .modal__inner {
+      padding: 1.5rem;
+    }
+    .form-row {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* =============================================
      ACCESSIBILITY
      ============================================= */
   @media (prefers-reduced-motion: reduce) {
-    .hero__img { animation: none; }
-    .hero__content { animation: none; opacity: 1; transform: none; }
-    .modal, .modal-backdrop { transition-duration: 0.01ms; }
+    .hero__img {
+      animation: none;
+    }
+    .hero__content {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    .modal,
+    .modal-backdrop {
+      transition-duration: 0.01ms;
+    }
   }
 
   @media (prefers-contrast: high) {
-    .hero__desc { color: rgba(255, 255, 255, 0.9); }
-    .hero__cta { border-width: 2px; }
+    .hero__desc {
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .hero__cta {
+      border-width: 2px;
+    }
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const openBtn = document.getElementById('open-trip-modal') as HTMLButtonElement | null;
-    const closeBtn = document.getElementById('close-trip-modal') as HTMLButtonElement | null;
-    const closeSuccess = document.getElementById('close-success') as HTMLButtonElement | null;
-    const modal = document.getElementById('trip-modal') as HTMLDialogElement | null;
-    const backdrop = document.getElementById('trip-modal-backdrop') as HTMLElement | null;
-    const form = document.getElementById('trip-form') as HTMLFormElement | null;
-    const successEl = document.getElementById('trip-success') as HTMLElement | null;
+  document.addEventListener("DOMContentLoaded", () => {
+    const openBtn = document.getElementById(
+      "open-trip-modal",
+    ) as HTMLButtonElement | null;
+    const closeBtn = document.getElementById(
+      "close-trip-modal",
+    ) as HTMLButtonElement | null;
+    const closeSuccess = document.getElementById(
+      "close-success",
+    ) as HTMLButtonElement | null;
+    const modal = document.getElementById(
+      "trip-modal",
+    ) as HTMLDialogElement | null;
+    const backdrop = document.getElementById(
+      "trip-modal-backdrop",
+    ) as HTMLElement | null;
+    const form = document.getElementById("trip-form") as HTMLFormElement | null;
+    const successEl = document.getElementById(
+      "trip-success",
+    ) as HTMLElement | null;
 
-    if (!openBtn || !closeBtn || !modal || !backdrop || !form || !successEl) return;
+    if (!openBtn || !closeBtn || !modal || !backdrop || !form || !successEl)
+      return;
 
     let previousFocus: HTMLElement | null = null;
 
     function openModal(): void {
       previousFocus = document.activeElement as HTMLElement;
-      modal!.setAttribute('open', '');
-      backdrop!.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
+      modal!.setAttribute("open", "");
+      backdrop!.classList.add("is-open");
+      document.body.style.overflow = "hidden";
       setTimeout(() => {
-        const firstInput = modal!.querySelector('input') as HTMLElement | null;
+        const firstInput = modal!.querySelector("input") as HTMLElement | null;
         if (firstInput) firstInput.focus();
       }, 350);
     }
 
     function closeModal(): void {
-      modal!.removeAttribute('open');
-      backdrop!.classList.remove('is-open');
-      document.body.style.overflow = '';
+      modal!.removeAttribute("open");
+      backdrop!.classList.remove("is-open");
+      document.body.style.overflow = "";
       form!.reset();
-      form!.style.display = '';
+      form!.style.display = "";
       successEl!.hidden = true;
-      const submitBtn = form!.querySelector('.modal__submit') as HTMLElement | null;
-      if (submitBtn) submitBtn.classList.remove('is-loading');
+      const submitBtn = form!.querySelector(
+        ".modal__submit",
+      ) as HTMLElement | null;
+      if (submitBtn) submitBtn.classList.remove("is-loading");
       if (previousFocus) previousFocus.focus();
     }
 
-    openBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    if (closeSuccess) closeSuccess.addEventListener('click', closeModal);
-    backdrop.addEventListener('click', closeModal);
+    openBtn.addEventListener("click", openModal);
+    closeBtn.addEventListener("click", closeModal);
+    if (closeSuccess) closeSuccess.addEventListener("click", closeModal);
+    backdrop.addEventListener("click", closeModal);
 
-    document.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && modal.hasAttribute('open')) closeModal();
+    document.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Escape" && modal.hasAttribute("open")) closeModal();
     });
 
     // Focus trap
-    modal.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key !== 'Tab') return;
+    modal.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
       const focusable = modal.querySelectorAll<HTMLElement>(
-        'button, input, textarea, [tabindex]:not([tabindex="-1"])'
+        'button, input, textarea, [tabindex]:not([tabindex="-1"])',
       );
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
       if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault(); last.focus();
+        e.preventDefault();
+        last.focus();
       } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault(); first.focus();
+        e.preventDefault();
+        first.focus();
       }
     });
 
     // Submit handler
-    form.addEventListener('submit', (e: Event) => {
+    form.addEventListener("submit", (e: Event) => {
       e.preventDefault();
-      const submitBtn = form.querySelector('.modal__submit') as HTMLElement | null;
-      if (submitBtn) submitBtn.classList.add('is-loading');
+      const submitBtn = form.querySelector(
+        ".modal__submit",
+      ) as HTMLElement | null;
+      if (submitBtn) submitBtn.classList.add("is-loading");
       setTimeout(() => {
-        form.style.display = 'none';
+        form.style.display = "none";
         successEl.hidden = false;
-        if (submitBtn) submitBtn.classList.remove('is-loading');
+        if (submitBtn) submitBtn.classList.remove("is-loading");
       }, 1500);
     });
   });

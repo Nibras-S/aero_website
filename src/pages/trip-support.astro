@@ -30,8 +30,9 @@ import GlobalReach from "../components/sections/trip-support/GlobalReach.astro";
     scroll-behavior: smooth;
   }
 
-  main > section {
-    scroll-snap-align: start !important;
+  main > section, 
+  footer {
+    scroll-snap-align: start;
     scroll-snap-stop: always;
   }
 
