@@ -55,8 +55,20 @@
       rgba(8, 14, 22, 0.55) 0%,
       rgba(8, 14, 22, 0.35) 40%,
       rgba(8, 14, 22, 0.75) 80%,
-      rgba(8, 14, 22, 0.92) 100%
+      rgba(8, 14, 22, 1) 100%
     );
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   /* ── Center Brand Typography ── */
@@ -81,6 +93,9 @@
     font-family: 'Montserrat', 'Inter', system-ui, sans-serif;
     /* Slightly condensed, geometric feel matching reference */
     text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.2s;
   }
 
   .hero-subtitle {
@@ -90,6 +105,9 @@
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.65);
     margin: 0 0 2.5rem;
+    opacity: 0;
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.4s;
   }
 
   .hero-cta {
@@ -105,8 +123,11 @@
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    transition: background 0.25s, color 0.25s, border-color 0.25s;
+    transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.25s;
     backdrop-filter: blur(4px);
+    opacity: 0;
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.6s;
   }
   .hero-cta:hover {
     background: rgba(255, 255, 255, 0.15);
@@ -130,6 +151,9 @@
     padding: 1rem 1.25rem;
     max-width: 420px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    opacity: 0;
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.8s;
   }
   .hero-news-img {
     width: 90px;
@@ -174,6 +198,9 @@
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     max-width: 700px;
+    opacity: 0;
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 1.0s;
   }
   .hero-text-col,
   .hero-text-col-right p {
