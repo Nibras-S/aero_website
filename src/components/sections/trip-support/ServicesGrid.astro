@@ -505,46 +505,94 @@ const services = [
 
   /* Responsive Adjustments */
   @media (max-width: 900px) {
-    .flight-path-indicator {
+    .flight-path-indicator, .snap-track {
       display: none; 
     }
+    
+    .services-showcase {
+      height: auto;
+      padding: 4rem 1.5rem;
+      background-color: #07131F;
+    }
+    
+    .services-viewport {
+      position: relative;
+      height: auto;
+      overflow: visible;
+    }
+    
+    .services-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+    
+    /* Reveal all rows simultaneously */
+    .service-row, .service-row.is-past, .service-row.is-active {
+      position: relative;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      display: flex;
+      flex-direction: column; 
+    }
 
+    /* Make image sit ON TOP of the card perfectly */
+    .full-screen-bg {
+      position: relative;
+      width: 100%;
+      height: 280px;
+      border-radius: 1.5rem 1.5rem 0 0;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .bg-img {
+      transform: scale(1) !important; /* Disable zoom transition on mobile cards */
+    }
+
+    /* Soft overlay so it looks premium, but not blacking out */
     .bg-overlay {
-      /* On mobile, gradient from bottom (not left) since content sits at the bottom */
-      background: linear-gradient(to top, #0A1118 0%, #0A1118 50%, rgba(10, 17, 24, 0.6) 70%, transparent 100%);
+      background: linear-gradient(to top, #0c1a28 0%, transparent 40%);
     }
 
     .content-container {
       padding: 0;
-      align-items: flex-end; /* Push card to the bottom on mobile */
+      height: auto;
     }
 
     .glass-card {
       width: 100%;
       max-width: 100%;
-      padding: 0 1.5rem 3rem 1.5rem;
+      background: #0c1a28;
+      padding: 2.5rem 1.75rem 3rem;
+      border-radius: 0 0 1.5rem 1.5rem;
+      transform: none !important; /* Kill the staggered translation */
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: none;
     }
 
     .service-title {
-      font-size: 2rem;
+      font-size: 2.2rem;
     }
     
     .service-desc {
       font-size: 1rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
     }
 
     .service-icons {
       gap: 0.5rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .icon-badge {
-      padding: 0.4rem 0.75rem;
+      padding: 0.5rem 0.85rem;
+      background: rgba(255,255,255,0.05);
     }
 
     .icon-badge__text {
-      font-size: 0.7rem;
+      font-size: 0.75rem;
     }
     
     .btn-navigate {

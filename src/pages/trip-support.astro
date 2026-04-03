@@ -28,16 +28,21 @@ import GlobalReach from "../components/sections/trip-support/GlobalReach.astro";
 </MainLayout>
 
 <style is:global>
-  /* Strict global single-scroll switching */
+  /* Strict global single-scroll switching (Desktop Only) */
   html {
-    scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
   }
 
-  main > section, 
-  footer {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
+  @media (min-width: 1024px) {
+    html {
+      scroll-snap-type: y mandatory;
+    }
+
+    main > section, 
+    footer {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
   }
 
   /* Cinematic Page Transition States */
