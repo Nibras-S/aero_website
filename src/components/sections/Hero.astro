@@ -1,54 +1,94 @@
 ---
-// Hero Section — KiMi Aviation inspired, full-screen cinematic dark
+// Hero Section — structure inspired by reference layout
 ---
 
 <section id="hero" class="hero">
-  <!-- Background video -->
-  <div class="hero-bg" aria-hidden="true">
-    <video class="hero-bg-img" autoplay muted loop playsinline>
-      <source src="/images/hero-video.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-overlay"></div>
+  <!-- Geometric decoration (top-right, CSS only) -->
+  <div class="hero-geo" aria-hidden="true">
+    <div class="geo-shape geo-1"></div>
+    <div class="geo-shape geo-2"></div>
+    <div class="geo-shape geo-3"></div>
+    <div class="geo-shape geo-4"></div>
+    <div class="geo-shape geo-5"></div>
   </div>
 
-  <!-- Center Brand Name -->
-  <div class="hero-brand">
-    <h1 class="hero-name">FLYGER</h1>
-    <p class="hero-subtitle">FLY HIGH WITH FLYGER</p>
-    <a href="#contact" class="hero-cta">
-      EXPLORE SERVICES
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-    </a>
+  <div class="hero-content">
+    <h1 class="hero-headline">
+      Fly High with<br/>
+      <span class="hero-accent">Flyger Aviation</span>
+    </h1>
+    <p class="hero-sub">
+      We support international operators and private clients with seamless
+      trip support, fuel solutions, and expert aviation consultancy.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get a Quote ↗</a>
+      <a href="#about" class="btn-ghost">Learn More</a>
+    </div>
   </div>
 </section>
 
 <style>
   .hero {
     position: relative;
-    min-height: 100vh;
+    min-height: calc(100vh - 70px);
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
     overflow: hidden;
-    color: #ffffff;
+    padding: 5rem 2rem;
+    background: var(--bg-main);
   }
 
-  /* ── Background Image + Overlay ── */
-  .hero-bg {
+  /* ── Geometric decoration ── */
+  .hero-geo {
     position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-  .hero-bg-img {
-    width: 100%;
+    top: 0;
+    right: 0;
+    width: 45%;
     height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-    filter: saturate(0.7);
+    pointer-events: none;
   }
-  .hero-overlay {
+  .geo-shape {
     position: absolute;
+    opacity: 0.12;
+  }
+  .geo-1 {
+    width: 280px; height: 280px;
+    top: -60px; right: -40px;
+    background: var(--color-primary);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+  .geo-2 {
+    width: 200px; height: 200px;
+    top: 80px; right: 140px;
+    background: var(--color-secondary-start);
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    opacity: 0.1;
+  }
+  .geo-3 {
+    width: 150px; height: 150px;
+    top: 200px; right: 0;
+    background: var(--color-primary);
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    opacity: 0.08;
+  }
+  .geo-4 {
+    width: 100px; height: 100px;
+    top: 320px; right: 200px;
+    background: var(--color-secondary-end);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    opacity: 0.15;
+  }
+  .geo-5 {
+    width: 60px; height: 60px;
+    top: 60px; right: 300px;
+    background: var(--color-primary);
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    opacity: 0.2;
+  }
+
+  /* ── Content ── */
+  .hero-content {
     inset: 0;
     background: linear-gradient(
       to bottom,
@@ -75,17 +115,31 @@
   .hero-brand {
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 0 2rem;
-    margin-top: -4rem; /* Pulled up slightly, text cols are at bottom */
+    max-width: 700px;
   }
 
-  .hero-name {
-    font-size: clamp(5rem, 18vw, 18rem);
+  .hero-headline {
+    font-size: clamp(2.2rem, 6vw, 5.5rem);
     font-weight: 900;
+    color: var(--color-text);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-accent {
+    color: var(--color-primary);
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--color-muted);
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── Buttons ── */
+  .hero-actions {
     color: rgba(255, 255, 255, 0.82);
     letter-spacing: 0.12em;
     line-height: 0.88;
@@ -142,6 +196,8 @@
     left: 2.5rem;
     z-index: 2;
     display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
     align-items: center;
     gap: 1.25rem;
     background: rgba(10, 15, 22, 0.62);
@@ -155,39 +211,22 @@
     animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: 0.8s;
   }
-  .hero-news-img {
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 0.5rem;
-    flex-shrink: 0;
-  }
-  .hero-news-text h3 {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #ffffff;
-    line-height: 1.4;
-    margin: 0 0 0.4rem;
-  }
-  .hero-news-text p {
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.5;
-    margin: 0 0 0.75rem;
-  }
-  .hero-news-link {
+
+  .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    color: rgba(255,255,255,0.7);
+    padding: 0.85rem 2rem;
+    background: var(--color-primary);
+    color: white;
     text-decoration: none;
-    font-size: 0.78rem;
     font-weight: 600;
-    letter-spacing: 0.02em;
-    transition: color 0.2s;
+    font-size: 0.95rem;
+    border-radius: 0.25rem;
+    transition: opacity 0.2s;
   }
-  .hero-news-link:hover { color: #ffffff; }
-
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-ghost {
   /* ── Bottom Text Columns ── */
   .hero-text-cols {
     position: absolute;
@@ -217,27 +256,31 @@
   .hero-read-more {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    color: rgba(255,255,255,0.75);
+    padding: 0.85rem 2rem;
+    border: 1.5px solid rgba(75, 163, 195, 0.4);
+    color: var(--color-text);
     text-decoration: none;
-    font-size: 0.82rem;
-    font-weight: 600;
-    transition: color 0.2s;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-radius: 0.25rem;
+    transition: border-color 0.2s, color 0.2s;
   }
-  .hero-read-more:hover { color: #ffffff; }
+  .btn-ghost:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
 
-  /* Responsive */
+  /* ── Responsive ── */
   @media (max-width: 768px) {
-    .hero-name { font-size: clamp(4rem, 22vw, 8rem); }
-    .hero-news-card { display: none; }
-    .hero-text-cols {
-      position: relative;
-      bottom: auto; right: auto;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      padding: 2rem;
-      max-width: 100%;
-      margin-top: 3rem;
+    .hero {
+      padding: 4rem 1.5rem;
+      min-height: auto;
+    }
+    .hero-geo {
+      width: 100%;
+      height: 40%;
+      top: 0;
+      opacity: 0.5;
     }
   }
 </style>
