@@ -186,9 +186,9 @@
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    background: rgba(255, 255, 255, 0.95);
-    color: #0d1b2a;
-    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 999px;
     padding: 0.8rem 1.8rem;
     font-size: 0.78rem;
@@ -197,13 +197,15 @@
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
-    transition: background 0.25s, color 0.25s, transform 0.2s;
+    backdrop-filter: blur(4px);
+    transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.2s;
     white-space: nowrap;
   }
   .fss-cta:hover {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.8);
+    color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
   }
   .fss-cta svg { transition: transform 0.2s; }
   .fss-cta:hover svg { transform: translate(2px, -2px); }
@@ -226,17 +228,17 @@
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    gap: 2px;
   }
   .fss-carousel::-webkit-scrollbar { display: none; }
 
   .fss-card {
-    flex: 0 0 25%;
+    flex: 0 0 calc(25% - 1.5px);
     position: relative;
     height: 500px;
     overflow: hidden;
     scroll-snap-align: start;
     cursor: pointer;
-    border-right: 2px solid #000;
   }
 
   .fss-card img {
@@ -250,21 +252,22 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
-    padding: 3rem 1.6rem 1.6rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+    padding: 2.5rem 1.25rem 1.25rem;
   }
 
   .fss-card-label h3 {
-    font-size: 1.05rem;
-    font-weight: 700;
+    font-size: 1.15rem;
+    font-weight: 800;
     color: #ffffff;
     margin: 0;
     line-height: 1.35;
+    letter-spacing: -0.01em;
   }
 
   .fss-card-label p {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.75);
     line-height: 1.6;
     margin: 0;
     max-height: 0;
@@ -298,7 +301,7 @@
     .fss-heading { font-size: clamp(2rem, 8vw, 3rem); }
     .fss-hero-right { max-width: 100%; }
     .fss-cta { width: 100%; justify-content: center; }
-    .fss-card { flex: 0 0 80vw; height: 380px; }
+    .fss-card { flex: 0 0 65vw; height: 280px; }
   }
 </style>
 
