@@ -22,16 +22,17 @@
   </div>
 
   <!-- Hero text fades in after expansion — z-index above everything -->
-  <div class="fh-text">
+  <div class="fh-text is-visible">
     <div class="fh-text-inner">
       <h1 class="fh-headline">
-        Fueling Aviation<br/>Worldwide.
+        <div class="split-line"><span class="split-inner">Fueling Aviation</span></div>
+        <div class="split-line"><span class="split-inner">Worldwide.</span></div>
       </h1>
-      <p class="fh-sub">
+      <p class="fh-sub split-fade">
         Premium jet fuel supply with seamless coordination<br/>
         across 180+ countries and thousands of airports.
       </p>
-      <div class="fh-actions">
+      <div class="fh-actions split-fade">
         <a href="#contact" class="fh-cta-ghost">Contact Our Team ↗</a>
       </div>
     </div>
@@ -176,9 +177,41 @@
   .fh-text button { pointer-events: auto; }
 
   @keyframes fh-text-in {
-    from { opacity: 0; transform: translateY(14px); }
-    to   { opacity: 1; transform: translateY(0);    }
+    from { opacity: 0; }
+    to   { opacity: 1; }
   }
+
+  /* ── Split Animations (Like PlaneWindowSection) ── */
+  .split-line {
+    overflow: hidden;
+    display: flex;
+  }
+  .split-inner {
+    display: inline-block;
+    transform: translateY(110%);
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+  }
+  .split-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  }
+  
+  /* Start split animations after the overlay fade */
+  .fh-text.is-visible .split-line:nth-child(1) .split-inner {
+    transform: translateY(0); opacity: 1; transition-delay: 2.2s;
+  }
+  .fh-text.is-visible .split-line:nth-child(2) .split-inner {
+    transform: translateY(0); opacity: 1; transition-delay: 2.3s;
+  }
+  .fh-text.is-visible .fh-sub.split-fade {
+    transform: translateY(0); opacity: 1; transition-delay: 2.45s;
+  }
+  .fh-text.is-visible .fh-actions.split-fade {
+    transform: translateY(0); opacity: 1; transition-delay: 2.6s;
+  }
+
 
   .fh-text-inner {
     flex: 1;
@@ -314,19 +347,41 @@
 
   /* ── Mobile ── */
   @media (max-width: 680px) {
-    .fh-word { font-size: clamp(1.8rem, 8vw, 3rem); }
-    .fh-left  { left: 1rem;  }
-    .fh-right { right: 1rem; }
+    /* Hide flanking words entirely */
+    .fh-word { display: none; }
+    
     .fh-text-inner { padding: 5rem 1.5rem 2rem; max-width: 100%; }
     .fh-stat-bar { padding: 1rem 1.5rem; flex-wrap: wrap; gap: 1rem; }
     .fh-stat-sep { display: none; }
     .fh-stat { padding: 0; flex: 0 0 40%; }
 
-    @keyframes fh-expand {
-      0%   { width: 52vw;  height: 52vw;  border-radius: 999px; }
-      30%  { width: 90vw;  height: 52vw;  border-radius: 80px;  }
-      65%  { width: 100%;  height: 62vw;  border-radius: 20px;  }
-      100% { width: 100%;  height: 100svh; border-radius: 0;    }
+    /* Disable expanding animation and set it straight to full screen */
+    .fh-pill {
+      animation: none;
+      width: 100% !important;
+      height: 100svh !important;
+      border-radius: 0 !important;
+      box-shadow: none;
+    }
+    
+    /* Make text fade in faster since there's no circle animation to wait for */
+    .fh-overlay {
+      animation: fh-overlay-in 0.8s ease-out 0.2s forwards;
+    }
+    .fh-text {
+      animation: fh-text-in 0.8s cubic-bezier(0.22,1,0.36,1) 0s forwards;
+    }
+    .fh-text.is-visible .split-line:nth-child(1) .split-inner {
+      transition-delay: 0.6s;
+    }
+    .fh-text.is-visible .split-line:nth-child(2) .split-inner {
+      transition-delay: 0.7s;
+    }
+    .fh-text.is-visible .fh-sub.split-fade {
+      transition-delay: 0.85s;
+    }
+    .fh-text.is-visible .fh-actions.split-fade {
+      transition-delay: 1.0s;
     }
   }
 </style>
