@@ -5,10 +5,11 @@
 const services = [
   {
     title: "Trip Planning",
+    slug: "trip-planning",
     label: "OPERATIONAL EXCELLENCE",
     desc: "Every successful operation begins with precise planning. We provide fast, reliable trip support tailored to your mission, ensuring optimized routing, cost control, and full regulatory compliance.",
     desc2: "Our trip planning covers all essential requirements, including flight clearances, slot coordination, fuel arrangements, and accurate flight plan filing—allowing you to operate with confidence and efficiency.",
-    image: "/images/trip-support-hero.png",
+    image: "/images/trip-support-hero-card.png",
     icons: [
       { icon: "route", text: "Optimized Routing" },
       { icon: "shield", text: "Regulatory Compliance" },
@@ -17,6 +18,7 @@ const services = [
   },
   {
     title: "Flight Permits",
+    slug: "flight-permits",
     label: "GLOBAL COMPLIANCE",
     desc: "Securing permits on time is critical to any operation. We manage the entire process with speed and accuracy, coordinating directly with aviation authorities to obtain approvals even within tight timeframes.",
     desc2: "From overflight and landing permits to block and seasonal clearances, we ensure all regulatory requirements are met without delays or disruptions.",
@@ -29,6 +31,7 @@ const services = [
   },
   {
     title: "Flyger's Dispatch Team",
+    slug: "dispatch",
     label: "PRECISION EXECUTION",
     desc: "Our dispatch support is built around precision and real-time coordination. Working closely with flight crews and operational stakeholders, we ensure every flight is planned, monitored, and executed efficiently.",
     desc2: "This includes route optimization, weather analysis, fuel planning (including EDTO/ETOPS), and continuous tracking—ensuring smooth operations from departure to arrival.",
@@ -43,6 +46,7 @@ const services = [
   },
   {
     title: "Diversion Support",
+    slug: "diversion-support",
     label: "RAPID RESPONSE",
     desc: "Unplanned situations demand immediate and effective solutions. We provide rapid response support for flight diversions, ensuring minimal disruption to both crew and passengers.",
     desc2: "From accommodation and transportation to airport coordination, our team manages every aspect with speed and reliability, supported by 24/7 operational availability.",
@@ -55,6 +59,7 @@ const services = [
   },
   {
     title: "Supervisors at Flyger",
+    slug: "supervisors",
     label: "SEAMLESS TURNAROUNDS",
     desc: "Ensures every turnaround is executed seamlessly. By coordinating with all service providers and monitoring activities in real time, we maintain full control over quality and compliance.",
     desc2: "Detailed reporting and proactive communication ensure transparency and consistency throughout the handling process.",
@@ -67,6 +72,7 @@ const services = [
   },
   {
     title: "Smart Operations with FLYGER CRM",
+    slug: "flyger-crm",
     label: "DIGITAL PLATFORM",
     desc: "At FLYGER, our operations are powered by a purpose-built CRM system designed to enhance efficiency and transparency.",
     desc2: "Clients benefit from real-time proforma generation, immediate post-turn invoicing, and centralized coordination—providing complete visibility and control over both operational and financial aspects.",
@@ -79,6 +85,7 @@ const services = [
   },
   {
     title: "Executive Concierge",
+    slug: "executive-concierge",
     label: "PREMIUM SERVICE",
     desc: "We provide tailored concierge support designed to enhance every aspect of the journey, with a strong focus on efficiency, comfort, and reliability.",
     desc2: "With access to our own dedicated drivers at key locations, we ensure immediate availability and seamless transfers—eliminating delays and maintaining a premium standard of service. From ground transportation and hotel arrangements to personalized in-flight requests and local assistance, every detail is managed with precision and discretion.",
@@ -91,6 +98,7 @@ const services = [
   },
   {
     title: "Onboard Catering Solutions",
+    slug: "catering",
     label: "INFLIGHT EXCELLENCE",
     desc: "We coordinate high-quality onboard catering to enhance the inflight experience, ensuring every detail meets the expectations of crew and passengers.",
     desc2: "What sets us apart is our direct delivery approach. With our own dedicated drivers handling deliveries to the aircraft at key locations, we eliminate reliance on third-party logistics—reducing delays and avoiding unnecessary additional costs. This allows us to offer a seamless, reliable, and premium catering service while maintaining cost efficiency.",
@@ -103,6 +111,7 @@ const services = [
   },
   {
     title: "Station Representation",
+    slug: "station-representation",
     label: "ON-GROUND OPERATIONS",
     desc: "We provide dedicated on-ground representation at key locations, ensuring your operations are supported by experienced personnel who understand the local environment and requirements.",
     desc2: "With our own staff positioned at strategic airports, we offer direct oversight and faster coordination, reducing dependency on third parties and enhancing service reliability. Our team acts as an extension of your operations, managing coordination with airport authorities, supervising ground handling activities, and ensuring smooth day-to-day execution.",
@@ -190,7 +199,7 @@ const services = [
               </div>
 
               <div class="service-action">
-                <a href={`/contact?service=${encodeURIComponent(service.title)}`} class="btn-navigate" aria-label={`Request ${service.title}`} tabindex={index === 0 ? "0" : "-1"} data-service-btn>
+                <a href={`/services/${service.slug}`} class="btn-navigate" aria-label={`View ${service.title} details`} tabindex={index === 0 ? "0" : "-1"} data-service-btn>
                   Request Service
                   <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>

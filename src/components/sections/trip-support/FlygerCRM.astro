@@ -1,498 +1,404 @@
 ---
 // src/components/sections/trip-support/FlygerCRM.astro
-// Premium CRM Showcase — Immersive dark section with floating visuals
-
-const features = [
-  {
-    num: "01",
-    title: "Real-Time Proforma",
-    desc: "Instant cost estimates generated the moment a trip is confirmed.",
-  },
-  {
-    num: "02",
-    title: "Post-Turn Invoicing",
-    desc: "Invoices delivered immediately after turnaround — zero delays.",
-  },
-  {
-    num: "03",
-    title: "Centralized Communication",
-    desc: "One platform connecting ops, clients, and ground teams seamlessly.",
-  },
-  {
-    num: "04",
-    title: "Full Financial Visibility",
-    desc: "Real-time tracking of costs, revenue, and operational spend.",
-  },
-];
+// Bento Grid — Apple-inspired white layout showcasing CRM value
+// No mockups, no AI images — pure typography + metrics
 ---
 
 <section class="crm" id="flyger-crm">
-  
-  <!-- Background layers -->
-  <div class="crm__bg" aria-hidden="true">
-    <div class="crm__grid-pattern"></div>
-    <div class="crm__glow crm__glow--1"></div>
-    <div class="crm__glow crm__glow--2"></div>
-  </div>
-
   <div class="crm__container">
 
-    <!-- TOP: Hero statement -->
-    <div class="crm__hero">
-      <span class="crm__badge">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        Digital Platform
-      </span>
-      <h2 class="crm__title">
-        Smart Operations<br />
-        <span class="crm__title--accent">with FLYGER CRM</span>
-      </h2>
-      <p class="crm__subtitle">
-        Our operations are powered by a purpose-built CRM system designed to 
-        enhance efficiency, control, and transparency. Every touchpoint — 
-        from trip confirmation to final invoice — is managed through a 
-        single intelligent platform.
+    <!-- Header -->
+    <div class="crm__header">
+      <h2 class="crm__heading">Built for aviation.<br />Designed for clarity.</h2>
+      <p class="crm__sub">
+        Our purpose-built CRM puts every operational and financial detail 
+        in one place — so nothing falls through the cracks.
       </p>
     </div>
 
-    <!-- MIDDLE: Floating dashboard visual -->
-    <div class="crm__visual">
-      <div class="crm__float crm__float--dashboard">
-        <img src="/images/crm-dashboard.png" alt="FLYGER CRM Dashboard showing real-time flight operations" class="crm__image crm__image--main" loading="lazy" />
-      </div>
-      <div class="crm__float crm__float--globe">
-        <img src="/images/crm-globe.png" alt="Global network connectivity" class="crm__image crm__image--globe" loading="lazy" />
-      </div>
-      <!-- Floating data badges -->
-      <div class="crm__data-badge crm__data-badge--1">
-        <span class="data-badge__dot"></span>
-        <span class="data-badge__text">Live Tracking Active</span>
-      </div>
-      <div class="crm__data-badge crm__data-badge--2">
-        <span class="data-badge__dot data-badge__dot--green"></span>
-        <span class="data-badge__text">Invoice Generated</span>
-      </div>
-    </div>
+    <!-- Bento Grid -->
+    <div class="bento">
 
-    <!-- BOTTOM: Feature steps -->
-    <div class="crm__features">
-      {features.map((feat, i) => (
-        <div class="crm-feature" data-crm-step={i}>
-          <div class="crm-feature__line" aria-hidden="true">
-            <div class="crm-feature__dot"></div>
-          </div>
-          <span class="crm-feature__num">{feat.num}</span>
-          <h3 class="crm-feature__title">{feat.title}</h3>
-          <p class="crm-feature__desc">{feat.desc}</p>
+      <!-- Large: Real-time proforma -->
+      <div class="bento__cell bento__cell--wide" data-bento>
+        <div class="bento__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
-      ))}
-    </div>
+        <h3 class="bento__title">Real-Time Proforma</h3>
+        <p class="bento__desc">Cost estimates generated the moment a trip is confirmed. No waiting, no follow-ups.</p>
+        <span class="bento__metric" data-count="3">0<span class="bento__unit">sec</span></span>
+        <span class="bento__metric-label">Average generation time</span>
+      </div>
 
+      <!-- Tall: Invoicing -->
+      <div class="bento__cell bento__cell--tall" data-bento>
+        <div class="bento__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3 class="bento__title">Instant Invoicing</h3>
+        <p class="bento__desc">Invoices delivered immediately after turnaround — eliminating delays and uncertainty.</p>
+        <div class="bento__visual-stack">
+          <div class="invoice-line"><span class="il-dot il-dot--done"></span><span class="il-text">Trip completed</span><span class="il-check">✓</span></div>
+          <div class="invoice-line"><span class="il-dot il-dot--done"></span><span class="il-text">Invoice generated</span><span class="il-check">✓</span></div>
+          <div class="invoice-line"><span class="il-dot il-dot--done"></span><span class="il-text">Client notified</span><span class="il-check">✓</span></div>
+        </div>
+      </div>
+
+      <!-- Regular: Coordination -->
+      <div class="bento__cell" data-bento>
+        <div class="bento__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="bento__title">One Platform</h3>
+        <p class="bento__desc">Ops, clients, and ground teams — all connected through a single thread.</p>
+      </div>
+
+      <!-- Regular: Visibility -->
+      <div class="bento__cell" data-bento>
+        <div class="bento__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 class="bento__title">Full Visibility</h3>
+        <p class="bento__desc">Track costs, revenue, and operational status — in real time, from anywhere.</p>
+      </div>
+
+      <!-- Wide bottom: The big number -->
+      <div class="bento__cell bento__cell--wide bento__cell--accent" data-bento>
+        <div class="bento__big-number">
+          <span class="bento__metric" data-count="100">0</span><span class="bento__unit-lg">%</span>
+        </div>
+        <div class="bento__accent-text">
+          <h3 class="bento__title bento__title--white">Complete Transparency</h3>
+          <p class="bento__desc bento__desc--white">Every cost, every approval, every document — visible to you at every stage of the operation.</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
 <style>
-  /* ========================================================
-     FLYGER CRM — IMMERSIVE DARK SHOWCASE
-     ======================================================== */
   .crm {
     min-height: 100svh;
-    position: relative;
-    background: #060E18;
-    overflow: hidden;
     display: flex;
     align-items: center;
-    padding: 6rem 2.5rem;
+    padding: 4.7rem 2.5rem 3rem;
+    background: #ffffff;
+    position: relative;
   }
 
-  /* ---- Background layers ---- */
-  .crm__bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .crm__grid-pattern {
-    position: absolute;
-    inset: 0;
-    background-image: 
-      linear-gradient(rgba(75, 163, 195, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(75, 163, 195, 0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 100%);
-    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 100%);
-  }
-
-  .crm__glow {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-  }
-
-  .crm__glow--1 {
-    width: 600px;
-    height: 600px;
-    top: -15%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: radial-gradient(circle, rgba(75, 163, 195, 0.15) 0%, transparent 70%);
-  }
-
-  .crm__glow--2 {
-    width: 400px;
-    height: 400px;
-    bottom: -10%;
-    right: 5%;
-    background: radial-gradient(circle, rgba(46, 134, 171, 0.08) 0%, transparent 70%);
-  }
-
-  /* ---- Container ---- */
   .crm__container {
-    position: relative;
-    z-index: 2;
-    max-width: 1200px;
+    max-width: 1100px;
     width: 100%;
     margin: 0 auto;
   }
 
-  /* ---- Hero Statement ---- */
-  .crm__hero {
-    text-align: center;
-    margin-bottom: 4rem;
+  /* ---- Header ---- */
+  .crm__header {
+    text-align: left;
+    margin-bottom: 1.5rem;
   }
 
-  .crm__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1.25rem;
-    border-radius: 9999px;
-    background: rgba(75, 163, 195, 0.1);
-    border: 1px solid rgba(75, 163, 195, 0.2);
-    color: var(--color-primary, #4BA3C3);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-  }
-
-  .crm__title {
+  .crm__heading {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
     font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    color: #ffffff;
-    margin: 0 0 1.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    color: #0D1B2A;
+    margin: 0 0 0.6rem;
   }
 
-  .crm__title--accent {
-    background: linear-gradient(135deg, var(--color-primary, #4BA3C3) 0%, #7dd3fc 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .crm__subtitle {
+  .crm__sub {
     font-family: var(--font-body);
-    font-size: 1.1rem;
-    line-height: 1.75;
-    color: rgba(255, 255, 255, 0.5);
-    max-width: 620px;
-    margin: 0 auto;
-  }
-
-  /* ---- Floating Visual Section ---- */
-  .crm__visual {
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto 5rem;
-    aspect-ratio: 16 / 9;
-  }
-
-  .crm__float {
-    position: absolute;
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-
-  .crm__float--dashboard {
-    inset: 0;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .crm__float--globe {
-    width: 35%;
-    right: -5%;
-    bottom: -10%;
-    z-index: 3;
-    animation: crmFloat 6s ease-in-out infinite;
-  }
-
-  .crm__image--main {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 1rem;
-    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
-  }
-
-  .crm__image--globe {
-    width: 100%;
-    border-radius: 50%;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
-  }
-
-  @keyframes crmFloat {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
-  }
-
-  /* Floating data badges */
-  .crm__data-badge {
-    position: absolute;
-    z-index: 4;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 9999px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    animation: crmFloat 5s ease-in-out infinite;
-  }
-
-  .crm__data-badge--1 {
-    top: 15%;
-    left: -3%;
-    animation-delay: -1s;
-  }
-
-  .crm__data-badge--2 {
-    bottom: 20%;
-    right: -2%;
-    animation-delay: -3s;
-  }
-
-  .data-badge__dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-primary, #4BA3C3);
-    box-shadow: 0 0 8px var(--color-primary, #4BA3C3);
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  .data-badge__dot--green {
-    background: #22c55e;
-    box-shadow: 0 0 8px #22c55e;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-
-  .data-badge__text {
-    font-family: var(--font-label);
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.8);
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-  }
-
-  /* ---- Feature Steps (Horizontal) ---- */
-  .crm__features {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    position: relative;
-  }
-
-  /* Horizontal connecting line */
-  .crm__features::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 5%;
-    right: 5%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(75, 163, 195, 0.3) 20%, rgba(75, 163, 195, 0.3) 80%, transparent 100%);
-  }
-
-  .crm-feature {
-    padding: 2.5rem 1.5rem 0;
-    position: relative;
-    text-align: center;
-  }
-
-  .crm-feature__line {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 2rem;
-    background: rgba(75, 163, 195, 0.3);
-  }
-
-  .crm-feature__dot {
-    position: absolute;
-    top: -4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--color-primary, #4BA3C3);
-    box-shadow: 0 0 12px rgba(75, 163, 195, 0.5);
-  }
-
-  .crm-feature__num {
-    display: block;
-    font-family: var(--font-label);
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--color-primary, #4BA3C3);
-    margin-bottom: 0.75rem;
-    margin-top: 0.5rem;
-  }
-
-  .crm-feature__title {
-    font-family: var(--font-heading);
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0 0 0.5rem;
-    line-height: 1.3;
-  }
-
-  .crm-feature__desc {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.9rem;
     line-height: 1.6;
+    color: #6b7280;
+    max-width: 520px;
     margin: 0;
   }
 
-  /* ========================================================
-     RESPONSIVE
-     ======================================================== */
+  /* ---- Bento Grid ---- */
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    gap: 0.6rem;
+  }
+
+  .bento__cell {
+    background: #f9fafb;
+    border: 1px solid #f0f0f0;
+    border-radius: 0.5rem;
+    padding: 1.25rem 1.4rem;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s ease;
+  }
+
+  .bento__cell.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .bento__cell:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  }
+
+  .bento__cell--wide {
+    grid-column: span 2;
+  }
+
+  .bento__cell--tall {
+    grid-row: span 2;
+  }
+
+  /* Accent cell (dark) */
+  .bento__cell--accent {
+    background: #0D1B2A;
+    border-color: #1a2d42;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .bento__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 0.35rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary, #4BA3C3);
+    margin-bottom: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .bento__cell--accent .bento__icon {
+    background: rgba(75, 163, 195, 0.15);
+    border-color: rgba(75, 163, 195, 0.25);
+  }
+
+  .bento__title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0D1B2A;
+    margin: 0 0 0.35rem;
+    line-height: 1.3;
+  }
+
+  .bento__title--white { color: #ffffff; }
+
+  .bento__desc {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: #6b7280;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .bento__desc--white { color: rgba(255,255,255,0.55); }
+
+  /* Metric */
+  .bento__metric {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-primary, #4BA3C3);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-top: 0.75rem;
+  }
+
+  .bento__unit {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #9ca3af;
+    margin-left: 2px;
+  }
+
+  .bento__metric-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 0.25rem;
+    display: block;
+  }
+
+  /* Big number in accent cell */
+  .bento__big-number {
+    flex-shrink: 0;
+    display: flex;
+    align-items: baseline;
+  }
+
+  .bento__big-number .bento__metric {
+    font-size: 3.5rem;
+    color: #ffffff;
+    margin-top: 0;
+  }
+
+  .bento__unit-lg {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--color-primary, #4BA3C3);
+    margin-left: 2px;
+  }
+
+  .bento__accent-text {
+    flex: 1;
+  }
+
+  /* Invoice checklist in tall cell */
+  .bento__visual-stack {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .invoice-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.2rem;
+  }
+
+  .il-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .il-dot--done { background: #22c55e; }
+
+  .il-text {
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: #374151;
+  }
+
+  .il-check {
+    font-size: 0.7rem;
+    color: #22c55e;
+    font-weight: 700;
+  }
+
+  /* ---- Responsive ---- */
   @media (max-width: 900px) {
     .crm {
-      padding: 4rem 1.5rem;
+      padding: 2.5rem 1.5rem;
     }
 
-    .crm__visual {
-      aspect-ratio: 4 / 3;
-      margin-bottom: 3rem;
+    .bento {
+      grid-template-columns: 1fr 1fr;
     }
 
-    .crm__float--globe {
-      width: 30%;
-      right: 0;
-      bottom: -5%;
-    }
-
-    .crm__data-badge--1 { left: 2%; }
-    .crm__data-badge--2 { right: 2%; }
-
-    .crm__features {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem 0;
-    }
-
-    .crm__features::before {
-      display: none;
-    }
-
-    .crm-feature__line {
-      display: none;
-    }
-
-    .crm-feature {
-      padding-top: 0;
-      text-align: left;
-      border-left: 2px solid rgba(75, 163, 195, 0.15);
-      padding-left: 1.25rem;
+    .bento__cell--tall {
+      grid-row: span 1;
     }
   }
 
   @media (max-width: 640px) {
     .crm {
-      padding: 3rem 1.25rem;
+      padding: 2rem 1.25rem;
     }
 
-    .crm__title {
-      font-size: 2.25rem;
-    }
-
-    .crm__visual {
-      aspect-ratio: 1 / 1;
-    }
-
-    .crm__data-badge { display: none; }
-
-    .crm__features {
+    .bento {
       grid-template-columns: 1fr;
+    }
+
+    .bento__cell--wide {
+      grid-column: span 1;
+    }
+
+    .bento__cell--accent {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    .bento__big-number .bento__metric {
+      font-size: 3.5rem;
     }
   }
 
-  /* Accessibility */
   @media (prefers-reduced-motion: reduce) {
-    .crm__float--globe, .crm__data-badge {
-      animation: none !important;
+    .bento__cell {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
     }
   }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Parallax effect on floating images
-    const visual = document.querySelector('.crm__visual') as HTMLElement | null;
-    const globe = document.querySelector('.crm__float--globe') as HTMLElement | null;
-    const dashboard = document.querySelector('.crm__float--dashboard') as HTMLElement | null;
-
-    if (visual && globe && dashboard) {
-      window.addEventListener('scroll', () => {
-        const rect = visual.getBoundingClientRect();
-        const vh = window.innerHeight;
-        if (rect.top < vh && rect.bottom > 0) {
-          const progress = (vh - rect.top) / (vh + rect.height);
-          const yOffset = (progress - 0.5) * 30;
-          globe.style.transform = `translateY(${-yOffset}px)`;
-        }
-      }, { passive: true });
-    }
-
-    // Feature step reveal
-    const steps = document.querySelectorAll('[data-crm-step]');
-    const stepObserver = new IntersectionObserver(
+    // Staggered reveal for bento cells
+    const cells = document.querySelectorAll('[data-bento]');
+    const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            (entry.target as HTMLElement).style.opacity = '1';
-            (entry.target as HTMLElement).style.transform = 'translateY(0)';
+            (entry.target as HTMLElement).classList.add('is-visible');
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.15, rootMargin: '0px 0px -5% 0px' }
     );
 
-    steps.forEach((step, i) => {
-      (step as HTMLElement).style.opacity = '0';
-      (step as HTMLElement).style.transform = 'translateY(20px)';
-      (step as HTMLElement).style.transition = `opacity 0.6s ${i * 0.15}s cubic-bezier(0.16,1,0.3,1), transform 0.6s ${i * 0.15}s cubic-bezier(0.16,1,0.3,1)`;
-      stepObserver.observe(step);
+    cells.forEach((cell, i) => {
+      (cell as HTMLElement).style.transitionDelay = `${i * 100}ms`;
+      observer.observe(cell);
     });
+
+    // Count-up animation for metrics
+    const countElements = document.querySelectorAll('[data-count]');
+    const countObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            const target = parseInt(el.dataset.count || '0', 10);
+            let current = 0;
+            const duration = 1500;
+            const stepTime = 30;
+            const steps = duration / stepTime;
+            const increment = target / steps;
+
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= target) {
+                current = target;
+                clearInterval(timer);
+              }
+              // Keep the unit span intact
+              const unitSpan = el.querySelector('.bento__unit, .bento__unit-lg');
+              const unitHTML = unitSpan ? unitSpan.outerHTML : '';
+              el.innerHTML = Math.round(current) + unitHTML;
+            }, stepTime);
+
+            countObserver.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    countElements.forEach((el) => countObserver.observe(el));
   });
 </script>
