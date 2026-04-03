@@ -241,33 +241,25 @@
     .pw-section {
       height: auto;
       flex-direction: column;
-      padding-bottom: 4rem;
+      padding-bottom: 1.5rem;
       padding-top: 0;
     }
     .pw-window-wrap {
       position: relative;
-      inset: auto;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 4 / 5;
-      max-height: 60vh;
-      z-index: 0;
+      height: 65vh;
+      width: max-content;
+      left: 50%;
+      transform: translateX(-24%);
       margin-bottom: 1rem;
+      z-index: 0;
     }
     .pw-frame {
-      width: 100%;
       height: 100%;
-      object-fit: cover;
+      width: auto;
+      object-fit: contain;
+      display: block;
     }
-    .pw-video {
-      top: 0;
-      left: 0;
-      transform: none;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 0;
-    }
+    /* Removed .pw-video overrides to properly retain desktop alignment/masking and hide edge lines */
     .pw-text {
       position: relative;
       bottom: auto;
@@ -275,10 +267,10 @@
       right: auto;
       padding: 0 1.5rem;
       max-width: 100%;
-      text-align: center;
-      align-items: center;
+      text-align: left;
+      align-items: flex-start;
       background: none;
-      padding-top: 0;
+      padding-top: 1rem;
       z-index: 10;
     }
     .pw-circular-badge {
