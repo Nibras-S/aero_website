@@ -1,10 +1,142 @@
 ---
-// Consultancy Section
+// Consultancy Section — Homepage Teaser
 ---
 
-<section id="consultancy" style="padding: 5rem 2rem; background: rgba(75,163,195,0.05);">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <p style="color: var(--color-primary); font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem;">Expert Guidance</p>
-    <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--color-text);">Consultancy</h2>
+<section id="consultancy" class="cons-section">
+  <!-- Background Image with Overlay -->
+  <div class="cons-bg" aria-hidden="true"></div>
+  
+  <div class="cons-content">
+    <h2 class="cons-title">Consultancy &<br />UAE Airports</h2>
+    <p class="cons-desc">
+      Comprehensive operational expertise and dedicated end-to-end flight support across all major UAE airports. Access our exclusive network and dedicated handling services.
+    </p>
+    <div class="cons-actions">
+      <a href="/consultancy" class="cons-cta-ghost">Explore Coverage ↗</a>
+    </div>
   </div>
 </section>
+
+<style>
+  .cons-section {
+    position: relative;
+    padding: 10rem 2.5rem;
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .cons-bg {
+    position: absolute;
+    inset: 0;
+    /* Beautiful luxury private jet background */
+    background-image: url('https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=2000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center 30%;
+    z-index: 0;
+    transition: transform 1.5s ease-out;
+  }
+  
+  .cons-section:hover .cons-bg {
+    transform: scale(1.03);
+  }
+
+  /* Dark gradient overlay to make text pop */
+  .cons-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(5, 8, 15, 0.95) 0%,
+      rgba(5, 8, 15, 0.7) 40%,
+      transparent 100%
+    );
+    z-index: 1;
+  }
+
+  .cons-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: clamp(1rem, 5vw, 4rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Staggered Text Animations */
+  .cons-title, .cons-desc, .cons-actions {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .cons-title {
+    animation: cons-slide-up 0.8s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
+  }
+  .cons-desc {
+    animation: cons-slide-up 0.8s cubic-bezier(0.22,1,0.36,1) 0.35s forwards;
+  }
+  .cons-actions {
+    animation: cons-slide-up 0.8s cubic-bezier(0.22,1,0.36,1) 0.5s forwards;
+  }
+
+  @keyframes cons-slide-up {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .cons-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    color: #ffffff;
+    margin: 0 0 1.5rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    text-shadow: 0 2px 24px rgba(13,33,55,0.4);
+  }
+
+  .cons-desc {
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.8;
+    max-width: 500px;
+    margin: 0 0 2.25rem;
+  }
+
+  .cons-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .cons-cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.9rem 1.75rem;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 0.35rem;
+    transition: border-color 0.2s, background 0.2s;
+    backdrop-filter: blur(4px);
+  }
+  .cons-cta-ghost:hover {
+    border-color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.08);
+  }
+
+  @media (max-width: 768px) {
+    .cons-section { padding: 6rem 1.5rem; min-height: 500px; }
+    .cons-content { padding-left: 0; }
+    .cons-section::before {
+      background: linear-gradient(to top, rgba(5,8,15,0.95) 0%, rgba(5,8,15,0.6) 50%, rgba(5,8,15,0.3) 100%);
+    }
+  }
+</style>

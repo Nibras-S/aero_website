@@ -1,8 +1,318 @@
 ---
-// CompanyProfile Section
+// CompanyProfile Section — Black & White quote carousel
 ---
 
-<section id="company-profile" style="padding: 5rem 2rem; max-width: 1200px; margin: 0 auto;">
-  <p style="color: var(--color-primary); font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem;">Our Story</p>
-  <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--color-text);">Company Profile</h2>
+<section id="company-profile" class="cp-section">
+  <div class="cp-container">
+    <div class="cp-split">
+      
+      <!-- Left Text -->
+      <div class="cp-text-content">
+        <h3 class="cp-quote">
+          Our vision has always been simple, <span class="text-highlight">to redefine what's possible in global aviation.</span>
+        </h3>
+        
+        <div class="carousel-container">
+          <!-- Quote 1 -->
+          <div class="carousel-item active" data-index="0">
+            <div class="cp-body">
+              <p>
+                "We are creating a technology-driven aviation powerhouse designed to optimize operations and enhance the flight experience. In an industry defined by rapid change and evolving customer expectations, we are committed to staying ahead of the curve.
+              </p>
+              <p>
+                By leveraging comprehensive 360-degree digitization, we aim to transform aviation service delivery on a global scale, ensuring our customers receive precisely what they demand."
+              </p>
+            </div>
+            <div class="cp-author-block">
+              <strong class="cp-author-name">Mr Nufais</strong>
+              <span class="cp-author-title">Executive Director</span>
+            </div>
+          </div>
+
+          <!-- Quote 2 -->
+          <div class="carousel-item" data-index="1">
+            <div class="cp-body">
+              <p>
+                "Our dedication to excellence goes beyond basic service. It's about crafting an entirely seamless experience where everything runs seamlessly. From ground handling to in-flight assistance, we prioritize every detail."
+              </p>
+              <p>
+                "We believe that true leadership in global aviation requires an unwavering commitment to both innovation and traditional principles of elite hospitality."
+              </p>
+            </div>
+            <div class="cp-author-block">
+              <strong class="cp-author-name">Mr Boula</strong>
+              <span class="cp-author-title">Managing Director</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cp-actions-row">
+          <a href="/about" class="cp-btn">About Us</a>
+          
+          <div class="carousel-controls">
+            <button class="nav-btn prev-btn" aria-label="Previous quote">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+            </button>
+            <button class="nav-btn next-btn" aria-label="Next quote">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Image -->
+      <div class="cp-image-wrapper">
+        <img 
+          src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1200&auto=format&fit=crop" 
+          alt="Executive" 
+          class="cp-image active"
+          data-image="0"
+        />
+        <img 
+          src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1200&auto=format&fit=crop" 
+          alt="Executive" 
+          class="cp-image"
+          data-image="1"
+        />
+      </div>
+
+    </div>
+  </div>
 </section>
+
+<style>
+  .cp-section {
+    background: #ffffff; /* White background */
+    color: #0f172a;
+    padding: 8rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cp-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Split Layout ── */
+  .cp-split {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  /* Text Column */
+  .cp-text-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cp-quote {
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #111827;
+    margin: 0 0 3rem;
+    letter-spacing: -0.02em;
+  }
+  .text-highlight {
+    color: #111827; /* Changed to dark to match B&W theme */
+  }
+
+  /* Carousel */
+  .carousel-container {
+    position: relative;
+    min-height: 250px;
+  }
+
+  .carousel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .carousel-item.active {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .cp-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #4b5563;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .cp-author-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: 1.5rem;
+  }
+  .cp-author-name {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #111827;
+  }
+  .cp-author-title {
+    font-size: 0.95rem;
+    color: #64748b;
+  }
+
+  .cp-actions-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .cp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #111827;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 1rem 2.5rem;
+    border-radius: 999px; /* Pill button styling */
+    transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+  }
+  .cp-btn:hover {
+    background: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  }
+
+  /* Slider Controls */
+  .carousel-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .nav-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid #cbd5e1;
+    background: transparent;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .nav-btn:hover {
+    border-color: #111827;
+    color: #111827;
+  }
+
+  /* Image Column */
+  .cp-image-wrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    background: #f1f5f9;
+  }
+  
+  .cp-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  
+  .cp-image.active {
+    opacity: 1;
+  }
+
+  @media (max-width: 1024px) {
+    .cp-split {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+    .cp-actions-row {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+    .cp-image-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cp-section { padding: 4rem 1.5rem; }
+    .cp-quote { font-size: clamp(1.5rem, 6vw, 2rem); }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const items = document.querySelectorAll('.carousel-item');
+    const images = document.querySelectorAll('.cp-image');
+    
+    if (!prevBtn || !nextBtn || items.length === 0) return;
+
+    let currentIndex = 0;
+
+    const updateCarousel = (newIndex) => {
+      // Hide old
+      items[currentIndex].classList.remove('active');
+      if (images[currentIndex]) images[currentIndex].classList.remove('active');
+      
+      // Update index
+      currentIndex = newIndex;
+      
+      // Show new
+      items[currentIndex].classList.add('active');
+      if (images[currentIndex]) images[currentIndex].classList.add('active');
+    };
+
+    prevBtn.addEventListener('click', () => {
+      let newIndex = currentIndex - 1;
+      if (newIndex < 0) newIndex = items.length - 1;
+      updateCarousel(newIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      let newIndex = currentIndex + 1;
+      if (newIndex >= items.length) newIndex = 0;
+      updateCarousel(newIndex);
+    });
+  });
+</script>

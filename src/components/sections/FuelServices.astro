@@ -112,73 +112,17 @@
       </div>
     </div>
   </div>
-
-  <!-- ── 4. Staff + Ramp Photo Duo ── -->
-  <div class="fuel-duo" id="fuelDuo">
-    <div class="fuel-duo-text">
-      <p class="fuel-eyebrow">Our Ramp Team</p>
-      <h3 class="fuel-duo-heading">Integrated Fuel&nbsp;<br/>Management</h3>
-      <p class="fuel-duo-body">
-        Our approach goes beyond simple fuel supply. We focus on delivering operational efficiency
-        through coordinated uplift planning — ensuring cost control and clear visibility at every stage.
-        Our ramp agents in Flyger uniforms are on the ground so you don't have to worry.
-      </p>
-      <a href="#contact" class="btn-fuel-cta">Request a Fuel Quote ↗</a>
-    </div>
-
-    <div class="fuel-duo-images">
-      <div class="fuel-duo-img-wrap fuel-duo-main">
-        <img
-          src="/images/fuel-ramp-agent.png"
-          alt="Flyger ramp agent supervising fuel operations on tarmac"
-          class="fuel-duo-img"
-        />
-        <div class="fuel-duo-badge">
-          <span class="fuel-badge-dot"></span>
-          Live Coordination
-        </div>
-      </div>
-      <div class="fuel-duo-img-wrap fuel-duo-secondary">
-        <img
-          src="/images/fuel-staff-coordination.png"
-          alt="Flyger staff coordinating fuel plan near aircraft"
-          class="fuel-duo-img"
-        />
-        <div class="fuel-duo-tag">Flyger Ground Team</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── 5. Bottom Stat Strip ── -->
-  <div class="fuel-stats" id="fuelStats">
-    <div class="fuel-stat">
-      <span class="fuel-stat-num">180+</span>
-      <span class="fuel-stat-label">Countries & Territories</span>
-    </div>
-    <div class="fuel-stat-divider"></div>
-    <div class="fuel-stat">
-      <span class="fuel-stat-num">4</span>
-      <span class="fuel-stat-label">Fuel Grades Covered</span>
-    </div>
-    <div class="fuel-stat-divider"></div>
-    <div class="fuel-stat">
-      <span class="fuel-stat-num">24/7</span>
-      <span class="fuel-stat-label">Operational Support</span>
-    </div>
-    <div class="fuel-stat-divider"></div>
-    <div class="fuel-stat">
-      <span class="fuel-stat-num">&lt;2h</span>
-      <span class="fuel-stat-label">Average Quote Response</span>
-    </div>
-  </div>
-
 </section>
 
 <style>
   .fuel-section {
+    --color-primary: #111827;
+    --color-text: #000000;
+    --color-muted: #4b5563;
+    --bg-main: #ffffff;
     background: var(--bg-main);
     overflow: hidden;
-    padding-bottom: 6rem;
+    padding-bottom: 0;
   }
 
   /* ─── Intro Grid ─── */
@@ -199,7 +143,7 @@
     aspect-ratio: 4 / 3;
     border-radius: 0.5rem;
     overflow: hidden;
-    box-shadow: 0 24px 60px rgba(13, 33, 55, 0.12);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
     /* Simple entrance animation */
     opacity: 0;
     transform: translateX(40px);
@@ -220,7 +164,7 @@
     text-transform: uppercase;
     margin-bottom: 1rem;
     padding: 0.3rem 1rem;
-    border: 1px solid rgba(75, 163, 195, 0.35);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 999px;
   }
   .fuel-headline {
@@ -257,7 +201,7 @@
   /* ─── Feature Offset Carousel (New Reference Style) ─── */
   .fuel-carousel-section {
     position: relative;
-    padding: 6rem 0 10rem;
+    padding: 6rem 0 4rem;
     overflow: hidden;
   }
   
@@ -267,7 +211,7 @@
     left: 0;
     right: 0;
     height: 75%;
-    background: #2b5585; /* Solid mid-blue matching reference angled slice */
+    background: #f1f5f9; /* Light slate replacing blue */
     transform: skewY(-6deg);
     transform-origin: left bottom;
     z-index: 0;
@@ -332,7 +276,7 @@
     border-radius: 0.25rem; /* Reduced rounding for boxy touch */
     overflow: hidden;
     position: relative;
-    box-shadow: 0 16px 40px rgba(13, 33, 55, 0.15);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
   }
   
   .fuel-ccard-img {
@@ -429,7 +373,7 @@
   .fuel-duo-images { display: grid; grid-template-columns: 1fr; gap: 1rem; }
   .fuel-duo-img-wrap {
     position: relative; border-radius: 1.25rem; overflow: hidden;
-    box-shadow: 0 24px 60px rgba(13, 33, 55, 0.14);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.14);
   }
   .fuel-duo-main    { aspect-ratio: 16 / 10; }
   .fuel-duo-secondary { aspect-ratio: 16 / 7; }
@@ -456,7 +400,7 @@
   }
   .fuel-duo-tag {
     position: absolute; bottom: 1rem; right: 1rem;
-    background: rgba(13, 33, 55, 0.75); backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px);
     color: white; border-radius: 0.5rem; padding: 0.35rem 0.85rem;
     font-size: 0.75rem; font-weight: 600;
     letter-spacing: 0.04em; text-transform: uppercase;

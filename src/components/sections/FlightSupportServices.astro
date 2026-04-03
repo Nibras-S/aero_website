@@ -1,37 +1,41 @@
 ---
-// Flight Support Services — horizontal image card carousel, dark premium style
+// Flight Support Services — full-screen cinematic hero + horizontal card carousel
 ---
 
 <section class="fss-section">
-  <!-- Section Header -->
-  <div class="fss-header">
-    <div class="fss-header-left">
-      <p class="fss-eyebrow">End-to-End Operational Coordination</p>
-      <h2 class="fss-title">
-        We handle <em>every element</em> of<br />
-        your flight, so you can focus<br />
-        on your mission.
-      </h2>
-    </div>
-    <div class="fss-header-right">
-      <p class="fss-desc">
-        Precision operations, global reach, and dedicated support from planning to touchdown.
-        Flyger delivers seamless flight coordination at every stage.
-      </p>
-      <a href="#contact" class="fss-cta">
-        Talk To Us
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M7 17L17 7M7 7h10v10"/>
-        </svg>
-      </a>
+
+  <!-- Full-Screen Cinematic Hero (matching screenshot) -->
+  <div class="fss-hero">
+    <div class="fss-hero-overlay"></div>
+    <div class="fss-hero-content">
+      <!-- Left: Large heading -->
+      <div class="fss-hero-left">
+        <h2 class="fss-heading">
+          Seamless Flight<br />
+          Operations, Anywhere<br />
+          <span class="fss-accent">You Fly</span>
+        </h2>
+      </div>
+      <!-- Right: Description + CTA -->
+      <div class="fss-hero-right">
+        <p class="fss-desc">
+          End-to-end operational support designed to keep
+          every flight efficient, compliant, and on schedule.
+        </p>
+        <a href="#contact" class="fss-cta">
+          Request Flight Support
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M7 7h10v10"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </div>
 
-  <!-- Cards -->
-  <div class="fss-carousel-wrapper">
+  <!-- Cards block scrolls naturally over the hero -->
+  <div class="fss-cards-block">
     <ul class="fss-carousel" id="fssCarousel">
 
-      <!-- Card 1: Flight Planning -->
       <li class="fss-card">
         <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=800&auto=format&fit=crop" alt="Flight Planning" loading="lazy" />
         <div class="fss-card-label">
@@ -40,7 +44,6 @@
         </div>
       </li>
 
-      <!-- Card 2: Overflight & Landing Permits -->
       <li class="fss-card">
         <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=800&auto=format&fit=crop" alt="Overflight & Landing Permits" loading="lazy" />
         <div class="fss-card-label">
@@ -49,7 +52,6 @@
         </div>
       </li>
 
-      <!-- Card 3: Dispatch & Coordination -->
       <li class="fss-card">
         <img src="https://images.unsplash.com/photo-1587019158091-1a103c5dd17f?q=80&w=800&auto=format&fit=crop" alt="Dispatch & Coordination" loading="lazy" />
         <div class="fss-card-label">
@@ -58,7 +60,6 @@
         </div>
       </li>
 
-      <!-- Card 4: Slot & PPR Management -->
       <li class="fss-card">
         <img src="https://images.unsplash.com/photo-1556388158-158ea5ccacbd?q=80&w=800&auto=format&fit=crop" alt="Slot & PPR Management" loading="lazy" />
         <div class="fss-card-label">
@@ -67,7 +68,6 @@
         </div>
       </li>
 
-      <!-- Card 5: Flight Monitoring -->
       <li class="fss-card">
         <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=800&auto=format&fit=crop" alt="Flight Monitoring" loading="lazy" />
         <div class="fss-card-label">
@@ -76,9 +76,8 @@
         </div>
       </li>
 
-      <!-- Card 6: Crew Support -->
       <li class="fss-card">
-        <img src="https://images.unsplash.com/photo-1569154941061-e231b4732ef1?q=80&w=800&auto=format&fit=crop" alt="Crew Support" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=800&auto=format&fit=crop" alt="Crew Support" loading="lazy" />
         <div class="fss-card-label">
           <h3>Crew Support</h3>
           <p>Premium hotel accommodations, ground transport, and full logistics for your crew.</p>
@@ -87,91 +86,133 @@
 
     </ul>
   </div>
+
 </section>
 
 <style>
-  /* ── Section ── */
   .fss-section {
-    background: #000000;
     color: #ffffff;
-    overflow: hidden;
-    padding-bottom: 0;
   }
 
-  /* ── Header ── */
-  .fss-header {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 6rem 2.5rem 3.5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+  /* ── Full-screen hero with fixed parallax bg ── */
+  .fss-hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    background-image: url('https://images.unsplash.com/photo-1474302770737-173ee21bab63?q=80&w=1800&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center 35%;
+    background-attachment: fixed;
+    display: flex;
     align-items: flex-end;
   }
 
-  .fss-eyebrow {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    margin: 0 0 1.2rem;
+  /* Bottom-heavy dark gradient so text reads clearly */
+  .fss-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(5, 10, 20, 0.88) 0%,
+      rgba(5, 10, 20, 0.5) 40%,
+      rgba(5, 10, 20, 0.15) 80%,
+      transparent 100%
+    );
+    z-index: 0;
   }
 
-  .fss-title {
-    font-size: clamp(2rem, 3.5vw, 3.2rem);
-    font-weight: 800;
+  /* Bottom-split content: heading left, CTA right */
+  /* Content starts hidden, animates in on scroll */
+  .fss-hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2.5rem 5rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 3rem;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  }
+  .fss-hero-content.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fss-hero-left {
+    flex: 1;
+  }
+
+  .fss-heading {
+    font-size: clamp(1.9rem, 3.8vw, 3.5rem);
+    font-weight: 700;
     line-height: 1.2;
     margin: 0;
+    letter-spacing: -0.025em;
     color: #ffffff;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
   }
 
-  .fss-title em {
-    font-style: normal;
-    color: rgba(255,255,255,0.45);
+  .fss-accent {
+    color: #c8cdd4; /* soft silver-grey, not blue */
+    display: block;
+    font-weight: 300;
+    font-style: italic;
   }
 
-  .fss-header-right {
+  .fss-hero-right {
+    flex-shrink: 0;
+    max-width: 340px;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
     align-items: flex-start;
+    gap: 1.75rem;
+    padding-bottom: 0.4rem;
   }
 
   .fss-desc {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.8;
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.75;
     margin: 0;
-    max-width: 480px;
   }
 
   .fss-cta {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    border: 1px solid rgba(255,255,255,0.3);
+    gap: 0.6rem;
+    background: rgba(255, 255, 255, 0.95);
+    color: #0d1b2a;
+    border: none;
     border-radius: 999px;
-    padding: 0.65rem 1.5rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    color: rgba(255,255,255,0.85);
+    padding: 0.8rem 1.8rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     text-decoration: none;
-    transition: background 0.25s, border-color 0.25s, color 0.25s;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s, transform 0.2s;
+    white-space: nowrap;
   }
   .fss-cta:hover {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(255,255,255,0.6);
-    color: #ffffff;
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
   }
   .fss-cta svg { transition: transform 0.2s; }
   .fss-cta:hover svg { transform: translate(2px, -2px); }
 
-  /* ── Carousel ── */
-  .fss-carousel-wrapper {
-    width: 100%;
+  /* ── Cards block ── */
+  .fss-cards-block {
+    background: #000000;
+    position: relative;
+    z-index: 1;
   }
 
   .fss-carousel {
@@ -188,11 +229,10 @@
   }
   .fss-carousel::-webkit-scrollbar { display: none; }
 
-  /* ── Cards ── */
   .fss-card {
     flex: 0 0 25%;
     position: relative;
-    height: 480px;
+    height: 500px;
     overflow: hidden;
     scroll-snap-align: start;
     cursor: pointer;
@@ -203,10 +243,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
   }
 
-  /* Bottom label — always visible with title, description reveals on hover */
   .fss-card-label {
     position: absolute;
     bottom: 0;
@@ -222,12 +260,11 @@
     color: #ffffff;
     margin: 0;
     line-height: 1.35;
-    font-family: 'Inter', system-ui, sans-serif;
   }
 
   .fss-card-label p {
     font-size: 0.85rem;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255, 255, 255, 0.65);
     line-height: 1.6;
     margin: 0;
     max-height: 0;
@@ -248,18 +285,43 @@
   }
 
   @media (max-width: 768px) {
-    .fss-header {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      padding: 4rem 1.5rem 2.5rem;
+    .fss-hero {
+      background-attachment: scroll; /* iOS fix */
+      height: 85vh;
     }
-    .fss-title { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+    .fss-hero-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+      padding: 0 1.5rem 3.5rem;
+    }
+    .fss-heading { font-size: clamp(2rem, 8vw, 3rem); }
+    .fss-hero-right { max-width: 100%; }
+    .fss-cta { width: 100%; justify-content: center; }
     .fss-card { flex: 0 0 80vw; height: 380px; }
   }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // Scroll-triggered animation
+    const heroContent = document.querySelector('.fss-hero-content');
+    if (heroContent) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              heroContent.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      observer.observe(heroContent);
+    }
+
+    // Carousel auto-scroll
     const carousel = document.getElementById('fssCarousel');
     if (!carousel) return;
 
