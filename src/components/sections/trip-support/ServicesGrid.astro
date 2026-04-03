@@ -237,15 +237,33 @@ const services = [
     opacity: 1;
     transition-delay: 0.15s;
   }
-
-  /* Content Typography Overrides (White/Light mode inside card) */
-  .service-label {
-    display: inline-block; 
-    color: var(--color-primary, #4BA3C3); 
-    font-size: 0.8125rem; 
-    font-weight: 700; 
-    letter-spacing: 0.15em; 
-    text-transform: uppercase; 
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .service-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(75, 163, 195, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+  }
+  .icon-placeholder {
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
     margin-bottom: 1rem;
   }
   

@@ -272,15 +272,28 @@
 
   /* ── Responsive ── */
   @media (max-width: 768px) {
-    .hero {
-      padding: 4rem 1.5rem;
-      min-height: auto;
+    .hero-name { 
+      font-size: clamp(3rem, 14vw, 5rem); 
+      letter-spacing: 0.08em;
     }
-    .hero-geo {
-      width: 100%;
-      height: 40%;
-      top: 0;
-      opacity: 0.5;
+    .hero-subtitle {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      margin: 0 0 2rem;
+    }
+    .hero-cta {
+      font-size: 0.7rem;
+      padding: 0.6rem 1.5rem;
+    }
+    .hero-news-card { display: none; }
+    .hero-text-cols {
+      position: relative;
+      bottom: auto; right: auto;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 2rem;
+      max-width: 100%;
+      margin-top: 3rem;
     }
   }
 </style>

@@ -1,64 +1,67 @@
 ---
-// TripSupportIntro — Premium Aviation Hero
-// Clean cinematic hero matching reference design
+// Flight Support Section (formerly TripSupportIntro)
+// Re-designed with premium horizontal image cards
 ---
 
-<section id="trip-support" class="hero" aria-label="Trip Support Hero">
-  <!-- Background -->
-  <div class="hero__bg" aria-hidden="true">
-    <img
-      src="/images/trip-support-hero.png"
-      alt=""
-      class="hero__img"
-      loading="eager"
-      decoding="async"
-    />
+<section id="flight-support" class="fs-section">
+  <div class="fs-container">
+    <div class="fs-header">
+      <h2 class="fs-title">FLIGHT SUPPORT</h2>
+      <p class="fs-subtitle">End-to-End Operational Coordination</p>
+    </div>
   </div>
 
-  <!-- Gradient overlay -->
-  <div class="hero__overlay" aria-hidden="true"></div>
-
-  <!-- Content: Split bottom layout -->
-  <div class="hero__container">
-    <div class="hero__content">
-      <!-- Left: Large heading -->
-      <div class="hero__left">
-        <h1 class="hero__heading">
-          Seamless flight<br />
-          operations, anywhere<br />
-          <span class="text-highlight">you fly</span>
-        </h1>
-      </div>
-
-      <!-- Right: Description + CTA -->
-      <div class="hero__right">
-        <p class="hero__desc">
-          End-to-end operational support designed to keep every flight
-          efficient, compliant, and on schedule.
-        </p>
-        <button
-          type="button"
-          class="hero__cta"
-          id="open-trip-modal"
-          aria-haspopup="dialog"
-        >
-          Request trip support
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
+  <div class="fs-carousel-wrapper">
+    <ul class="fs-carousel" id="fsCarousel">
+      <!-- Card 1 -->
+      <li class="fs-card">
+        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=600&auto=format&fit=crop" alt="Flight Planning" loading="lazy" />
+        <div class="fs-card-overlay">
+          <h3>Flight Planning</h3>
+          <p class="fs-card-desc">Comprehensive route analysis and optimal flight plans tailored to your specific requirements.</p>
+        </div>
+      </li>
+      <!-- Card 2 -->
+      <li class="fs-card">
+        <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=600&auto=format&fit=crop" alt="Overflight & Landing Permits" loading="lazy" />
+        <div class="fs-card-overlay">
+          <h3>Overflight & Landing Permits</h3>
+          <p class="fs-card-desc">Rapid acquisition of global clearances and permits to ensure uninterrupted journeys worldwide.</p>
+        </div>
+      </li>
+      <!-- Card 3 -->
+      <li class="fs-card">
+        <img src="https://images.unsplash.com/photo-1587019158091-1a103c5dd17f?q=80&w=600&auto=format&fit=crop" alt="Dispatch & Coordination" loading="lazy" />
+        <div class="fs-card-overlay">
+          <h3>Dispatch & Coordination</h3>
+          <p class="fs-card-desc">24/7 dedicated flight dispatch providing seamless ground-to-air operational support.</p>
+        </div>
+      </li>
+      <!-- Card 4 -->
+      <li class="fs-card">
+        <img src="https://images.unsplash.com/photo-1556388158-158ea5ccacbd?q=80&w=600&auto=format&fit=crop" alt="Slot & PPR Management" loading="lazy" />
+        <div class="fs-card-overlay">
+          <h3>Slot & PPR Management</h3>
+          <p class="fs-card-desc">Strategic coordination of airport slots and prior permission required (PPR) approvals.</p>
+        </div>
+      </li>
+      <!-- Card 5 -->
+      <li class="fs-card">
+        <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=600&auto=format&fit=crop" alt="Flight Monitoring" loading="lazy" />
+        <div class="fs-card-overlay">
+          <h3>Flight Monitoring</h3>
+          <p class="fs-card-desc">Real-time global flight tracking and proactive issue resolution at every stage of the trip.</p>
+        </div>
+      </li>
+      <!-- Card 6 -->
+      <li class="fs-card">
+        <img src="https://images.unsplash.com/photo-1569154941061-e231b4732ef1?q=80&w=600&auto=format&fit=crop" alt="Crew Support" loading="lazy" />
+        <div class="fs-card-overlay">
+          <h3>Crew Support</h3>
+          <p class="fs-card-desc">Premium hotel accommodations, ground transportation, and logistics for your crew.</p>
+        </div>
+      </li>
+    </ul>
   </div>
 </section>
 
@@ -206,623 +209,165 @@
 </dialog>
 
 <style>
-  /* =============================================
-     HERO SECTION
-     ============================================= */
-  .hero {
-    position: relative;
-    width: 100%;
-    min-height: 100svh; /* Changed to full viewport size */
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
-    font-family: "Inter", "Roboto", system-ui, sans-serif;
+  .fs-section {
+    background: #090d14; /* Blends perfectly with AboutIntro */
+    padding: 6rem 0 6rem;
     color: #ffffff;
+    overflow: hidden;
   }
 
-  /* Background image */
-  .hero__bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
+  .fs-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    margin-bottom: 3.5rem;
   }
 
-  .hero__img {
-    display: block;
+  .fs-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .fs-title {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 300; /* Thinner, like AboutIntro statement */
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem 0;
+    color: rgba(255, 255, 255, 0.85); /* Slightly softer silver */
+  }
+
+  .fs-subtitle {
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+    color: #94a3b8;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  .fs-carousel-wrapper {
+    width: 100%;
+  }
+
+  .fs-carousel {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0 2rem 3rem max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+    scroll-padding-left: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hide scrollbar for a seamless look */
+  .fs-carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .fs-carousel {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .fs-card {
+    flex: 0 0 calc(85vw - 2rem);
+    max-width: 320px;
+    height: 400px;
+    position: relative;
+    border-radius: 0; /* Sharp corners per user request */
+    overflow: hidden;
+    scroll-snap-align: start;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    cursor: pointer;
+  }
+
+  .fs-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 35%;
-    animation: heroZoom 28s ease-in-out infinite alternate;
-    will-change: transform;
   }
 
-  @keyframes heroZoom {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(1.06);
-    }
-  }
-
-  /* Gradient overlay — dark bottom + left-heavy */
-  .hero__overlay {
+  .fs-card-overlay {
     position: absolute;
-    inset: 0;
-    z-index: 1;
-    background:
-      linear-gradient(
-        to top,
-        rgba(5, 12, 23, 0.95) 0%,
-        rgba(5, 12, 23, 0.7) 35%,
-        rgba(5, 12, 23, 0.3) 60%,
-        rgba(5, 12, 23, 0.1) 100%
-      ),
-      linear-gradient(
-        to right,
-        rgba(5, 12, 23, 0.55) 0%,
-        rgba(5, 12, 23, 0.2) 40%,
-        transparent 70%
-      );
-  }
-
-  /* Container */
-  .hero__container {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 2.5rem 8rem; /* Further 'left' (2.5rem) and 'top' (8rem bottom padding) */
-  }
-
-  /* Split content layout */
-  .hero__content {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* Reduced opacity background */
+    background: rgba(0, 0, 0, 0.60); 
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 3rem;
-    opacity: 0;
-    transform: translateY(24px);
-    animation: fadeUp 900ms cubic-bezier(0.16, 1, 0.3, 1) 300ms forwards;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem; /* Smaller, tighter padding */
   }
 
-  @keyframes fadeUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Left — heading */
-  .hero__left {
-    flex: 1;
-    max-width: 850px;
-  }
-
-  .hero__heading {
-    font-size: clamp(2.25rem, 5.5vw, 3.8rem); /* Slightly smaller max to match right height */
-    font-weight: 700;
-    line-height: 1.35; /* Increased to stretch heading height */
-    letter-spacing: -0.035em;
-    margin: 0;
+  .fs-card-overlay h3 {
     color: #ffffff;
-  }
-
-  .text-highlight {
-    color: var(--color-primary, #4ba3c3);
-  }
-
-  /* Right — description + CTA */
-  .hero__right {
-    flex-shrink: 0;
-    max-width: 380px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between; /* Space out description and button */
-    padding-top: 0.5rem; /* Tiny top alignment offset */
-    padding-bottom: 0.5rem; /* Match bottom spacing */
-    height: auto;
-    min-height: 100%;
-    gap: 2.5rem; /* Increased to match heading height */
-  }
-
-  .hero__desc {
-    font-size: 0.975rem;
-    line-height: 1.65;
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0;
-  }
-
-  .br-desktop {
-    display: inline;
-  }
-
-  /* CTA Button — outlined style matching reference */
-  .hero__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.9rem 1.75rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    font-family: inherit;
-    color: #1a2e1a;
-    background: #dce8e0;
-    border: none;
-    border-radius: 9999px;
-    cursor: pointer;
-    text-decoration: none;
-    white-space: nowrap;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .hero__cta:hover {
-    background: #c6dad1;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  }
-
-  .hero__cta:active {
-    transform: translateY(0);
-  }
-
-  .hero__cta:focus-visible {
-    outline: 2px solid var(--color-primary, #4ba3c3);
-    outline-offset: 3px;
-  }
-
-  .hero__cta svg {
-    transition: transform 200ms ease;
-  }
-
-  .hero__cta:hover svg {
-    transform: translate(3px, -3px);
-  }
-
-  /* =============================================
-     MODAL
-     ============================================= */
-  .modal-backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 998;
-    background: rgba(5, 12, 23, 0.55);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    opacity: 0;
-    visibility: hidden;
-    transition:
-      opacity 300ms ease,
-      visibility 300ms ease;
-  }
-
-  .modal-backdrop.is-open {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.96);
-    z-index: 999;
-    width: 92vw;
-    max-width: 540px;
-    max-height: 90vh;
-    overflow-y: auto;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 1.125rem;
-    padding: 0;
-    box-shadow:
-      0 24px 80px -12px rgba(5, 12, 23, 0.35),
-      0 8px 24px -4px rgba(5, 12, 23, 0.12);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 350ms cubic-bezier(0.16, 1, 0.3, 1);
-    font-family: "Inter", "Roboto", system-ui, sans-serif;
-    color: #0f172a;
-  }
-
-  .modal[open] {
-    opacity: 1;
-    visibility: visible;
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  .modal::backdrop {
-    display: none;
-  }
-
-  .modal__inner {
-    padding: 2.25rem;
-  }
-
-  .modal__header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1.75rem;
-  }
-
-  .modal__title {
-    font-size: 1.3rem;
+    font-size: clamp(1.2rem, 2vw, 1.45rem);
     font-weight: 700;
-    color: #0d2137;
-    margin: 0 0 0.3rem;
-    letter-spacing: -0.02em;
-  }
-
-  .modal__subtitle {
-    font-size: 0.85rem;
-    color: #64748b;
+    line-height: 1.3;
     margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
-  .modal__close {
-    flex-shrink: 0;
-    width: 34px;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f1f5f9;
-    border: none;
-    border-radius: 0.5rem;
-    color: #64748b;
-    cursor: pointer;
-    transition: all 150ms ease;
-  }
-
-  .modal__close:hover {
-    background: #e2e8f0;
-    color: #0f172a;
-  }
-
-  .modal__close:focus-visible {
-    outline: 2px solid var(--color-primary, #4ba3c3);
-    outline-offset: 2px;
-  }
-
-  /* Form */
-  .modal__form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.125rem;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .form-label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #334155;
-  }
-
-  .req {
-    color: #ef4444;
-  }
-
-  .form-input {
-    width: 100%;
-    padding: 0.7rem 0.875rem;
-    font-size: 0.9rem;
-    font-family: inherit;
-    color: #0f172a;
-    background: #f8fafc;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 0.5rem;
-    outline: none;
-    transition: all 200ms ease;
-  }
-
-  .form-input::placeholder {
-    color: #94a3b8;
-  }
-
-  .form-input:hover {
-    border-color: #cbd5e1;
-  }
-
-  .form-input:focus {
-    border-color: var(--color-primary, #4ba3c3);
-    background: #ffffff;
-    box-shadow: 0 0 0 3px rgba(75, 163, 195, 0.12);
-  }
-
-  .form-textarea {
-    resize: vertical;
-    min-height: 96px;
-  }
-
-  .modal__submit {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-    padding: 0.8rem 1.25rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    font-family: inherit;
-    color: #ffffff;
-    background: linear-gradient(135deg, var(--color-primary, #4ba3c3), #2e86ab);
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: all 200ms ease;
-    margin-top: 0.375rem;
-    box-shadow: 0 2px 8px rgba(75, 163, 195, 0.25);
-  }
-
-  .modal__submit:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(75, 163, 195, 0.35);
-  }
-
-  .modal__submit:active {
-    transform: translateY(0);
-  }
-
-  .modal__submit:focus-visible {
-    outline: 2px solid var(--color-primary, #4ba3c3);
-    outline-offset: 3px;
-  }
-
-  .submit-loader {
-    display: none;
-    animation: spin 0.8s linear infinite;
-  }
-
-  .modal__submit.is-loading .submit-text {
+  .fs-card-desc {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-top: 0;
+    max-height: 0;
     opacity: 0;
-  }
-  .modal__submit.is-loading .submit-loader {
-    display: flex;
-  }
-
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
   }
 
-  /* Success state */
-  .modal__success {
-    text-align: center;
-    padding: 1.5rem 0.5rem;
-  }
-  .modal__success[hidden] {
-    display: none;
+  .fs-card:hover .fs-card-desc {
+    max-height: 150px;
+    opacity: 1;
+    margin-top: 1rem;
   }
 
-  .success-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 64px;
-    height: 64px;
-    background: rgba(75, 163, 195, 0.1);
-    color: var(--color-primary, #4ba3c3);
-    border-radius: 50%;
-    margin-bottom: 1.25rem;
-  }
-
-  .modal__success h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #0f172a;
-    margin: 0 0 0.4rem;
-  }
-
-  .modal__success p {
-    font-size: 0.9rem;
-    color: #64748b;
-    line-height: 1.6;
-    margin: 0 0 1.75rem;
-  }
-
-  /* =============================================
-     RESPONSIVE
-     ============================================= */
-  @media (max-width: 900px) {
-    .hero__content {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.75rem;
-    }
-
-    .hero__right {
-      max-width: 100%;
-    }
-
-    .hero__container {
-      padding: 0 1.5rem 5rem; /* Shifted top/left for tablet */
-    }
-  }
-
-  @media (max-width: 640px) {
-    .hero {
-      height: 80vh;
-      min-height: 480px;
-    }
-
-    .hero__container {
-      padding: 0 1rem 4rem; /* Shifted top/left for mobile */
-    }
-
-    .hero__heading {
-      font-size: 1.6rem;
-    }
-
-    .hero__desc {
-      font-size: 0.9rem;
-    }
-
-    .br-desktop {
-      display: none;
-    }
-
-    .hero__cta {
-      width: 100%;
-      justify-content: center;
-    }
-
-    .hero__overlay {
-      background: linear-gradient(
-        to top,
-        rgba(5, 12, 23, 0.95) 0%,
-        rgba(5, 12, 23, 0.65) 45%,
-        rgba(5, 12, 23, 0.2) 100%
-      );
-    }
-
-    .modal__inner {
-      padding: 1.5rem;
-    }
-    .form-row {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* =============================================
-     ACCESSIBILITY
-     ============================================= */
-  @media (prefers-reduced-motion: reduce) {
-    .hero__img {
-      animation: none;
-    }
-    .hero__content {
-      animation: none;
-      opacity: 1;
-      transform: none;
-    }
-    .modal,
-    .modal-backdrop {
-      transition-duration: 0.01ms;
-    }
-  }
-
-  @media (prefers-contrast: high) {
-    .hero__desc {
-      color: rgba(255, 255, 255, 0.9);
-    }
-    .hero__cta {
-      border-width: 2px;
+  @media (min-width: 768px) {
+    .fs-card {
+      height: 460px;
     }
   }
 </style>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const openBtn = document.getElementById(
-      "open-trip-modal",
-    ) as HTMLButtonElement | null;
-    const closeBtn = document.getElementById(
-      "close-trip-modal",
-    ) as HTMLButtonElement | null;
-    const closeSuccess = document.getElementById(
-      "close-success",
-    ) as HTMLButtonElement | null;
-    const modal = document.getElementById(
-      "trip-modal",
-    ) as HTMLDialogElement | null;
-    const backdrop = document.getElementById(
-      "trip-modal-backdrop",
-    ) as HTMLElement | null;
-    const form = document.getElementById("trip-form") as HTMLFormElement | null;
-    const successEl = document.getElementById(
-      "trip-success",
-    ) as HTMLElement | null;
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousel = document.getElementById('fsCarousel');
+    if (!carousel) return;
 
-    if (!openBtn || !closeBtn || !modal || !backdrop || !form || !successEl)
-      return;
+    let isInteracting = false;
+    
+    // Pause auto-scroll on interaction
+    carousel.addEventListener('mouseenter', () => isInteracting = true);
+    carousel.addEventListener('mouseleave', () => isInteracting = false);
+    carousel.addEventListener('touchstart', () => isInteracting = true, {passive: true});
+    carousel.addEventListener('touchend', () => {
+      setTimeout(() => isInteracting = false, 1500);
+    }, {passive: true});
 
-    let previousFocus: HTMLElement | null = null;
-
-    function openModal(): void {
-      previousFocus = document.activeElement as HTMLElement;
-      modal!.setAttribute("open", "");
-      backdrop!.classList.add("is-open");
-      document.body.style.overflow = "hidden";
-      setTimeout(() => {
-        const firstInput = modal!.querySelector("input") as HTMLElement | null;
-        if (firstInput) firstInput.focus();
-      }, 350);
-    }
-
-    function closeModal(): void {
-      modal!.removeAttribute("open");
-      backdrop!.classList.remove("is-open");
-      document.body.style.overflow = "";
-      form!.reset();
-      form!.style.display = "";
-      successEl!.hidden = true;
-      const submitBtn = form!.querySelector(
-        ".modal__submit",
-      ) as HTMLElement | null;
-      if (submitBtn) submitBtn.classList.remove("is-loading");
-      if (previousFocus) previousFocus.focus();
-    }
-
-    openBtn.addEventListener("click", openModal);
-    closeBtn.addEventListener("click", closeModal);
-    if (closeSuccess) closeSuccess.addEventListener("click", closeModal);
-    backdrop.addEventListener("click", closeModal);
-
-    document.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Escape" && modal.hasAttribute("open")) closeModal();
-    });
-
-    // Focus trap
-    modal.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key !== "Tab") return;
-      const focusable = modal.querySelectorAll<HTMLElement>(
-        'button, input, textarea, [tabindex]:not([tabindex="-1"])',
-      );
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
+    // Simple Auto Scroll Logic
+    setInterval(() => {
+      if (!isInteracting) {
+        // Calculate width of one card + its gap
+        const firstCard = carousel.querySelector('.fs-card');
+        if (!firstCard) return;
+        
+        const cardWidth = firstCard.clientWidth + 24; // 1.5rem gap = 24px
+        
+        // If we reached the end, snap back to 0
+        if (carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth - 50)) {
+          carousel.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          // Scroll dynamically to the next card
+          carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        }
       }
-    });
-
-    // Submit handler
-    form.addEventListener("submit", (e: Event) => {
-      e.preventDefault();
-      const submitBtn = form.querySelector(
-        ".modal__submit",
-      ) as HTMLElement | null;
-      if (submitBtn) submitBtn.classList.add("is-loading");
-      setTimeout(() => {
-        form.style.display = "none";
-        successEl.hidden = false;
-        if (submitBtn) submitBtn.classList.remove("is-loading");
-      }, 1500);
-    });
+    }, 4000); // Slides every 4 seconds
   });
 </script>

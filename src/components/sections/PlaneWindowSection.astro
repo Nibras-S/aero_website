@@ -14,6 +14,9 @@
     <img src="/images/ChatGPT.png" alt="" class="pw-frame" />
   </div>
 
+  <!-- Left-side black blend overlay (desktop) -->
+  <div class="pw-left-fade" aria-hidden="true"></div>
+
   <!-- Text overlaid on the left -->
   <div class="pw-text scroll-reveal-target">
     <div class="split-line"><span class="pw-tag split-inner">THE FLYGER EXPERIENCE</span></div>
@@ -73,6 +76,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  /* Left-side gradient blend (desktop only) */
+  .pw-left-fade {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(to right, #000000 0%, transparent 100%);
+    z-index: 5;
+    pointer-events: none;
+  }
+  @media (min-width: 769px) {
+    .pw-left-fade { display: block; }
   }
 
   /* ── Window + video stack ── */
@@ -240,33 +259,62 @@
   @media (max-width: 768px) {
     .pw-section {
       height: auto;
+      min-height: 100vh;
       flex-direction: column;
       padding-bottom: 4rem;
       padding-top: 0;
+      justify-content: center;
+      /* Match the natural dark of the window image to remove mismatch */
+      background: #09090b;
+    }
+    /* Top-to-section blend: hero fades into this section */
+    .pw-section::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 6rem;
+      background: linear-gradient(to bottom, #080e16, #000000ff);
+      flex-shrink: 0;
+    }
+    /* Left-side mobile blend: softens the 40px margin gap */
+    .pw-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 100%;
+      background: linear-gradient(to right, #09090b 0%, transparent 100%);
+      z-index: 6;
+      pointer-events: none;
     }
     .pw-window-wrap {
       position: relative;
       inset: auto;
-      width: 100%;
+      width: calc(100% - 40px);
+      margin: 0 0 2rem 40px; /* 40px left gap */
       height: auto;
       aspect-ratio: 4 / 5;
-      max-height: 60vh;
+      max-height: 75vh;
       z-index: 0;
-      margin-bottom: 1rem;
     }
     .pw-frame {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
+      position: relative;
+      z-index: 2;
     }
     .pw-video {
-      top: 0;
-      left: 0;
-      transform: none;
-      width: 100%;
-      height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60%;
+      height: 60%;
       object-fit: cover;
       border-radius: 0;
+      z-index: 1;
     }
     .pw-text {
       position: relative;
@@ -275,11 +323,12 @@
       right: auto;
       padding: 0 1.5rem;
       max-width: 100%;
-      text-align: center;
-      align-items: center;
+      text-align: left;
+      align-items: flex-start;
       background: none;
       padding-top: 0;
       z-index: 10;
+      width: 100%;
     }
     .pw-circular-badge {
       right: 0;
