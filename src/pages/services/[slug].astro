@@ -207,7 +207,7 @@ const fallbackImagePool = [
         <span class="hero__label">{service.label}</span>
         <h1 class="hero__title">{service.title}</h1>
         <p class="hero__tagline">{service.tagline}</p>
-        <a href={`/contact?service=${encodeURIComponent(service.title)}`} class="hero__cta">
+        <a href={`/#contact?service=${encodeURIComponent(service.title)}`} class="hero__cta">
           Request This Service
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -314,7 +314,7 @@ const fallbackImagePool = [
         <h2 class="cta-section__heading">Ready to work with us?</h2>
         <p class="cta-section__sub">Contact our team and we'll obtain your clearances safely and efficiently.</p>
         <div class="cta-section__actions">
-          <a href={`/contact?service=${encodeURIComponent(service.title)}`} class="btn-primary">
+          <a href={`/#contact?service=${encodeURIComponent(service.title)}`} class="btn-primary">
             Request {service.title}
           </a>
           <a href="/trip-support" class="btn-ghost">View All Services</a>
