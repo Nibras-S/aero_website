@@ -9,6 +9,11 @@ const services = [
     desc: "Every successful operation begins with precise planning. We provide fast, reliable trip support tailored to your mission, ensuring optimized routing, cost control, and full regulatory compliance.",
     desc2: "Our trip planning covers all essential requirements, including flight clearances, slot coordination, fuel arrangements, and accurate flight plan filing—allowing you to operate with confidence and efficiency.",
     image: "/images/trip-support-hero.png",
+    icons: [
+      { icon: "route", text: "Optimized Routing" },
+      { icon: "shield", text: "Regulatory Compliance" },
+      { icon: "fuel", text: "Fuel Arrangements" },
+    ],
   },
   {
     title: "Flight Permits",
@@ -16,34 +21,97 @@ const services = [
     desc: "Securing permits on time is critical to any operation. We manage the entire process with speed and accuracy, coordinating directly with aviation authorities to obtain approvals even within tight timeframes.",
     desc2: "From overflight and landing permits to block and seasonal clearances, we ensure all regulatory requirements are met without delays or disruptions.",
     image: "/images/svc-flight-permits.png",
+    icons: [
+      { icon: "globe", text: "Overflight Permits" },
+      { icon: "landing", text: "Landing Permits" },
+      { icon: "calendar", text: "Seasonal Clearances" },
+    ],
   },
   {
-    title: "Flight Dispatch",
+    title: "Flyger's Dispatch Team",
     label: "PRECISION EXECUTION",
     desc: "Our dispatch support is built around precision and real-time coordination. Working closely with flight crews and operational stakeholders, we ensure every flight is planned, monitored, and executed efficiently.",
     desc2: "This includes route optimization, weather analysis, fuel planning (including EDTO/ETOPS), and continuous tracking—ensuring smooth operations from departure to arrival.",
     image: "/images/svc-dispatch.png",
+    icons: [
+      { icon: "triptime", text: "Test Plan & Trip Times" },
+      { icon: "flightplan", text: "Flight Plan Filing with ATC" },
+      { icon: "weather", text: "Weather Monitoring & Pilot Updates" },
+      { icon: "radar", text: "SATCOM & FlightRadar24 Tracking" },
+      { icon: "fuel", text: "Fuel & EDTO/ETOPS Calculations" },
+    ],
   },
   {
     title: "Diversion Support",
     label: "RAPID RESPONSE",
     desc: "Unplanned situations demand immediate and effective solutions. We provide rapid response support for flight diversions, ensuring minimal disruption to both crew and passengers.",
     desc2: "From accommodation and transportation to airport coordination, our team manages every aspect with speed and reliability, supported by 24/7 operational availability.",
-    image: "/images/svc-hotac.png", 
+    image: "/images/svc-hotac.png",
+    icons: [
+      { icon: "clock", text: "24/7 Availability" },
+      { icon: "hotel", text: "Crew Accommodation" },
+      { icon: "transport", text: "Ground Transport" },
+    ],
   },
   {
-    title: "Flight Supervision",
+    title: "Supervisors at Flyger",
     label: "SEAMLESS TURNAROUNDS",
-    desc: "We oversee ground operations to ensure every turnaround is executed seamlessly. By coordinating with all service providers and monitoring activities in real time, we maintain full control over quality and compliance.",
+    desc: "Ensures every turnaround is executed seamlessly. By coordinating with all service providers and monitoring activities in real time, we maintain full control over quality and compliance.",
     desc2: "Detailed reporting and proactive communication ensure transparency and consistency throughout the handling process.",
-    image: "/images/svc-ground.png", 
+    image: "/images/svc-supervisors.png",
+    icons: [
+      { icon: "clipboard", text: "Quality Control" },
+      { icon: "monitor", text: "Real-Time Monitoring" },
+      { icon: "report", text: "Detailed Reporting" },
+    ],
   },
   {
     title: "Smart Operations with FLYGER CRM",
     label: "DIGITAL PLATFORM",
     desc: "At FLYGER, our operations are powered by a purpose-built CRM system designed to enhance efficiency and transparency.",
     desc2: "Clients benefit from real-time proforma generation, immediate post-turn invoicing, and centralized coordination—providing complete visibility and control over both operational and financial aspects.",
-    image: "/images/trip-support-hero.png", 
+    image: "/images/svc-smart-crm.png",
+    icons: [
+      { icon: "invoice", text: "Instant Invoicing" },
+      { icon: "dashboard", text: "Live Dashboard" },
+      { icon: "sync", text: "Centralized Ops" },
+    ],
+  },
+  {
+    title: "Executive Concierge",
+    label: "PREMIUM SERVICE",
+    desc: "We provide tailored concierge support designed to enhance every aspect of the journey, with a strong focus on efficiency, comfort, and reliability.",
+    desc2: "With access to our own dedicated drivers at key locations, we ensure immediate availability and seamless transfers—eliminating delays and maintaining a premium standard of service. From ground transportation and hotel arrangements to personalized in-flight requests and local assistance, every detail is managed with precision and discretion.",
+    image: "/images/svc-concierge.png",
+    icons: [
+      { icon: "transport", text: "Dedicated Drivers" },
+      { icon: "hotel", text: "Hotel Arrangements" },
+      { icon: "concierge", text: "Personalized Requests" },
+    ],
+  },
+  {
+    title: "Onboard Catering Solutions",
+    label: "INFLIGHT EXCELLENCE",
+    desc: "We coordinate high-quality onboard catering to enhance the inflight experience, ensuring every detail meets the expectations of crew and passengers.",
+    desc2: "What sets us apart is our direct delivery approach. With our own dedicated drivers handling deliveries to the aircraft at key locations, we eliminate reliance on third-party logistics—reducing delays and avoiding unnecessary additional costs. This allows us to offer a seamless, reliable, and premium catering service while maintaining cost efficiency.",
+    image: "/images/svc-catering.png",
+    icons: [
+      { icon: "catering", text: "Gourmet Catering" },
+      { icon: "transport", text: "Direct Delivery" },
+      { icon: "invoice", text: "Cost Efficient" },
+    ],
+  },
+  {
+    title: "Station Representation",
+    label: "ON-GROUND OPERATIONS",
+    desc: "We provide dedicated on-ground representation at key locations, ensuring your operations are supported by experienced personnel who understand the local environment and requirements.",
+    desc2: "With our own staff positioned at strategic airports, we offer direct oversight and faster coordination, reducing dependency on third parties and enhancing service reliability. Our team acts as an extension of your operations, managing coordination with airport authorities, supervising ground handling activities, and ensuring smooth day-to-day execution.",
+    image: "/images/svc-station-rep.png",
+    icons: [
+      { icon: "stationrep", text: "On-Ground Staff" },
+      { icon: "clipboard", text: "Ops Management" },
+      { icon: "monitor", text: "Compliance Oversight" },
+    ],
   }
 ];
 ---
@@ -84,7 +152,42 @@ const services = [
               <span class="service-label">{service.label}</span>
               <h3 class="service-title">{service.title}</h3>
               <p class="service-desc">{service.desc}</p>
-              <p class="service-desc" style="margin-top: -1rem; margin-bottom: 2rem;">{service.desc2}</p>
+              <p class="service-desc" style="margin-top: -1rem; margin-bottom: 1.5rem;">{service.desc2}</p>
+
+              {/* Icon feature badges */}
+              <div class="service-icons">
+                {service.icons.map((feat: { icon: string; text: string }) => (
+                  <div class="icon-badge">
+                    <span class="icon-badge__icon" data-icon={feat.icon}>
+                      {/* SVG icons rendered via CSS background or inline */}
+                      {feat.icon === "route" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="19" r="3"/><circle cx="18" cy="5" r="3"/><path d="M8.59 13.51l6.83-6.83"/></svg>}
+                      {feat.icon === "shield" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
+                      {feat.icon === "fuel" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 22h12V2H3zm12-7l4 2V9l-4 2"/></svg>}
+                      {feat.icon === "globe" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>}
+                      {feat.icon === "landing" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 22h20"/><path d="M3.77 10.77L2 16h2l1.45-4.34L10 14V22"/><path d="M21.5 8.5L22 6l-4-1-2.5 5-5-1.5L12 4l-3 1 1.5 5-3 1.5"/></svg>}
+                      {feat.icon === "calendar" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>}
+                      {feat.icon === "radar" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><line x1="12" y1="2" x2="12" y2="6"/></svg>}
+                      {feat.icon === "weather" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>}
+                      {feat.icon === "dispatch" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>}
+                      {feat.icon === "triptime" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/><path d="M22 2L18 6"/><path d="M22 6L18 2"/></svg>}
+                      {feat.icon === "flightplan" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>}
+                      {feat.icon === "clock" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>}
+                      {feat.icon === "hotel" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>}
+                      {feat.icon === "transport" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>}
+                      {feat.icon === "clipboard" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>}
+                      {feat.icon === "monitor" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>}
+                      {feat.icon === "report" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>}
+                      {feat.icon === "invoice" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>}
+                      {feat.icon === "dashboard" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>}
+                      {feat.icon === "sync" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>}
+                      {feat.icon === "concierge" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8"/><path d="M3 12h18"/><path d="M12 2v2"/><rect x="2" y="14" width="20" height="4" rx="1"/></svg>}
+                      {feat.icon === "catering" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>}
+                      {feat.icon === "stationrep" && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>}
+                    </span>
+                    <span class="icon-badge__text">{feat.text}</span>
+                  </div>
+                ))}
+              </div>
 
               <div class="service-action">
                 <a href={`/contact?service=${encodeURIComponent(service.title)}`} class="btn-navigate" aria-label={`Request ${service.title}`} tabindex={index === 0 ? "0" : "-1"} data-service-btn>
@@ -243,19 +346,21 @@ const services = [
     display: inline-block; 
     color: var(--color-primary, #4BA3C3); 
     font-size: 0.8125rem; 
-    font-weight: 700; 
+    font-weight: 600; 
     letter-spacing: 0.15em; 
     text-transform: uppercase; 
     margin-bottom: 1rem;
+    font-family: var(--font-label);
   }
   
   .service-title {
     font-size: clamp(2rem, 3.5vw, 3rem); 
     font-weight: 800; 
-    color: #ffffff; /* pure white for contrast */
+    color: #ffffff;
     line-height: 1.15; 
     margin: 0 0 1.5rem; 
     letter-spacing: -0.02em;
+    font-family: var(--font-heading);
   }
   
   .service-desc {
@@ -265,29 +370,55 @@ const services = [
     margin: 0 0 2rem;
   }
   
-  .service-features {
-    list-style: none; 
-    padding: 0; 
-    margin: 0 0 2.5rem; 
-    display: flex; 
-    flex-direction: column; 
-    gap: 1rem;
+  /* ========================================================
+     ICON FEATURE BADGES
+     ======================================================== */
+  .service-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
   }
-  
-  .feature-item { 
-    display: flex; 
-    align-items: center; 
-    gap: 0.75rem; 
+
+  .icon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
   }
-  
-  .feature-text { 
-    font-size: 1.15rem; 
-    color: #ffffff; 
-    font-weight: 400; 
+
+  .icon-badge:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(75, 163, 195, 0.4);
+    transform: translateY(-2px);
   }
-  
-  .text-muted {
-    opacity: 0.8;
+
+  .icon-badge__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary, #4BA3C3);
+    flex-shrink: 0;
+  }
+
+  .icon-badge__icon svg {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .icon-badge__text {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    white-space: nowrap;
+    font-family: var(--font-label);
+    letter-spacing: 0.02em;
   }
 
   /* Pill Navigation Button — matches brand button style */
@@ -308,6 +439,7 @@ const services = [
     transition: all 0.25s ease;
     border: none;
     white-space: nowrap;
+    font-family: var(--font-label);
   }
   
   .btn-icon { 
@@ -390,11 +522,20 @@ const services = [
     
     .service-desc {
       font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-icons {
+      gap: 0.5rem;
       margin-bottom: 1.5rem;
     }
 
-    .service-features {
-      margin-bottom: 2rem;
+    .icon-badge {
+      padding: 0.4rem 0.75rem;
+    }
+
+    .icon-badge__text {
+      font-size: 0.7rem;
     }
     
     .btn-navigate {

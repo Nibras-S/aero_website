@@ -24,9 +24,9 @@
       <!-- Left: Large heading -->
       <div class="hero__left">
         <h1 class="hero__heading">
-          Seamless flight<br />
-          operations, anywhere<br />
-          <span class="text-highlight">you fly</span>
+          Seamless Flight<br />
+          Operations, Anywhere<br />
+          <span class="text-highlight">You Fly</span>
         </h1>
       </div>
 
@@ -216,7 +216,7 @@
     display: flex;
     align-items: flex-end;
     overflow: hidden;
-    font-family: "Inter", "Roboto", system-ui, sans-serif;
+    font-family: var(--font-body);
     color: #ffffff;
   }
 
@@ -302,12 +302,13 @@
   }
 
   .hero__heading {
-    font-size: clamp(2.25rem, 5.5vw, 3.8rem); /* Slightly smaller max to match right height */
-    font-weight: 700;
-    line-height: 1.35; /* Increased to stretch heading height */
+    font-size: clamp(2.25rem, 5.5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.35;
     letter-spacing: -0.035em;
     margin: 0;
     color: #ffffff;
+    font-family: var(--font-heading);
   }
 
   .text-highlight {
@@ -348,7 +349,7 @@
     padding: 0.9rem 1.75rem;
     font-size: 0.78rem;
     font-weight: 600;
-    font-family: inherit;
+    font-family: var(--font-label);
     color: #1a2e1a;
     background: #dce8e0;
     border: none;
@@ -426,7 +427,7 @@
     opacity: 0;
     visibility: hidden;
     transition: all 350ms cubic-bezier(0.16, 1, 0.3, 1);
-    font-family: "Inter", "Roboto", system-ui, sans-serif;
+    font-family: var(--font-body);
     color: #0f172a;
   }
 

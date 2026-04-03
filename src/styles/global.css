@@ -16,6 +16,11 @@
 
   /* 🌑 Background */
   --bg-main: #F0F8FF;
+
+  /* ✏️ Typography */
+  --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-label: 'Sora', system-ui, sans-serif;
 }
 
 /* ============================================================
@@ -45,6 +50,6 @@ html {
 body {
   background-color: var(--bg-main);
   color: var(--color-text);
-  font-family: 'Inter', 'Roboto', system-ui, sans-serif;
+  font-family: var(--font-body);
   line-height: 1.6;
 }
