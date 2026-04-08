@@ -1,0 +1,32 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+# This enables decap CMS to run locally without pushing to git
+local_backend: true
+
+# Using local repository for media storage
+media_folder: "public/images/blog"
+public_folder: "/images/blog"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Excerpt", name: "excerpt", widget: "text", hint: "A short summary shown on the blog list page." }
+      - { label: "Featured Image", name: "featuredImage", widget: "image" }
+      - { label: "Author", name: "author", widget: "string", default: "Flyger Editorial Team" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { 
+          label: "Category", 
+          name: "category", 
+          widget: "select", 
+          options: ["Aviation Insights", "Industry News", "Company Updates", "Technology"] 
+        }
+      - { label: "Tags", name: "tags", widget: "list", required: false, default: [] }
+      - { label: "Featured Post", name: "featured", widget: "boolean", default: false, required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
