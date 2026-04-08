@@ -2,6 +2,7 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/layout/Footer.astro';
+import CountrySelect from '../components/ui/CountrySelect.astro';
 ---
 
 <MainLayout title="About Us | Flyger Aviation Services">
@@ -138,13 +139,9 @@ import Footer from '../components/layout/Footer.astro';
                     <div class="form-group">
                       <label for="phone">Phone Number</label>
                       <div class="phone-input-group">
-                        <select name="countryCode" class="country-code" required>
-                          <option value="+971" selected>🇦🇪 +971 (UAE)</option>
-                          <option value="+1">🇺🇸 +1 (US)</option>
-                          <option value="+44">🇬🇧 +44 (UK)</option>
-                          <option value="+91">🇮🇳 +91 (IN)</option>
-                          <option value="+966">🇸🇦 +966 (SA)</option>
-                        </select>
+                        <div style="width: 140px; flex-shrink: 0;">
+                          <CountrySelect name="countryCode" defaultValue="+971" />
+                        </div>
                         <input type="tel" id="phone" name="phone" placeholder="50 123 4567" pattern="[0-9+ \-]*" required />
                       </div>
                     </div>
