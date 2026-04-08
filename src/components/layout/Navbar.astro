@@ -129,28 +129,66 @@
         <div class="mobile-col">
           <div class="mobile-section">
             <span class="mobile-heading">Solutions</span>
-            <!-- Trip Support removed per request
-            <div class="mobile-dropdown">
-              <button class="mobile-link icon-link" id="mobile-trip-support-btn" aria-expanded="false" style="width: 100%; text-align: left; background: none; border: none; cursor: pointer; font-family: inherit; justify-content: space-between;">
+            <div class="mobile-dropdown desktop-hidden-dropdown">
+              <button
+                class="mobile-link icon-link"
+                id="mobile-trip-support-btn"
+                aria-expanded="false"
+                style="width: 100%; text-align: left; background: none; border: none; cursor: pointer; font-family: inherit; justify-content: space-between;"
+              >
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                   <span>Trip Support</span>
                 </div>
-                <svg class="mobile-dropdown-icon" id="mobile-trip-support-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg
+                  class="mobile-dropdown-icon"
+                  id="mobile-trip-support-icon"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  ><polyline points="6 9 12 15 18 9"></polyline></svg
+                >
               </button>
-              
-              <div class="mobile-dropdown-content" id="mobile-trip-support-menu">
-                <a href="/trip-support" class="mobile-sublink" style="color: var(--color-primary); font-weight: 600;">Overview ↗</a>
-                <a href="/services/trip-planning" class="mobile-sublink">Trip Planning</a>
-                <a href="/services/flight-permits" class="mobile-sublink">Flight Permits</a>
-                <a href="/services/dispatch" class="mobile-sublink">Dispatch & Ops</a>
-                <a href="/services/supervisors" class="mobile-sublink">Ground Supervisors</a>
-                <a href="/services/station-representation" class="mobile-sublink">Station Representation</a>
-                <a href="/services/executive-concierge" class="mobile-sublink">Executive Concierge</a>
-                <a href="/services/diversion-support" class="mobile-sublink">Diversion Support</a>
-                <a href="/services/flyger-crm" class="mobile-sublink">Flyger CRM</a>
+
+              <div
+                class="mobile-dropdown-content"
+                id="mobile-trip-support-menu"
+              >
+                <a
+                  href="/trip-support"
+                  class="mobile-sublink"
+                  style="color: var(--color-primary); font-weight: 600;"
+                  >Overview ↗</a
+                >
+                <a href="/services/trip-planning" class="mobile-sublink"
+                  >Trip Planning</a
+                >
+                <a href="/services/flight-permits" class="mobile-sublink"
+                  >Flight Permits</a
+                >
+                <a href="/services/dispatch" class="mobile-sublink"
+                  >Dispatch & Ops</a
+                >
+                <a href="/services/supervisors" class="mobile-sublink"
+                  >Ground Supervisors</a
+                >
+                <a
+                  href="/services/station-representation"
+                  class="mobile-sublink">Station Representation</a
+                >
+                <a href="/services/executive-concierge" class="mobile-sublink"
+                  >Executive Concierge</a
+                >
+                <a href="/services/diversion-support" class="mobile-sublink"
+                  >Diversion Support</a
+                >
+                <a href="/services/flyger-crm" class="mobile-sublink"
+                  >Flyger CRM</a
+                >
               </div>
-            </div> -->
+            </div>
             <a href="/fuel" class="mobile-link">Fuel</a>
             <a href="/consultancy" class="mobile-link">Consultancy</a>
           </div>
@@ -569,6 +607,11 @@
   }
 
   /* Responsive */
+  @media (min-width: 901px) {
+    .desktop-hidden-dropdown {
+      display: none !important;
+    }
+  }
   @media (max-width: 900px) {
     .nav-links {
       display: none;

@@ -237,9 +237,16 @@
   .fuel-carousel-track {
     position: relative;
     z-index: 1;
-    overflow: hidden; /* Hide scrollbars, user can no longer manually scroll */
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  }
+  .fuel-carousel-track::-webkit-scrollbar {
+    display: none;
   }
   
   .fuel-carousel-inner {
@@ -248,26 +255,14 @@
     gap: 2.5rem;
     padding: 2rem 2rem 6rem; /* Extra bottom padding for box shadow */
     align-items: flex-start;
-    animation: fuelMarquee 40s linear infinite;
-  }
-  
-  .fuel-carousel-inner:hover {
-    animation-play-state: paused;
-  }
-  
-  @keyframes fuelMarquee {
-    0% { transform: translateX(0); }
-    /* Shifts exactly left by the width of exactly 4 cards + gaps (50% of 8 cards width, minus half a gap for perfect looping)*/
-    100% { transform: translateX(calc(-50% - 1.25rem)); }
-  }
-  .fuel-carousel-track::-webkit-scrollbar {
-    display: none;
   }
   
   .fuel-ccard {
     flex: 0 0 clamp(340px, 38vw, 500px);
     position: relative;
     padding-bottom: 2.5rem; /* Room for the overlapping box */
+    scroll-snap-align: start;
+    cursor: pointer;
   }
   
   .fuel-ccard-img-wrap {
@@ -465,4 +460,34 @@
 
   window.addEventListener('scroll', handleReveal, { passive: true });
   handleReveal();
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Carousel auto-scroll & manual interactions
+    const carouselTrack = document.querySelector('.fuel-carousel-track');
+    if (!carouselTrack) return;
+
+    let isInteracting = false;
+    carouselTrack.addEventListener("mouseenter", () => (isInteracting = true));
+    carouselTrack.addEventListener("mouseleave", () => (isInteracting = false));
+    carouselTrack.addEventListener("touchstart", () => (isInteracting = true), { passive: true });
+    carouselTrack.addEventListener("touchend", () => {
+        setTimeout(() => (isInteracting = false), 1500);
+    }, { passive: true });
+
+    setInterval(() => {
+      if (!isInteracting) {
+        const card = carouselTrack.querySelector(".fuel-ccard");
+        if (!card) return;
+        const innerTrack = carouselTrack.querySelector('.fuel-carousel-inner');
+        const gapVal = innerTrack ? parseFloat(getComputedStyle(innerTrack).gap || '40') : 40;
+        const cardWidth = card.clientWidth + gapVal;
+        
+        if (carouselTrack.scrollLeft >= carouselTrack.scrollWidth - carouselTrack.clientWidth - 10) {
+          carouselTrack.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          carouselTrack.scrollBy({ left: cardWidth, behavior: "smooth" });
+        }
+      }
+    }, 4500);
+  });
 </script>

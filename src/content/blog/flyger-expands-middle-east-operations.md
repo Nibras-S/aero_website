@@ -1,11 +1,17 @@
 ---
-title: "Flyger Expands Ground Handling Network Across the Middle East"
-excerpt: "With new strategic partnerships in Saudi Arabia, Qatar, and Bahrain, Flyger strengthens its regional ground handling capabilities to serve the growing demand for premium flight support services."
-featuredImage: "https://images.unsplash.com/photo-1436491865332-7a61a109db05?auto=format&fit=crop&q=80&w=2000"
-author: "Flyger Communications"
+title: Flyger Expands Ground Handling Network Across the Middle East
+excerpt: With new strategic partnerships in Saudi Arabia, Qatar, and Bahrain,
+  Flyger strengthens its regional ground handling capabilities to serve the
+  growing demand for premium flight support services.
+featuredImage: /images/blog/vini-brasil-aeq-m0bztje-unsplash.jpg
+author: Flyger Communications
 date: 2025-02-20
-category: "Company Updates"
-tags: ["Middle East", "Ground Handling", "Expansion", "Partnerships"]
+category: Company Updates
+tags:
+  - Middle East
+  - Ground Handling
+  - Expansion
+  - Partnerships
 featured: false
 ---
 
