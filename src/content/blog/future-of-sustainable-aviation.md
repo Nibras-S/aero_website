@@ -3,7 +3,7 @@ title: "The Future of Sustainable Aviation: What Operators Need to Know"
 excerpt: As the aviation industry faces increasing pressure to reduce its carbon
   footprint, sustainable aviation fuel (SAF) and new operational practices are
   reshaping how we fly. Here's what every operator should be preparing for.
-featuredImage: /images/blog/vini-brasil-aeq-m0bztje-unsplash.jpg
+featuredImage: /images/blog/vini-brasil-aeq-m0bztje-unsplash.webp
 author: Flyger Editorial Team
 date: 2025-03-15
 category: Aviation Insights

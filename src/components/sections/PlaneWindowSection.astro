@@ -7,11 +7,11 @@
   <!-- Centred window stack -->
   <div class="pw-window-wrap">
     <!-- video plays inside the transparent window opening -->
-    <video class="pw-video" autoplay muted loop playsinline>
+    <video class="pw-video" autoplay muted loop playsinline preload="metadata">
       <source src="/images/296958_medium.mp4" type="video/mp4" />
     </video>
     <!-- window frame on top — must have transparent centre -->
-    <img src="/images/ChatGPT.png" alt="" class="pw-frame" />
+    <img loading="lazy" decoding="async" src="/images/ChatGPT.webp" alt="" class="pw-frame" />
   </div>
 
   <!-- Text overlaid on the left -->
@@ -311,7 +311,7 @@
       window.addEventListener('scroll', () => {
         // Rotate 0.15 degrees per pixel scrolled
         const rotation = window.scrollY * 0.15;
-        rotatingText.style.transform = `rotate(${rotation}deg)`;
+        (rotatingText as HTMLElement).style.transform = `rotate(${rotation}deg)`;
       }, { passive: true });
     }
   });

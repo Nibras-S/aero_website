@@ -70,8 +70,7 @@
 
     <!-- Center: Logo -->
     <a href="/" class="nav-logo" aria-label="Flyger Aviation Services">
-      <span class="logo-word">FLYGER</span>
-      <span class="logo-sub">AVIATION SERVICES</span>
+      <img src="/images/logo.png" alt="Flyger Aviation" class="nav-logo-img" />
     </a>
 
     <!-- Right: Nav links + Menu -->
@@ -266,7 +265,7 @@
   .nav-inner {
     max-width: 100%;
     padding: 0 2.5rem;
-    height: 72px;
+    height: 95px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -305,21 +304,15 @@
     left: 50%;
     transform: translateX(-50%);
   }
-  .logo-word {
-    font-size: 1.2rem;
-    font-weight: 900;
-    color: rgba(255, 255, 255, 0.9);
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    line-height: 1;
+  .nav-logo-img {
+    height: 75px;
+    width: auto;
+    object-fit: contain;
+    transition: opacity 0.2s;
+    filter: brightness(0) invert(1);
   }
-  .logo-sub {
-    font-size: 0.5rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.45);
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    margin-top: 0.25rem;
+  .nav-logo:hover .nav-logo-img {
+    opacity: 0.85;
   }
 
   /* ── Right ── */
@@ -352,7 +345,7 @@
   /* ── Desktop Mega Menu ── */
   .mega-menu {
     position: fixed;
-    top: 72px; /* right below navbar */
+    top: 95px; /* right below navbar */
     left: 0;
     width: 100%;
     background: rgba(6, 10, 18, 0.85); /* Matches navbar exactly */
@@ -503,7 +496,7 @@
   /* ── Mobile Menu Dropdown ── */
   .mobile-menu {
     position: fixed;
-    top: 72px; /* Drops directly right below the navbar */
+    top: 95px; /* Drops directly right below the navbar */
     left: 0;
     width: 100%;
     background: rgba(

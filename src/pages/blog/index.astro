@@ -46,7 +46,7 @@ function estimateReadTime(body: string): number {
         <div class="container">
           <a href={`/blog/${featuredPost.id}`} class="featured-card" id="featured-post">
             <div class="featured-card__image-wrap">
-              <img
+              <img loading="lazy" decoding="async"
                 src={featuredPost.data.featuredImage}
                 alt={featuredPost.data.title}
                 class="featured-card__image"

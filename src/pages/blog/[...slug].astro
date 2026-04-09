@@ -49,7 +49,7 @@ const readTime = estimateReadTime(post.body || '');
     <!-- ═══ HERO IMAGE ═══ -->
     <section class="post-hero">
       <div class="post-hero__bg">
-        <img
+        <img loading="lazy" decoding="async"
           src={post.data.featuredImage}
           alt={post.data.title}
           class="post-hero__image"

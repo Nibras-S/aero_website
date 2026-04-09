@@ -21,10 +21,12 @@
 
       <!-- Large: Real-time proforma -->
       <div class="bento__cell bento__cell--wide" data-bento>
-        <div class="bento__icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <div class="bento__header-wrap">
+          <div class="bento__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3 class="bento__title">Real-Time Proforma</h3>
         </div>
-        <h3 class="bento__title">Real-Time Proforma</h3>
         <p class="bento__desc">Cost estimates generated the moment a trip is confirmed. No waiting, no follow-ups.</p>
         <span class="bento__metric" data-count="3">0<span class="bento__unit">sec</span></span>
         <span class="bento__metric-label">Average generation time</span>
@@ -32,10 +34,12 @@
 
       <!-- Tall: Invoicing -->
       <div class="bento__cell bento__cell--tall" data-bento>
-        <div class="bento__icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <div class="bento__header-wrap">
+          <div class="bento__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><text x="12" y="16" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="800" font-size="9" fill="currentColor" stroke="none">AED</text></svg>
+          </div>
+          <h3 class="bento__title">Instant Invoicing</h3>
         </div>
-        <h3 class="bento__title">Instant Invoicing</h3>
         <p class="bento__desc">Invoices delivered immediately after turnaround — eliminating delays and uncertainty.</p>
         <div class="bento__visual-stack">
           <div class="invoice-line"><span class="il-dot il-dot--done"></span><span class="il-text">Trip completed</span><span class="il-check">✓</span></div>
@@ -46,19 +50,23 @@
 
       <!-- Regular: Coordination -->
       <div class="bento__cell" data-bento>
-        <div class="bento__icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div class="bento__header-wrap">
+          <div class="bento__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="bento__title">One Platform</h3>
         </div>
-        <h3 class="bento__title">One Platform</h3>
         <p class="bento__desc">Ops, clients, and ground teams — all connected through a single thread.</p>
       </div>
 
       <!-- Regular: Visibility -->
       <div class="bento__cell" data-bento>
-        <div class="bento__icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="bento__header-wrap">
+          <div class="bento__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3 class="bento__title">Full Visibility</h3>
         </div>
-        <h3 class="bento__title">Full Visibility</h3>
         <p class="bento__desc">Track costs, revenue, and operational status — in real time, from anywhere.</p>
       </div>
 
@@ -166,9 +174,16 @@
     gap: 1.5rem;
   }
 
+  .bento__header-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+  }
+
   .bento__icon {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     border-radius: 0.35rem;
     background: #ffffff;
     border: 1px solid #e5e7eb;
@@ -176,7 +191,6 @@
     align-items: center;
     justify-content: center;
     color: var(--color-primary, #4BA3C3);
-    margin-bottom: 0.75rem;
     flex-shrink: 0;
   }
 
@@ -187,11 +201,15 @@
 
   .bento__title {
     font-family: var(--font-heading);
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: #0D1B2A;
     margin: 0 0 0.35rem;
     line-height: 1.3;
+  }
+  
+  .bento__header-wrap .bento__title {
+    margin: 0;
   }
 
   .bento__title--white { color: #ffffff; }
