@@ -16,8 +16,8 @@ import CountrySelect from "../components/ui/CountrySelect.astro";
     <section class="hero" aria-label="Contact Us">
       <div class="hero__bg">
         <!-- Using flight image with a heavy dark overlay -->
-        <img
-          src="/images/flight.jpg"
+        <img loading="lazy" decoding="async"
+          src="/images/flight.webp"
           alt="Aviation Background"
           class="hero__img"
           loading="eager"
@@ -128,10 +128,10 @@ import CountrySelect from "../components/ui/CountrySelect.astro";
                 </svg>
               </div>
               <div class="network-card__info">
-                <h3 class="network-card__city">Riyadh, Saudi Arabia HQ</h3>
+                <h3 class="network-card__city">Dubai, UAE HQ</h3>
                 <p class="network-card__detail">
-                  6443 Al Imam Saud Ibn Faysal Rd,<br />
-                  Al Malqa, Riyadh 13522
+                  DSO-IFZA, IFZA Properties,<br />
+                  Dubai Silicon Oasis
                 </p>
                 <div class="network-card__contact">
                   <a href="tel:+971501234567" class="contact-link">
