@@ -1,0 +1,288 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+---
+
+<MainLayout title="Consultancy — Flyger">
+  <Navbar />
+
+  <main class="ca-main">
+    
+    <!-- Cinematic Header -->
+    <section class="cons-hero">
+      <div class="cons-bg" aria-hidden="true"></div>
+      <div class="cons-content">
+        <div class="cons-content-inner">
+          <p class="cons-eyebrow">Expert Guidance</p>
+          <h1 class="cons-title">Consultancy &<br/>Services</h1>
+          <p class="cons-desc">
+            Comprehensive operational expertise, bespoke service planning, and dedicated ground handling support across the Middle East.
+          </p>
+          <div class="cons-actions">
+            <a href="/contact-us" class="cons-cta-ghost">Contact Our Team ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- Services Grid -->
+    <div id="services" class="ca-services-container">
+      <div class="ca-grid-header">
+        <h2>Our Services</h2>
+        <p>Explore our dedicated support areas and operational solutions.</p>
+      </div>
+
+      <div class="ca-services-grid">
+        
+        <!-- UAE Airports Service Card -->
+        <a href="/consultancy/uae-airports" class="ca-service-card">
+          <div class="ca-sc-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1542296332-2e4473faf563?q=80&w=1200&auto=format&fit=crop" alt="UAE Airports Network" class="ca-sc-img" loading="lazy" decoding="async" />
+          </div>
+          <div class="ca-sc-content">
+            <h2 class="ca-sc-name">UAE Airports Network</h2>
+            <p class="ca-sc-desc">
+              End-to-end operational support, permits, handling, and priority terminal access across all major UAE terminals.
+            </p>
+            <button class="ca-view-btn outline" tabindex="-1">
+              View airports
+            </button>
+          </div>
+        </a>
+        
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</MainLayout>
+
+<style>
+  /* ── Layout ── */
+  .ca-main {
+    background: #000000;
+    color: #ffffff;
+    min-height: 100vh;
+  }
+
+  /* ── Cinematic Hero ── */
+  .cons-hero {
+    position: relative;
+    padding: 12rem 2.5rem 8rem;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #000;
+  }
+  .cons-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=2000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center 30%;
+    z-index: 0;
+  }
+  .cons-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* Overlay to ensure text readability + smooth fade at bottom */
+    background: linear-gradient(
+      to bottom,
+      rgba(5, 8, 15, 0.8) 0%,
+      rgba(5, 8, 15, 0.4) 50%,
+      #000000 100%
+    );
+    z-index: 1;
+  }
+  .cons-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .cons-content-inner {
+    padding: 2rem clamp(1.5rem, 6vw, 6rem);
+    max-width: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    animation: cons-text-in 0.8s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+  }
+  @keyframes cons-text-in {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+
+  .cons-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 1.25rem;
+  }
+  .cons-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: #ffffff;
+    margin: 0 0 1.5rem;
+    text-shadow: 0 2px 24px rgba(13,33,55,0.4);
+  }
+  .cons-desc {
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.8;
+    margin: 0 0 2.25rem;
+  }
+  
+  .cons-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .cons-cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.9rem 1.75rem;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 0.35rem;
+    transition: border-color 0.2s, background 0.2s;
+    backdrop-filter: blur(4px);
+  }
+  .cons-cta-ghost:hover {
+    border-color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* ── Services Section ── */
+  .ca-services-container {
+    position: relative;
+    z-index: 2;
+    padding: 0 2.5rem 8rem;
+    max-width: 1440px;
+    margin: 4rem auto 0;
+  }
+
+  .ca-grid-header {
+    margin-bottom: 3rem;
+  }
+  .ca-grid-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    color: #fff;
+  }
+  .ca-grid-header p {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+  }
+  
+  .ca-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  /* ── Service Card (Overlay Style) ── */
+  .ca-service-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+    min-height: 480px;
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .ca-service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    border-color: rgba(255,255,255,0.15);
+  }
+
+  .ca-sc-img-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  .ca-sc-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  .ca-service-card:hover .ca-sc-img {
+    transform: scale(1.05);
+  }
+
+  .ca-sc-content {
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2.5rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .ca-sc-name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    font-family: 'Inter', system-ui, sans-serif;
+    margin: 0 0 0.85rem;
+    color: #ffffff;
+    line-height: 1.35;
+  }
+  .ca-sc-desc {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
+    margin: 0 0 2rem;
+  }
+
+  .ca-view-btn.outline {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    padding: 0.8rem 1.6rem;
+    border-radius: 999px;
+    align-self: flex-start;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .ca-service-card:hover .ca-view-btn.outline {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .cons-hero { padding: 9rem 1.5rem 6rem; min-height: 40vh; }
+  }
+  @media (max-width: 600px) {
+    .ca-services-container { padding: 0 1.5rem 4rem; margin-top: -2rem; }
+  }
+</style>

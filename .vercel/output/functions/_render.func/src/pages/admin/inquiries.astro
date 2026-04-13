@@ -1,0 +1,285 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { db, Inquiries as InquiriesTable, desc, eq } from 'astro:db';
+
+// Handle status updates and deletions
+if (Astro.request.method === 'POST') {
+  const data = await Astro.request.formData();
+  const idStr = data.get('id');
+  const status = data.get('status');
+  const deleteIdStr = data.get('deleteId');
+
+  if (deleteIdStr) {
+    const deleteId = parseInt(deleteIdStr as string, 10);
+    await db.delete(InquiriesTable).where(eq(InquiriesTable.id, deleteId));
+  } else if (idStr && status) {
+    const id = parseInt(idStr as string, 10);
+    await db.update(InquiriesTable)
+      .set({ status: status as string })
+      .where(eq(InquiriesTable.id, id));
+  }
+}
+
+const inquiries = await db.select().from(InquiriesTable).orderBy(desc(InquiriesTable.createdAt));
+
+function formatDate(date: string | Date): string {
+  return new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+}
+---
+
+<AdminLayout title="Inquiries CRM">
+  <style>
+    .inquiries-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .inquiries-filters {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .inquiries-filters .input {
+      flex: 1 1 140px;
+      min-width: 130px;
+    }
+    .inquiries-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .inquiries-actions .input,
+    .inquiries-actions .btn {
+      min-height: 2rem;
+    }
+
+    /* ============================================================
+       Mobile: convert inquiries table into stacked cards (<768px)
+       ============================================================ */
+    @media (max-width: 767px) {
+      .inquiries-header { align-items: stretch; }
+      .inquiries-header h1 { font-size: 1.5rem !important; }
+      .inquiries-filters .input { flex: 1 1 100%; }
+
+      .inquiries-card > .table-wrapper { overflow: visible; border: none; }
+      .inquiries-card { padding: 0 !important; background: transparent !important; border: none !important; box-shadow: none !important; }
+
+      .inquiries-card table,
+      .inquiries-card thead,
+      .inquiries-card tbody,
+      .inquiries-card tr,
+      .inquiries-card td {
+        display: block;
+        width: 100%;
+      }
+      .inquiries-card thead {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+      }
+      .inquiries-card tr {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      }
+      .inquiries-card tr:hover { background: var(--card); }
+      .inquiries-card td {
+        padding: 0.55rem 0;
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0.75rem;
+        font-size: 0.85rem;
+      }
+      .inquiries-card td + td { border-top: 1px dashed var(--border); padding-top: 0.75rem; }
+      .inquiries-card td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--muted-foreground);
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        flex-shrink: 0;
+        padding-top: 0.1rem;
+      }
+      /* Override inline max-width from Message cell */
+      .inquiries-card td[data-label="Message"] {
+        max-width: 100% !important;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .inquiries-card td[data-label="Message"]::before {
+        margin-bottom: 0.35rem;
+      }
+      .inquiries-card td[data-label="Message"] p {
+        -webkit-line-clamp: 4 !important;
+        font-size: 0.85rem !important;
+      }
+      .inquiries-card td[data-label="Name"] {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .inquiries-card td[data-label="Name"]::before {
+        margin-bottom: 0.35rem;
+      }
+      .inquiries-card td[data-label="Action"] {
+        align-items: center;
+      }
+      .inquiries-card td[data-label="Action"] > div {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: flex-end;
+      }
+      .inquiries-card td[data-label="Action"] .input,
+      .inquiries-card td[data-label="Action"] .btn {
+        min-height: 40px !important;
+        min-width: 44px !important;
+        font-size: 0.8rem !important;
+        padding: 0 0.75rem !important;
+      }
+      /* "No inquiries yet" row */
+      .inquiries-card tr > td[colspan="6"] {
+        text-align: center;
+        padding: 2rem 1rem !important;
+      }
+      .inquiries-card tr > td[colspan="6"]::before { content: none; }
+    }
+  </style>
+
+  <div class="inquiries-header">
+    <div>
+      <h1 style="font-size: 1.875rem; font-weight: 700; margin: 0 0 0.5rem 0;">Client Inquiries</h1>
+      <p style="color: var(--muted-foreground); margin:0;">Manage and track contact requests from your website.</p>
+    </div>
+
+    <div class="inquiries-filters">
+      <input type="date" id="dateFilter" class="input" aria-label="Filter by date" />
+      <select id="serviceFilter" class="input">
+        <option value="All">All Services</option>
+        <option value="trip-planning">Trip Planning</option>
+        <option value="ground-handling">Ground Handling</option>
+        <option value="fuel">Fuel Solutions</option>
+        <option value="concierge">Concierge & VIP</option>
+        <option value="crm">CRM Demo</option>
+        <option value="other">Other</option>
+      </select>
+      <select id="statusFilter" class="input">
+        <option value="All">All Statuses</option>
+        <option value="New">New</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Closed">Closed</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="card inquiries-card" style="padding: 0;">
+    <div class="table-wrapper">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Service Requested</th>
+            <th>Message</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="inquiriesTableBody">
+          {inquiries.length === 0 ? (
+            <tr>
+               <td colspan="6" style="text-align:center; padding: 3rem; color: var(--muted-foreground);">No inquiries yet.</td>
+            </tr>
+          ) : inquiries.map((inq) => (
+            <tr class="inquiry-row" data-status={inq.status} data-service={inq.serviceArea} data-date={new Date(inq.createdAt).toISOString().split('T')[0]}>
+              <td data-label="Date" style="white-space: nowrap;">{formatDate(inq.createdAt)}</td>
+              <td data-label="Name">
+                <div style="font-weight: 500;">{inq.name}</div>
+                <div style="font-size: 0.75rem; color: var(--muted-foreground);">{inq.email}</div>
+                <div style="font-size: 0.75rem; color: var(--muted-foreground);">{inq.phone}</div>
+              </td>
+              <td data-label="Service"><span class="badge badge-secondary">{inq.serviceArea || 'General'}</span></td>
+              <td data-label="Message" style="max-width: 300px;">
+                 <p style="margin:0; font-size: 0.8rem; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">{inq.message}</p>
+              </td>
+              <td data-label="Status">
+                <span class={`badge ${inq.status === 'New' ? 'badge-warning' : inq.status === 'Closed' ? 'badge-secondary' : 'badge-success'}`}>
+                  {inq.status}
+                </span>
+              </td>
+              <td data-label="Action">
+                <div style="display: flex; gap: 0.5rem;">
+                  <form method="POST" style="margin: 0;">
+                    <input type="hidden" name="id" value={inq.id} />
+                    <select name="status" class="input" style="height: 2rem; width: auto; font-size: 0.75rem; padding: 0 0.5rem;" onchange="this.form.submit()">
+                       <option value="New" selected={inq.status === 'New'}>New</option>
+                       <option value="In Progress" selected={inq.status === 'In Progress'}>In Progress</option>
+                       <option value="Closed" selected={inq.status === 'Closed'}>Closed</option>
+                    </select>
+                  </form>
+                  <form method="POST" style="margin: 0;" onsubmit="return confirm('Permanently delete this inquiry?');">
+                    <input type="hidden" name="deleteId" value={inq.id} />
+                    <button type="submit" class="btn btn-destructive" style="height: 2rem; padding: 0 0.5rem; font-size: 0.75rem;">Delete</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dateFilter = document.getElementById("dateFilter") as HTMLInputElement;
+      const statusFilter = document.getElementById("statusFilter") as HTMLSelectElement;
+      const serviceFilter = document.getElementById("serviceFilter") as HTMLSelectElement;
+      const rows = document.querySelectorAll(".inquiry-row");
+
+      function filterRows() {
+        const dateVal = dateFilter.value; // "YYYY-MM-DD"
+        const statusVal = statusFilter.value;
+        const serviceVal = serviceFilter.value;
+
+        rows.forEach((row) => {
+          const el = row as HTMLElement;
+          const rowDate = el.dataset.date; // "YYYY-MM-DD"
+          const rowStatus = el.dataset.status;
+          const rowService = el.dataset.service;
+          
+          let show = true;
+
+          // Date Filter Check
+          if (dateVal && rowDate !== dateVal) {
+             show = false;
+          }
+
+          // Status Filter Check
+          if (statusVal !== "All" && rowStatus !== statusVal) {
+             show = false;
+          }
+          
+          // Service Filter Check
+          if (serviceVal !== "All" && rowService !== serviceVal) {
+             show = false;
+          }
+
+          el.style.display = show ? "" : "none";
+        });
+      }
+
+      dateFilter.addEventListener("change", filterRows);
+      statusFilter.addEventListener("change", filterRows);
+      serviceFilter.addEventListener("change", filterRows);
+    });
+  </script>
+</AdminLayout>
