@@ -1,0 +1,739 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+import CountrySelect from '../components/ui/CountrySelect.astro';
+---
+
+<MainLayout title="About Us | Flyger Aviation Services">
+  <Navbar />
+  
+  <main class="modern-about" id="about-scroller">
+    
+    <div class="scroll-tracker-layer">
+      <!-- VISUAL LAYER: Natively Sticky on Desktop, Normal flow on Mobile -->
+      <div class="visual-layer">
+        
+        <!-- Right Image Backgrounds -->
+        <div class="bg-image-wrapper">
+          <div class="bg-gradient"></div>
+          <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=1400" class="bg-image active" id="bg-tab-overview"/>
+          <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1400" class="bg-image" id="bg-tab-leadership"/>
+          <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=1400" class="bg-image" id="bg-tab-careers"/>
+          <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1400" class="bg-image" id="bg-tab-contact"/>
+        </div>
+
+        <!-- Left Interface Area -->
+        <div class="interface-wrapper">
+          
+          <!-- MOBILE TABS -->
+          <div class="mobile-tabs hide-on-desktop">
+            <button class="pill-tab active" data-tab="tab-overview">Company Overview</button>
+            <button class="pill-tab" data-tab="tab-leadership">Leadership</button>
+            <button class="pill-tab" data-tab="tab-careers">Flyger Careers</button>
+            <button class="pill-tab" data-tab="tab-contact">Contact Us</button>
+          </div>
+
+          <!-- DESKTOP TITLES (Navigation Menu) -->
+          <div class="desktop-slides-nav hide-on-mobile">
+            <button class="slide-title active" data-tab="tab-overview">Company Overview</button>
+            <button class="slide-title" data-tab="tab-leadership">Leadership</button>
+            <button class="slide-title" data-tab="tab-careers">Flyger Careers</button>
+            <button class="slide-title" data-tab="tab-contact">Contact Us</button>
+          </div>
+
+          <!-- CONTENT STACK (Crossfading grids at the bottom) -->
+          <div class="content-stack-wrapper">
+            
+            <!-- Company Profile -->
+            <div class="content-group active" id="vis-tab-overview">
+              <div class="feature-list">
+                <div class="feature-item">
+                  <h3>Our Vision</h3>
+                  <p>Founded by aviation professionals with a clear vision, FLYGER was created to streamline flight support through smart systems and real operational insight.</p>
+                </div>
+                <div class="feature-item">
+                  <h3>Operational Precision</h3>
+                  <p>In an industry where timing, accuracy, and coordination are critical, we focus on bridging the gaps that commonly lead to delays and inefficiencies.</p>
+                </div>
+                <div class="feature-item">
+                  <h3>Financial Transparency</h3>
+                  <p>With the support of our in-house CRM, clients benefit from real-time proforma generation and fast, accurate invoicing immediately after each turnaround.</p>
+                </div>
+                <div class="feature-item">
+                  <h3>Flexible Solutions</h3>
+                  <p>We deliver aviation support solutions tailored to the dynamic needs of operators, brokers, and pilots—ensuring every mission is handled with efficiency.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Leadership -->
+            <div class="content-group" id="vis-tab-leadership">
+              <div class="prose">
+                <p class="greeting">To our valued clients, partners, and team,</p>
+              </div>
+              <div class="feature-list">
+                <div class="feature-item">
+                  <h3>Building Trust</h3>
+                  <p>As we step forward into a rapidly evolving aviation landscape, we recognize that true progress is not only measured by growth, but by the trust we build.</p>
+                </div>
+                <div class="feature-item">
+                  <h3>Operational Focus</h3>
+                  <p>Our journey began with a simple vision — to create a more streamlined and responsive flight support system guiding us across every mission.</p>
+                </div>
+                <div class="feature-item">
+                  <h3>Team Dedication</h3>
+                  <p>We believe our strength lies not in past milestones, but in the confidence our clients place in us and the dedication of our team who go beyond expectations.</p>
+                </div>
+                <div class="feature-item">
+                  <h3>Transparent Processes</h3>
+                  <p>With our focus on hands-on support, real-time responsiveness, and transparent processes powered by our in-house systems, we bring clarity to operations.</p>
+                </div>
+              </div>
+              <div class="feature-list" style="margin-top: 1.5rem;">
+                <div class="feature-item outline-item">
+                  <ul class="direction-list">
+                    <li>Deliver reliable and precise operational support</li>
+                    <li>Build long-term partnerships based on trust</li>
+                    <li>Continuously enhance systems to meet dynamic demands</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Careers -->
+            <div class="content-group" id="vis-tab-careers">
+              <div class="feature-list">
+                <div class="feature-item outline-item">
+                  <h3>Join Our Journey</h3>
+                  <p>We're currently updating our Careers section. Please check back soon for opportunities to join the Flyger team.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Us -->
+            <div class="content-group" id="vis-tab-contact">
+              <div class="feature-list">
+                <div class="feature-item outline-item" style="border: none;">
+                  <h3>Ready to Fly with Us?</h3>
+                  <p>Send us an enquiry and let us handle every detail of your flight operations seamlessly.</p>
+                  
+                  <form class="premium-contact-form" onsubmit="event.preventDefault(); alert('Enquiry submitted successfully!');">
+                    <div class="form-row form-row-2">
+                      <div class="form-group">
+                        <label for="enquiry-type">Enquiry Type</label>
+                        <select id="enquiry-type" name="enquiryType" required>
+                          <option value="" disabled selected>Select Enquiry Type</option>
+                          <option value="charter">Air Charter</option>
+                          <option value="handling">Ground Handling</option>
+                          <option value="permits">International Permits</option>
+                          <option value="other">General Enquiry</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required />
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="phone">Phone Number</label>
+                      <div class="phone-input-group">
+                        <div style="width: 140px; flex-shrink: 0;">
+                          <CountrySelect name="countryCode" defaultValue="+971" />
+                        </div>
+                        <input type="tel" id="phone" name="phone" placeholder="50 123 4567" pattern="[0-9+ \-]*" required />
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="message">Message</label>
+                      <textarea id="message" name="message" rows="2" placeholder="How can we assist you?" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="contact-btn form-submit-btn">Send Enquiry</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div> <!-- End Visual Layer -->
+      
+      <!-- HIDDEN TRIGGERS FOR NATIVE SCROLL SNAPPING -->
+      <div class="trigger-overlay hide-on-mobile">
+        <div class="scroll-trigger" id="trigger-tab-overview"></div>
+        <div class="scroll-trigger" id="trigger-tab-leadership"></div>
+        <div class="scroll-trigger" id="trigger-tab-careers"></div>
+        <div class="scroll-trigger" id="trigger-tab-contact"></div>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+</MainLayout>
+
+<style>
+  :root {
+    --bg-dark: #121212;
+    --text-primary: #ffffff;
+    --text-muted: #a0a0a0;
+    --pill-bg: #2a2a2a;
+  }
+
+  /* BASE MOBILE STYLES */
+  .modern-about {
+    width: 100%;
+    background: var(--bg-dark);
+  }
+
+  .scroll-tracker-layer {
+    width: 100%;
+    position: relative;
+  }
+
+  .visual-layer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Backgrounds */
+  .bg-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 35vh;
+    z-index: 1;
+  }
+  .bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  .bg-image.active {
+    opacity: 1;
+    z-index: 2;
+  }
+  .bg-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--bg-dark) 0%, transparent 100%);
+    z-index: 5;
+  }
+
+  /* Interface */
+  .interface-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  .mobile-tabs {
+    display: flex;
+    position: sticky;
+    top: 70px;
+    background: var(--bg-dark);
+    gap: 0.75rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    z-index: 50;
+  }
+  .mobile-tabs::-webkit-scrollbar { display: none; }
+  
+  .pill-tab {
+    background: var(--pill-bg);
+    color: var(--text-muted);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .pill-tab.active {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  /* Content */
+  .content-stack-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5rem;
+  }
+  .content-group {
+    display: none;
+    animation: fadeIn 0.4s forwards;
+  }
+  .content-group.active {
+    display: block;
+  }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  /* Feature Stylings */
+  .feature-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem 2rem; /* increased vertical spacing for a cleaner structure */
+  }
+  .feature-item {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+  }
+  .outline-item { grid-column: 1 / -1; }
+  .feature-item h3 {
+    color: #ffffff;
+    font-size: 1.15rem; /* mobile-compact title */
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+  }
+  .feature-item p {
+    color: rgba(255, 255, 255, 0.9); /* bright but small on mobile */
+    font-size: 0.95rem; /* mobile-compact body */
+    line-height: 1.5;
+    margin: 0;
+  }
+  .direction-list { list-style: none; padding: 0; margin: 0; }
+  .direction-list li {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.25rem;
+  }
+  .direction-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-primary);
+  }
+  .prose p.greeting {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin-bottom: 1.5rem;
+  }
+  .contact-btn {
+    display: inline-flex; 
+    align-items: center; 
+    padding: 0.85rem 2.5rem; 
+    background: var(--color-primary); 
+    color: white; 
+    text-decoration: none; 
+    font-weight: 600; 
+    border-radius: 999px; 
+    transition: opacity 0.2s;
+  }
+  .contact-btn:hover { opacity: 0.9; }
+
+  /* Premium Contact Form */
+  .premium-contact-form {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* tightened slightly to fit standard screen heights */
+  }
+  .form-row {
+    display: flex;
+    gap: 1rem;
+  }
+  .form-row-2 > * { flex: 1; }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .form-group label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .premium-contact-form input,
+  .premium-contact-form select,
+  .premium-contact-form textarea {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.7rem 1rem; /* reduced vertical height slightly to fit screen */
+    color: white;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+  .premium-contact-form input::placeholder,
+  .premium-contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
+  .premium-contact-form input:focus,
+  .premium-contact-form select:focus,
+  .premium-contact-form textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .premium-contact-form select option {
+    background: var(--bg-dark);
+    color: white;
+  }
+  .phone-input-group {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .phone-input-group select {
+    width: 140px;
+    flex-shrink: 0;
+  }
+  .phone-input-group input { flex: 1; }
+  .form-submit-btn {
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    justify-content: center;
+    width: fit-content;
+  }
+
+  @media (max-width: 650px) {
+    .form-row { flex-direction: column; gap: 1.25rem; }
+    .phone-input-group { flex-direction: column; }
+    .phone-input-group select { width: 100%; }
+  }
+
+  /* 
+   * THE "STICKY SCROLLER" ARCHITECTURE FOR DESKTOP
+   * Uses real native scrolling on an invisible 400vh container,
+   * while the visual layer sticks to the top and just crossfades elements!
+   */
+  @media (min-width: 900px) {
+    /* Let the PAGE scroll natively — .modern-about is NOT an isolated container */
+    .modern-about {
+      height: auto;
+      overflow: visible;
+    }
+
+    .hide-on-desktop { display: none !important; }
+
+    /* The invisible track measuring 4 slides worth of 100vh */
+    .scroll-tracker-layer {
+      height: calc(4 * 100vh); /* 4 full viewport heights */
+      position: relative;
+    }
+
+    /* The visual layer stays permanently frozen in the viewport via sticky! */
+    .visual-layer {
+      position: sticky;
+      top: 70px; /* offset below the fixed navbar */
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 70px);
+      flex-direction: row;
+      overflow: hidden;
+    }
+
+    /* Full-screen Background Image Wrapper */
+    .bg-image-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden; /* clips images above/below the viewport */
+    }
+    .bg-gradient {
+      /* Deep dark overlay with a razor-sharp structural line (no blend/blur) */
+      background: linear-gradient(to right, rgba(16, 16, 16, 0.85) 0%, rgba(16, 16, 16, 0.85) 70%, transparent 70%, transparent 100%);
+      z-index: 10; /* sits above the sliding images */
+    }
+
+    /* Desktop image slide: JS drives translateY, no opacity fade */
+    .bg-image {
+      opacity: 1 !important;   /* always visible — position controls visibility */
+      transition: none !important; /* no CSS transition, JS handles everything */
+      z-index: 1 !important;
+      backface-visibility: hidden; /* prevents subpixel flicker during transform */
+    }
+    .bg-image.active { z-index: 1; } /* neutralise mobile z-index:2 */
+
+    /* Fixed Left Interface */
+    .interface-wrapper {
+      flex: 0 0 70%; /* Solid 70% width to match the sharp background line */
+      max-width: 70%;
+      height: 100%;
+      padding: 3rem 5rem 2rem 4rem; /* Reduced bottom padding (from 5rem to 2rem) to stop the form clipping off-screen */
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    /* Top Left Menu Titles */
+    .desktop-slides-nav {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 3rem; /* Separates titles from content below it */
+    }
+    .slide-title {
+      background: none;
+      border: none;
+      text-align: left;
+      font-size: 1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.3);
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 1.8rem; /* Reduced slightly from 2.5rem for a more cohesive block while still avoiding overlap */
+      transform-origin: left center;
+      transition: color 0.4s ease, margin 0.4s ease;
+      font-family: inherit;
+      /* Crisp text during scale transform — no GPU layer promotion */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      backface-visibility: hidden;
+      transform: scale(var(--title-scale, 0.78));
+    }
+    .slide-title:hover { color: rgba(255,255,255,0.6); }
+    .slide-title.active {
+      color: var(--text-primary);
+      font-weight: 800;
+      margin-bottom: 1.4rem;
+      /* scale is fully controlled by JS scroll progress — no static override */
+    }
+
+    /* Bottom Left Fixed Content Grids (Crossfading) */
+    .content-stack-wrapper {
+      flex: 1;
+      position: relative; 
+      /* They sit securely underneath the Navigation Menu without moving */
+    }
+    
+    .content-group {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      scrollbar-width: none;
+      display: block !important;
+      opacity: 0;
+      visibility: hidden;
+      transform: none; /* No floaty movement */
+      /* Exiting Slide: Instant "Blink" out */
+      transition: opacity 0.1s ease, visibility 0.1s;
+      pointer-events: none;
+      will-change: opacity;
+    }
+    .content-group::-webkit-scrollbar { display: none; }
+    .content-group.active {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      pointer-events: auto;
+      /* Entering Slide: Fast "Blink" in directly after overlap clears */
+      transition: opacity 0.2s ease 0.1s, visibility 0s 0.1s;
+    }
+
+    .feature-list {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    /* Massive typography specifically scaled up for Desktop Layouts */
+    .feature-item h3 {
+      font-size: 1.45rem;
+      margin-bottom: 0.85rem;
+    }
+    .feature-item p {
+      font-size: 1.2rem;
+      line-height: 1.65;
+    }
+
+    /* The Invisible Snap Zones that drive the native scroll */
+    .trigger-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .scroll-trigger {
+      height: 25%; /* each = 1 * 100vh */
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 899px) {
+    .hide-on-mobile { display: none !important; }
+  }
+</style>
+
+<script>
+  function initSlideshow() {
+    // DOM Elements
+    const triggers     = document.querySelectorAll('.scroll-trigger');
+    const bgImages     = document.querySelectorAll('.bg-image');
+    const slideTitles  = document.querySelectorAll('.slide-title');
+    const contentGroups = document.querySelectorAll('.content-group');
+    const pillTabs     = document.querySelectorAll('.pill-tab');
+    const trackerLayer = document.querySelector('.scroll-tracker-layer');
+
+    if (triggers.length === 0 || !trackerLayer) return;
+
+    // ─────────────────────────────────────────────────────────
+    // SCROLL-DRIVEN ZOOM ANIMATION
+    // Each of the 4 sections occupies exactly 100vh of the
+    // scroll track. We read window.scrollY continuously and
+    // map each section's local progress (0→1) through a
+    // smooth bell curve to produce a scale value.
+    // The active title peaks at `PEAK_SCALE`; inactive titles
+    // sit at `REST_SCALE`. Written as a CSS custom property
+    // directly on each element so the browser does zero extra
+    // layout work — only compositing (transform).
+    // ─────────────────────────────────────────────────────────
+    const SECTION_COUNT = triggers.length;        // 4
+    const PEAK_SCALE    = 3.4;                    // zoom-in peak  (≈ 3.4rem when base is 1rem)
+    const REST_SCALE    = 1.3;                    // resting / zoom-out (≈ 1.3rem, clear and readable)
+
+    // Bell-curve: t ∈ [0,1] → scale value
+    // sin(t*π) = 0 at t=0 (entering), 1 at t=0.5 (active center), 0 at t=1 (leaving)
+    // This means the active title zooms in, inactive titles zoom out — works both directions.
+    function bellScale(t) {
+      const eased = Math.sin(t * Math.PI); // true 0→1→0 bell, peaks at midpoint
+      return REST_SCALE + (PEAK_SCALE - REST_SCALE) * eased;
+    }
+
+    let rafId = null;
+    let lastScrollY = -1;
+
+    function updateScaleOnScroll() {
+      if (window.innerWidth < 900) return;
+
+      const scrollY = window.scrollY;
+      if (scrollY === lastScrollY) return;  // skip if no change
+      lastScrollY = scrollY;
+
+      // Where does the scroll-tracker-layer start in the document?
+      const trackTop = trackerLayer.getBoundingClientRect().top + scrollY;
+      const sectionH = window.innerHeight; // each trigger is 100vh
+
+      slideTitles.forEach((title, i) => {
+        const localScroll = scrollY - trackTop - i * sectionH;
+        const shifted  = localScroll + 0.5 * sectionH;
+        const progress = Math.max(0, Math.min(1, shifted / sectionH));
+        title.style.setProperty('--title-scale', String(bellScale(progress).toFixed(4)));
+      });
+
+      // ── Scroll-synced vertical image slide ──────────────────
+      // globalSectionIndex is a fractional value (e.g. 1.4 = 40% into section 1).
+      // For each image: dist = i - globalSectionIndex
+      //   dist = 0  → image is perfectly centred (fully visible)
+      //   dist = -1 → image is 100% above (scrolled out upward)
+      //   dist = +1 → image is 100% below (waiting to slide up)
+      // This creates a continuous film-strip that slides in sync with scroll.
+      let globalSectionIndex = (scrollY - trackTop) / sectionH;
+      // Clamp index so the first image doesn't slide down if overscrolled up, 
+      // and the last image doesn't slide up into the void when reaching the footer.
+      globalSectionIndex = Math.max(0, Math.min(bgImages.length - 1, globalSectionIndex));
+      
+      bgImages.forEach((img, i) => {
+        const dist = i - globalSectionIndex;
+        // Only animate the immediately adjacent images to save GPU
+        const pct  = Math.max(-110, Math.min(110, dist * 100));
+        img.style.transform = `translateY(${pct.toFixed(3)}%)`;
+      });
+    }
+
+    function onScrollRAF() {
+      rafId = null;
+      updateScaleOnScroll();
+    }
+
+    function scheduleUpdate() {
+      if (rafId === null) rafId = requestAnimationFrame(onScrollRAF);
+    }
+
+    // Run once on init to set initial scales
+    updateScaleOnScroll();
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+
+    // ─────────────────────────────────────────────────────────
+    // INTERSECTION OBSERVER — switches bg/content/active class
+    // (unchanged from original logic)
+    // ─────────────────────────────────────────────────────────
+    const sectionObserver = new IntersectionObserver((entries) => {
+      if (window.innerWidth < 900) return;
+
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const targetId = entry.target.id.replace('trigger-', '');
+
+          bgImages.forEach(img => img.classList.remove('active'));
+          slideTitles.forEach(t  => t.classList.remove('active'));
+          contentGroups.forEach(cg => cg.classList.remove('active'));
+
+          document.getElementById(`bg-${targetId}`)?.classList.add('active');
+          document.querySelector(`.slide-title[data-tab="${targetId}"]`)?.classList.add('active');
+          document.getElementById(`vis-${targetId}`)?.classList.add('active');
+        }
+      });
+    }, { root: null, rootMargin: '0px', threshold: 0.5 });
+
+    triggers.forEach(t => sectionObserver.observe(t));
+
+    // ─────────────────────────────────────────────────────────
+    // CLICK HANDLERS
+    // ─────────────────────────────────────────────────────────
+    function handleTabClick(e) {
+      e.preventDefault();
+      const targetId = e.currentTarget.getAttribute('data-tab');
+
+      if (window.innerWidth < 900) {
+        // MOBILE: pure click-toggle, no scroll
+        contentGroups.forEach(sec => sec.classList.remove('active'));
+        document.getElementById(`vis-${targetId}`)?.classList.add('active');
+
+        pillTabs.forEach(pill => {
+          if (pill.getAttribute('data-tab') === targetId) {
+            pill.classList.add('active');
+            pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          } else {
+            pill.classList.remove('active');
+          }
+        });
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        // DESKTOP: scroll the invisible trigger into view
+        document.getElementById(`trigger-${targetId}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    pillTabs.forEach(pill   => pill.addEventListener('click', handleTabClick));
+    slideTitles.forEach(title => title.addEventListener('click', handleTabClick));
+  }
+
+  // Double trigger for reliability on Astro view transitions
+  initSlideshow();
+  document.addEventListener('astro:page-load', initSlideshow);
+</script>

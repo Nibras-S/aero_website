@@ -1,0 +1,41 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+
+let error = '';
+
+if (Astro.request.method === 'POST') {
+  const data = await Astro.request.formData();
+  const password = data.get('password');
+  
+  // Checking against the environment variable password
+  const masterPassword = import.meta.env.ADMIN_PASSWORD || 'FlygerAdmin2026';
+  
+  if (password === masterPassword) {
+    Astro.cookies.set('flyger_admin_auth', 'authenticated', { path: '/', maxAge: 60 * 60 * 24 });
+    return Astro.redirect('/admin');
+  } else {
+    error = 'Invalid password';
+  }
+}
+---
+
+<AdminLayout title="Login">
+  <div style="height: 100vh; display: flex; align-items: center; justify-content: center; background: #fafafa;">
+    <div class="card" style="width: 100%; max-width: 400px;">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="40" width="40" style="margin: 0 auto 1rem;"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        <h2 class="card-title">Flyger Admin Portal</h2>
+        <p class="card-desc">Enter your master password to access the CMS.</p>
+      </div>
+      
+      <form method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+        <div>
+          <label class="label" for="password">Password</label>
+          <input type="password" name="password" id="password" class="input" required autofocus />
+          {error && <span style="color: var(--destructive); font-size: 0.8rem; margin-top: 0.5rem; display: block;">{error}</span>}
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem; justify-content: center;">Authenticate</button>
+      </form>
+    </div>
+  </div>
+</AdminLayout>
