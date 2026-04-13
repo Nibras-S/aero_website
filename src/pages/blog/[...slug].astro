@@ -2,32 +2,31 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import Navbar from '../../components/layout/Navbar.astro';
 import Footer from '../../components/layout/Footer.astro';
-import { getCollection, render } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
+import { db, BlogPosts, eq } from 'astro:db';
+import { marked } from 'marked';
 
-export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map(post => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+const { slug } = Astro.params;
+if (!slug) return Astro.redirect('/blog');
+
+// Fetch the requested post
+const posts = await db.select().from(BlogPosts).where(eq(BlogPosts.id, slug as string));
+const post = posts[0];
+
+if (!post) {
+  return Astro.redirect('/blog');
 }
 
-interface Props {
-  post: CollectionEntry<'blog'>;
-}
-
-const { post } = Astro.props;
-const { Content } = await render(post);
+// Convert markdown to html
+const htmlContent = await marked.parse(post.body || '');
 
 // Get related posts (same category, exclude current)
-const allPosts = await getCollection('blog');
+const allPosts = await db.select().from(BlogPosts);
 const relatedPosts = allPosts
-  .filter(p => p.data.category === post.data.category && p.id !== post.id)
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .filter(p => p.category === post.category && p.id !== post.id)
+  .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
   .slice(0, 3);
 
-function formatDate(date: Date): string {
+function formatDate(date: string | Date): string {
   return new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
@@ -40,8 +39,8 @@ const readTime = estimateReadTime(post.body || '');
 ---
 
 <MainLayout
-  title={`${post.data.title} | Flyger Aviation Blog`}
-  description={post.data.excerpt}
+  title={`${post.title} | Flyger Aviation Blog`}
+  description={post.excerpt}
 >
   <Navbar />
 
@@ -49,9 +48,9 @@ const readTime = estimateReadTime(post.body || '');
     <!-- ═══ HERO IMAGE ═══ -->
     <section class="post-hero">
       <div class="post-hero__bg">
-        <img loading="lazy" decoding="async"
-          src={post.data.featuredImage}
-          alt={post.data.title}
+        <img
+          src={post.featuredImage}
+          alt={post.title}
           class="post-hero__image"
           loading="eager"
         />
@@ -65,13 +64,13 @@ const readTime = estimateReadTime(post.body || '');
           </svg>
           Back to all posts
         </a>
-        <span class="post-hero__category">{post.data.category}</span>
-        <h1 class="post-hero__title">{post.data.title}</h1>
+        <span class="post-hero__category">{post.category}</span>
+        <h1 class="post-hero__title">{post.title}</h1>
         <div class="post-hero__meta">
-          <span class="post-hero__author">{post.data.author}</span>
+          <span class="post-hero__author">{post.author}</span>
           <span class="post-hero__sep">·</span>
-          <time datetime={post.data.date.toISOString()}>
-            {formatDate(post.data.date)}
+          <time datetime={new Date(post.createdAt).toISOString()}>
+            {formatDate(post.createdAt)}
           </time>
           <span class="post-hero__sep">·</span>
           <span>{readTime} min read</span>
@@ -82,17 +81,7 @@ const readTime = estimateReadTime(post.body || '');
     <!-- ═══ ARTICLE BODY ═══ -->
     <article class="post-article">
       <div class="container">
-        <div class="prose">
-          <Content />
-        </div>
-
-        {post.data.tags && post.data.tags.length > 0 && (
-          <div class="post-tags">
-            {post.data.tags.map((tag: string) => (
-              <span class="post-tag">{tag}</span>
-            ))}
-          </div>
-        )}
+        <div class="prose" set:html={htmlContent}></div>
       </div>
     </article>
 
@@ -106,17 +95,17 @@ const readTime = estimateReadTime(post.body || '');
               <a href={`/blog/${rp.id}`} class="related-card">
                 <div class="related-card__image-wrap">
                   <img
-                    src={rp.data.featuredImage}
-                    alt={rp.data.title}
+                    src={rp.featuredImage}
+                    alt={rp.title}
                     class="related-card__image"
                     loading="lazy"
                   />
                 </div>
                 <div class="related-card__body">
-                  <span class="related-card__category">{rp.data.category}</span>
-                  <h3 class="related-card__title">{rp.data.title}</h3>
-                  <time class="related-card__date" datetime={rp.data.date.toISOString()}>
-                    {formatDate(rp.data.date)}
+                  <span class="related-card__category">{rp.category}</span>
+                  <h3 class="related-card__title">{rp.title}</h3>
+                  <time class="related-card__date" datetime={new Date(rp.createdAt).toISOString()}>
+                    {formatDate(rp.createdAt)}
                   </time>
                 </div>
               </a>
@@ -198,7 +187,7 @@ const readTime = estimateReadTime(post.body || '');
   }
 
   .post-hero__back:hover {
-    color: var(--color-primary, #4ba3c3);
+    color: #ffffff;
   }
 
   .post-hero__category {
@@ -207,11 +196,11 @@ const readTime = estimateReadTime(post.body || '');
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--color-primary, #4ba3c3);
-    background: rgba(75, 163, 195, 0.1);
+    color: #000000;
+    background: #ffffff;
     padding: 0.35rem 0.75rem;
     border-radius: 4px;
-    border: 1px solid rgba(75, 163, 195, 0.2);
+    border: 1px solid #ffffff;
     width: fit-content;
   }
 
@@ -241,7 +230,7 @@ const readTime = estimateReadTime(post.body || '');
      ARTICLE BODY — PROSE
   ══════════════════════════════════ */
   .post-article {
-    background: #07131f;
+    background: #000000;
     padding: 5rem 0 4rem;
   }
 
@@ -292,13 +281,13 @@ const readTime = estimateReadTime(post.body || '');
 
   /* Links */
   .prose :global(a) {
-    color: var(--color-primary, #4ba3c3);
+    color: #ffffff;
     text-decoration: underline;
     text-underline-offset: 2px;
     transition: color 0.2s;
   }
   .prose :global(a:hover) {
-    color: #7ec8e3;
+    color: rgba(255, 255, 255, 0.7);
   }
 
   /* Lists */
@@ -313,15 +302,15 @@ const readTime = estimateReadTime(post.body || '');
   }
 
   .prose :global(li::marker) {
-    color: var(--color-primary, #4ba3c3);
+    color: rgba(255, 255, 255, 0.6);
   }
 
   /* Blockquote */
   .prose :global(blockquote) {
-    border-left: 3px solid var(--color-primary, #4ba3c3);
+    border-left: 3px solid #ffffff;
     margin: 2rem 0;
     padding: 1rem 1.5rem;
-    background: rgba(75, 163, 195, 0.05);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 0 8px 8px 0;
     font-style: italic;
     color: rgba(255, 255, 255, 0.7);
@@ -337,7 +326,7 @@ const readTime = estimateReadTime(post.body || '');
     padding: 0.15rem 0.4rem;
     border-radius: 4px;
     font-size: 0.9em;
-    color: #7ec8e3;
+    color: #ffffff;
   }
 
   .prose :global(pre) {
@@ -433,7 +422,7 @@ const readTime = estimateReadTime(post.body || '');
      RELATED POSTS
   ══════════════════════════════════ */
   .related-section {
-    background: #07131f;
+    background: #000000;
     padding: 0 0 8rem;
   }
 
@@ -465,7 +454,7 @@ const readTime = estimateReadTime(post.body || '');
   }
 
   .related-card:hover {
-    border-color: rgba(75, 163, 195, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   }
@@ -499,7 +488,7 @@ const readTime = estimateReadTime(post.body || '');
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-primary, #4ba3c3);
+    color: #ffffff;
   }
 
   .related-card__title {

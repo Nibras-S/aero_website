@@ -47,7 +47,9 @@
         <img
           src="/images/trip-support-hero.webp"
           alt="Flight Planning"
-          loading="lazy"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
         />
         <div class="fss-card-label">
           <h3>Flight Planning</h3>
@@ -60,9 +62,11 @@
 
       <li class="fss-card">
         <img
-          src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=800&auto=format&fit=crop"
+          src="/images/svc-detail-flight-permits.webp"
           alt="Overflight & Landing Permits"
-          loading="lazy"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
         />
         <div class="fss-card-label">
           <h3>Overflight & Landing Permits</h3>
@@ -78,6 +82,7 @@
           src="/images/deepavali-gaind-qG9W_rjJIqA-unsplash.webp"
           alt="Dispatch & Coordination"
           loading="lazy"
+          decoding="async"
         />
         <div class="fss-card-label">
           <h3>Dispatch & Coordination</h3>
@@ -93,6 +98,7 @@
           src="/images/slot-management.webp"
           alt="Slot & PPR Management"
           loading="lazy"
+          decoding="async"
         />
         <div class="fss-card-label">
           <h3>Slot & PPR Management</h3>
@@ -108,6 +114,7 @@
           src="/images/svc-detail-dispatch.webp"
           alt="Flight Monitoring"
           loading="lazy"
+          decoding="async"
         />
         <div class="fss-card-label">
           <h3>Flight Monitoring</h3>
@@ -120,9 +127,10 @@
 
       <li class="fss-card">
         <img
-          src="/images/trip-support-hero-card.webp"
+          src="/images/crew-pax.webp"
           alt="Crew Support"
           loading="lazy"
+          decoding="async"
         />
         <div class="fss-card-label">
           <h3>Crew Support</h3>
@@ -150,7 +158,7 @@
     background-image: url("https://images.unsplash.com/photo-1474302770737-173ee21bab63?q=80&w=1800&auto=format&fit=crop");
     background-size: cover;
     background-position: center 35%;
-    background-attachment: fixed;
+    background-attachment: scroll;
     display: flex;
     align-items: flex-end;
   }
@@ -358,7 +366,6 @@
 
   @media (max-width: 768px) {
     .fss-hero {
-      background-attachment: scroll; /* iOS fix */
       height: 85vh;
     }
     .fss-hero-content {

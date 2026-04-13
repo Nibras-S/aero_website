@@ -472,6 +472,19 @@
         setTimeout(() => (isInteracting = false), 1500);
     }, { passive: true });
 
+    // Enable seamless manual infinite scroll when user nears the end
+    carouselTrack.addEventListener("scroll", () => {
+      const totalScrollWidth = carouselTrack.scrollWidth;
+      // The track contains 2 identical sets of cards. Half width is exactly one set.
+      const midpoint = totalScrollWidth / 2;
+      
+      // If user scrolls past the first set, teleport them seamlessly back.
+      if (carouselTrack.scrollLeft >= midpoint) {
+        // Use auto behavior to make the teleport invisible to the user
+        carouselTrack.scrollTo({ left: carouselTrack.scrollLeft - midpoint, behavior: 'auto' });
+      }
+    }, { passive: true });
+
     setInterval(() => {
       if (!isInteracting) {
         const card = carouselTrack.querySelector(".fuel-ccard");
@@ -480,8 +493,10 @@
         const gapVal = innerTrack ? parseFloat(getComputedStyle(innerTrack).gap || '40') : 40;
         const cardWidth = card.clientWidth + gapVal;
         
-        if (carouselTrack.scrollLeft >= carouselTrack.scrollWidth - carouselTrack.clientWidth - 10) {
-          carouselTrack.scrollTo({ left: 0, behavior: "smooth" });
+        const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
+        // If we've reached the very end, jump back to start instantly to avoid blank reverse-scrolling
+        if (carouselTrack.scrollLeft >= maxScroll - 10) {
+          carouselTrack.scrollTo({ left: 0, behavior: "auto" });
         } else {
           carouselTrack.scrollBy({ left: cardWidth, behavior: "smooth" });
         }

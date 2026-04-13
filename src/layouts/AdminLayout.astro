@@ -1,0 +1,257 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+
+// Auth check is now handled via src/middleware.ts globally!
+const currentPath = Astro.url.pathname;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>{title} | Flyger Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style is:global>
+      :root {
+        --background: #ffffff;
+        --foreground: #09090b;
+        --card: #ffffff;
+        --card-foreground: #09090b;
+        --popover: #ffffff;
+        --popover-foreground: #09090b;
+        --primary: #18181b;
+        --primary-foreground: #fafafa;
+        --secondary: #f4f4f5;
+        --secondary-foreground: #18181b;
+        --muted: #f4f4f5;
+        --muted-foreground: #71717a;
+        --accent: #f4f4f5;
+        --accent-foreground: #18181b;
+        --destructive: #ef4444;
+        --destructive-foreground: #fafafa;
+        --border: #e4e4e7;
+        --input: #e4e4e7;
+        --ring: #18181b;
+        --radius: 0.5rem;
+      }
+      body { margin: 0; font-family: 'Inter', sans-serif; background: #fdfdfd; color: var(--foreground); }
+      
+      /* Shadcn style utilities */
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        border-radius: var(--radius); font-size: 0.875rem; font-weight: 500;
+        transition: colors; height: 2.25rem; padding: 0 1rem; cursor: pointer; border: none; text-decoration: none;
+      }
+      .btn-primary { background: var(--primary); color: var(--primary-foreground); }
+      .btn-primary:hover { opacity: 0.9; }
+      .btn-secondary { background: var(--secondary); color: var(--secondary-foreground); }
+      .btn-secondary:hover { background: #e4e4e7; }
+      .btn-destructive { background: var(--destructive); color: var(--destructive-foreground); }
+      
+      .card {
+        border-radius: 0.75rem; border: 1px solid var(--border);
+        background: var(--card); color: var(--card-foreground);
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); padding: 1.5rem;
+      }
+      .card-title { font-size: 1.25rem; font-weight: 600; margin: 0 0 0.5rem 0; letter-spacing: -0.025em; }
+      .card-desc { font-size: 0.875rem; color: var(--muted-foreground); margin: 0 0 1.5rem 0; }
+      
+      .input {
+        display: flex; height: 2.25rem; width: 100%; border-radius: var(--radius);
+        border: 1px solid var(--input); background: transparent; padding: 0 0.75rem;
+        font-size: 0.875rem; transition: colors; color: var(--foreground);
+      }
+      .input:focus { outline: none; border-color: var(--ring); box-shadow: 0 0 0 1px var(--ring); }
+      
+      .label { font-size: 0.875rem; font-weight: 500; display: block; margin-bottom: 0.5rem; }
+
+      .table-wrapper { width: 100%; overflow: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+      .table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+      .table th { background: var(--muted); color: var(--muted-foreground); font-weight: 500; text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+      .table td { padding: 1rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+      .table tr:last-child td { border-bottom: none; }
+      .table tr:hover { background: var(--muted); }
+      
+      .badge {
+        display: inline-flex; align-items: center; border-radius: 9999px; border: 1px solid transparent;
+        padding: 0.125rem 0.625rem; font-size: 0.75rem; font-weight: 600; transition: colors;
+      }
+      .badge-default { background: var(--primary); color: var(--primary-foreground); }
+      .badge-secondary { background: var(--secondary); color: var(--secondary-foreground); border: 1px solid var(--border); }
+      .badge-success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+      .badge-warning { background: #fef08a; color: #854d0e; border: 1px solid #fde047; }
+
+      /* ============================================================
+         Admin shell responsive layout
+         ============================================================ */
+      .admin-shell {
+        display: flex;
+        min-height: 100vh;
+        position: relative;
+      }
+      .admin-sidebar {
+        width: 250px;
+        border-right: 1px solid var(--border);
+        background: var(--card);
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+      }
+      .admin-main {
+        flex: 1;
+        padding: clamp(1rem, 4vw, 2.5rem);
+        overflow-y: auto;
+        background: #fafafa;
+        min-width: 0;
+      }
+      .admin-menu-btn {
+        display: none;
+        position: fixed;
+        top: 0.75rem;
+        left: 0.75rem;
+        z-index: 50;
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        color: var(--foreground);
+        cursor: pointer;
+      }
+      .admin-menu-btn svg { width: 22px; height: 22px; }
+      .admin-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.4);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        z-index: 40;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+      .admin-backdrop.is-open {
+        display: block;
+        opacity: 1;
+      }
+
+      /* Tablet + Mobile: drawer layout */
+      @media (max-width: 1023px) {
+        .admin-menu-btn { display: inline-flex; }
+        .admin-sidebar {
+          position: fixed;
+          left: 0;
+          top: 0;
+          height: 100vh;
+          width: min(280px, 85vw);
+          transform: translateX(-100%);
+          transition: transform 0.25s ease;
+          box-shadow: 4px 0 24px rgba(0,0,0,0.08);
+          z-index: 45;
+        }
+        .admin-sidebar.is-open { transform: translateX(0); }
+        .admin-main {
+          width: 100%;
+          padding-top: 4.25rem;  /* room for floating hamburger */
+        }
+      }
+
+      /* Mobile: iOS input zoom fix (font must be \u2265 16px to prevent focus zoom) */
+      @media (max-width: 768px) {
+        .input { font-size: 16px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .admin-sidebar { transition: none; }
+        .admin-backdrop { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    {currentPath === '/admin/login' ? (
+      <slot />
+    ) : (
+      <div class="admin-shell">
+        <!-- Hamburger button (mobile/tablet only) -->
+        <button type="button" class="admin-menu-btn" aria-label="Open navigation menu">
+          <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+
+        <!-- Backdrop overlay (mobile/tablet only) -->
+        <div class="admin-backdrop" aria-hidden="true"></div>
+
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+          <div style="padding: 1.5rem; border-bottom: 1px solid var(--border);">
+            <h2 style="margin:0; font-size: 1.25rem; font-weight: 700; display: flex; align-items:center; gap:0.5rem;">
+               <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="20" width="20"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+               Flyger CRM
+            </h2>
+          </div>
+          <nav style="padding: 1.5rem 1rem; display: flex; flex-direction: column; gap: 0.25rem; flex: 1;">
+            <a href="/admin" class="btn btn-secondary" style={`justify-content:flex-start; ${currentPath === '/admin' ? 'background: var(--muted);' : 'background:transparent;'}`}>
+              Dashboard
+            </a>
+            <a href="/admin/inquiries" class="btn btn-secondary" style={`justify-content:flex-start; ${currentPath.startsWith('/admin/inquiries') ? 'background: var(--muted);' : 'background:transparent;'}`}>
+              Inquiries (CRM)
+            </a>
+            <a href="/admin/blog" class="btn btn-secondary" style={`justify-content:flex-start; ${currentPath.startsWith('/admin/blog') ? 'background: var(--muted);' : 'background:transparent;'}`}>
+              Blog Manager
+            </a>
+            <a href="/admin/media" class="btn btn-secondary" style={`justify-content:flex-start; ${currentPath.startsWith('/admin/media') ? 'background: var(--muted);' : 'background:transparent;'}`}>
+              Media Library
+            </a>
+          </nav>
+          <div style="padding: 1rem; border-top: 1px solid var(--border);">
+             <form method="POST" action="/admin/logout">
+                <button type="submit" class="btn btn-secondary" style="width: 100%;">Log out</button>
+             </form>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+          <slot />
+        </main>
+      </div>
+
+      <script is:inline>
+        (function() {
+          const btn = document.querySelector('.admin-menu-btn');
+          const sidebar = document.querySelector('.admin-sidebar');
+          const backdrop = document.querySelector('.admin-backdrop');
+          if (!btn || !sidebar || !backdrop) return;
+
+          const open = () => {
+            sidebar.classList.add('is-open');
+            backdrop.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+          };
+          const close = () => {
+            sidebar.classList.remove('is-open');
+            backdrop.classList.remove('is-open');
+            document.body.style.overflow = '';
+          };
+
+          btn.addEventListener('click', open);
+          backdrop.addEventListener('click', close);
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') close();
+          });
+          // Auto-close when a nav link is tapped
+          sidebar.querySelectorAll('nav a').forEach((a) => {
+            a.addEventListener('click', close);
+          });
+        })();
+      </script>
+    )}
+  </body>
+</html>
