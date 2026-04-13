@@ -16,11 +16,13 @@ import CountrySelect from "../components/ui/CountrySelect.astro";
     <section class="hero" aria-label="Contact Us">
       <div class="hero__bg">
         <!-- Using flight image with a heavy dark overlay -->
-        <img loading="lazy" decoding="async"
+        <img
           src="/images/flight.webp"
           alt="Aviation Background"
           class="hero__img"
           loading="eager"
+          fetchpriority="high"
+          decoding="async"
         />
         <div class="hero__overlay" aria-hidden="true"></div>
       </div>
@@ -398,7 +400,7 @@ import CountrySelect from "../components/ui/CountrySelect.astro";
      CONTACT MATRIX (SPLIT LAYOUT)
   ══════════════════════════════════ */
   .contact-matrix {
-    background: #07131f;
+    background: #000000;
     padding: 5rem 0 8rem;
     position: relative;
   }

@@ -60,22 +60,129 @@ if (Astro.request.method === 'POST') {
       font-size: 0.75rem; cursor: pointer; transition: background 0.2s; font-weight: 600; color: var(--foreground);
     }
     .toolbar-btn:hover { background: #e4e4e7; }
-    
+
     .prose-preview { font-family: 'Inter', sans-serif; line-height: 1.7; color: #3f3f46; }
     .prose-preview h1, .prose-preview h2, .prose-preview h3 { color: #18181b; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
-    .prose-preview h2 { font-size: 1.5rem; }
+    .prose-preview h2 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
     .prose-preview p { margin-bottom: 1.5rem; }
     .prose-preview a { color: #2563eb; text-decoration: underline; }
     .prose-preview blockquote { border-left: 4px solid #e4e4e7; padding-left: 1rem; font-style: italic; color: #71717a; }
     .prose-preview ul, .prose-preview ol { padding-left: 1.5rem; margin-bottom: 1.5rem; }
     .prose-preview li { margin-bottom: 0.5rem; }
     .prose-preview img { max-width: 100%; border-radius: 0.5rem; margin-bottom: 1.5rem; }
+
+    /* ============================================================
+       Editor layout + responsive
+       ============================================================ */
+    .editor-tabs {
+      display: none;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      padding: 0.3rem;
+      background: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .editor-tab {
+      flex: 1;
+      padding: 0.65rem 1rem;
+      background: transparent;
+      border: none;
+      border-radius: calc(var(--radius) - 2px);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--muted-foreground);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      min-height: 40px;
+    }
+    .editor-tab.is-active {
+      background: var(--card);
+      color: var(--foreground);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    }
+
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 1600px;
+    }
+    .editor-pane {
+      min-height: 600px;
+    }
+    .editor-pane--write {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      overflow-y: auto;
+      min-height: 850px;
+    }
+    .editor-pane--preview {
+      overflow-y: auto;
+      background: white;
+      min-height: 850px;
+    }
+
+    .edit-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .edit-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+
+    .toolbar { display: flex; gap: 0.5rem; flex-wrap: wrap; background: var(--muted); padding: 0.5rem; border-radius: var(--radius); border-bottom-left-radius: 0; border-bottom-right-radius: 0; border: 1px solid var(--border); }
+
+    .action-row { display: flex; justify-content: flex-end; gap: 1rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+
+    /* Tablet / Mobile: switch to tab mode */
+    @media (max-width: 1023px) {
+      .editor-tabs { display: flex; }
+      .editor-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .editor-pane {
+        display: none;
+        min-height: 70vh;
+      }
+      .editor-pane--write {
+        min-height: 70vh;
+        height: auto;
+      }
+      .editor-pane--preview {
+        min-height: 70vh;
+        height: auto;
+      }
+      .editor-pane--write.is-active {
+        display: flex;
+      }
+      .editor-pane--preview.is-active {
+        display: block;
+      }
+      .edit-grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Mobile: collapse nested grids + bigger toolbar buttons */
+    @media (max-width: 640px) {
+      .edit-grid-2 { grid-template-columns: 1fr; }
+      .edit-grid-3 { grid-template-columns: 1fr; }
+      .toolbar-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+        min-height: 40px;
+        min-width: 40px;
+      }
+      .action-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .action-row .btn {
+        width: 100%;
+      }
+    }
   </style>
 
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
     <div>
-      <h1 style="font-size: 1.875rem; font-weight: 700; margin: 0 0 0.5rem 0;">{post ? 'Edit Post' : 'Create New Post'}</h1>
-      <p style="color: var(--muted-foreground); margin:0;">Dual-pane Workspace: Write on the left, Preview on the right.</p>
+      <h1 style="font-size: clamp(1.4rem, 4vw, 1.875rem); font-weight: 700; margin: 0 0 0.5rem 0;">{post ? 'Edit Post' : 'Create New Post'}</h1>
+      <p style="color: var(--muted-foreground); margin:0; font-size: clamp(0.85rem, 2vw, 0.95rem);">Write on the left, preview on the right. On mobile, tap Write / Preview to switch.</p>
     </div>
     <a href="/admin/blog" class="btn btn-secondary">Cancel</a>
   </div>
@@ -86,13 +193,19 @@ if (Astro.request.method === 'POST') {
     </div>
   )}
 
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; min-height: 850px; max-width: 1600px;">
-    
+  <!-- Tabs (mobile/tablet only — hidden on desktop via CSS) -->
+  <div class="editor-tabs" role="tablist">
+    <button type="button" class="editor-tab is-active" data-pane="write" role="tab">Write</button>
+    <button type="button" class="editor-tab" data-pane="preview" role="tab">Preview</button>
+  </div>
+
+  <div class="editor-grid">
+
     <!-- LEFT PANE: Editor -->
-    <form method="POST" class="card" style="display: flex; flex-direction: column; gap: 1.5rem; overflow-y: auto; height: 850px;">
+    <form method="POST" class="card editor-pane editor-pane--write is-active">
       {post && <input type="hidden" name="id" value={post.id} />}
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+      <div class="edit-grid-2">
         <div>
           <label class="label" for="title">Title</label>
           <input class="input" type="text" id="title" name="title" required value={post?.title || ''} />
@@ -103,7 +216,7 @@ if (Astro.request.method === 'POST') {
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;">
+      <div class="edit-grid-3">
         <div>
           <label class="label" for="category">Category</label>
           <select class="input" id="category" name="category">
@@ -138,7 +251,7 @@ if (Astro.request.method === 'POST') {
              <span style="font-weight: 600; font-size: 0.875rem;">Select an image...</span>
              <button type="button" id="closeLibraryBtn" class="btn btn-secondary" style="height: 1.5rem; font-size: 0.75rem; padding: 0 0.5rem;">Close</button>
            </div>
-           <div id="mediaLibraryGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 0.5rem; max-height: 200px; overflow-y: auto;">
+           <div id="mediaLibraryGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 0.5rem; max-height: min(300px, 40vh); overflow-y: auto;">
               <p style="font-size: 0.8rem; color: var(--muted-foreground);">Loading library...</p>
            </div>
         </div>
@@ -158,7 +271,7 @@ if (Astro.request.method === 'POST') {
         <label class="label" for="body">Body (Markdown Supported)</label>
         
         <!-- Markdown Toolbar -->
-        <div style="display: flex; gap: 0.5rem; margin-bottom: -1px; background: var(--muted); padding: 0.5rem; border-radius: var(--radius); border-bottom-left-radius: 0; border-bottom-right-radius: 0; border: 1px solid var(--border);">
+        <div class="toolbar" style="margin-bottom: -1px;">
            <button type="button" class="toolbar-btn" data-action="bold" title="Bold">B</button>
            <button type="button" class="toolbar-btn" data-action="italic" title="Italic">I</button>
            <button type="button" class="toolbar-btn" data-action="h2" title="Heading 2">H2</button>
@@ -176,20 +289,20 @@ if (Astro.request.method === 'POST') {
         <label for="featured" class="label" style="margin:0;">Make this a Featured Post</label>
       </div>
 
-      <div style="display: flex; justify-content: flex-end; gap: 1rem; border-top: 1px solid var(--border); padding-top: 1.5rem;">
-        <button type="submit" class="btn btn-primary" style="padding: 0 2rem;">Save Post</button>
+      <div class="action-row">
+        <button type="submit" class="btn btn-primary" style="padding: 0 2rem; min-height: 44px;">Save Post</button>
       </div>
     </form>
 
     <!-- RIGHT PANE: Live Preview -->
-    <div class="card" style="height: 850px; overflow-y: auto; background: white;">
+    <div class="card editor-pane editor-pane--preview">
       <h2 style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-foreground); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-top: 0;">Live Preview</h2>
-      
+
       <!-- Preview Header injected dynamically -->
       <div id="previewHeader" style="margin-bottom: 2rem;">
         <span id="previewCategory" style="color: #2563eb; font-weight: 600; font-size: 0.875rem;">Category</span>
-        <h1 id="previewTitle" style="font-size: 2.25rem; font-weight: 700; margin: 0.5rem 0;">Blog Title</h1>
-        <p id="previewExcerpt" style="font-size: 1.125rem; color: #52525b;">Excerpt goes here...</p>
+        <h1 id="previewTitle" style="font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 700; margin: 0.5rem 0;">Blog Title</h1>
+        <p id="previewExcerpt" style="font-size: clamp(0.95rem, 2vw, 1.125rem); color: #52525b;">Excerpt goes here...</p>
         <img id="previewImage" src="/images/default-blog.jpg" style="width: 100%; height: auto; border-radius: 0.5rem; margin-top: 1.5rem;" />
       </div>
 
@@ -318,17 +431,17 @@ if (Astro.request.method === 'POST') {
       const previewImage = document.getElementById("previewImage") as HTMLImageElement;
       const previewBody = document.getElementById("previewBody") as HTMLDivElement;
 
-      // Ensure marked is available globally from CDN
-      declare const marked: any;
+      // marked is loaded from CDN onto window
+      const markedLib = (window as any).marked;
 
       function updatePreview() {
         if(titleInput) previewTitle.innerText = titleInput.value || 'Blog Title';
         if(categoryInput) previewCategory.innerText = categoryInput.value || 'Category';
         if(excerptInput) previewExcerpt.innerText = excerptInput.value || 'Excerpt goes here...';
         if(hiddenInput) previewImage.src = hiddenInput.value || '/images/default-blog.jpg';
-        
-        if (bodyInput && typeof marked !== 'undefined') {
-          previewBody.innerHTML = marked.parse(bodyInput.value);
+
+        if (bodyInput && markedLib) {
+          previewBody.innerHTML = markedLib.parse(bodyInput.value);
         }
       }
 
@@ -339,9 +452,6 @@ if (Astro.request.method === 'POST') {
       });
       if(categoryInput) categoryInput.addEventListener('change', updatePreview);
 
-      // Mutate observer on hiddenInput isn't simple, so invoke updatePreview when setting custom images
-      const originalImageUpdate = () => updatePreview();
-      
       // Toolbar interactions
       document.querySelectorAll('.toolbar-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -378,6 +488,21 @@ if (Astro.request.method === 'POST') {
           }
           
           updatePreview();
+        });
+      });
+
+      // Editor tab switcher (mobile/tablet only — no-op on desktop where tabs are hidden)
+      document.querySelectorAll<HTMLButtonElement>('.editor-tab').forEach((tab) => {
+        tab.addEventListener('click', (e) => {
+          const currentTab = e.currentTarget as HTMLButtonElement;
+          const target = currentTab.dataset.pane;
+          if (!target) return;
+          document.querySelectorAll('.editor-tab').forEach((t) =>
+            t.classList.toggle('is-active', t === currentTab)
+          );
+          document.querySelectorAll('.editor-pane').forEach((p) =>
+            p.classList.toggle('is-active', p.classList.contains(`editor-pane--${target}`))
+          );
         });
       });
 

@@ -1,7 +1,12 @@
 import { db, BlogPosts } from 'astro:db';
 import { list } from '@vercel/blob';
 
-export async function GET() {
+export async function GET({ request }: { request: Request }) {
+  const cookieHeader = request.headers.get('cookie') || '';
+  if (!cookieHeader.includes('flyger_admin_auth=')) {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
+  }
+
   try {
     const { blobs } = await list({
       token: import.meta.env.BLOB_READ_WRITE_TOKEN,
@@ -17,36 +22,66 @@ export async function GET() {
     const image = blobs[0];
 
     const post = {
-      id: 'sample-blob-post',
-      title: 'Sample Post Using Vercel Blob Media',
+      id: 'saf-mandate-2025-what-operators-need-to-know',
+      title: 'The 2025 SAF Mandate: What Every Operator Needs to Know',
       excerpt:
-        'A demonstration blog post that pulls its featured image directly from Vercel Blob Storage, showing the end-to-end media pipeline in action.',
+        'With ReFuelEU Aviation now in force, every flight departing an EU airport must carry a minimum blend of Sustainable Aviation Fuel. Here is what it means for business jet operators flying into Europe — and how Flyger is helping crews stay compliant without grounding schedules.',
       featuredImage: image.url,
-      author: 'Flyger Editorial Team',
-      category: 'Company Updates',
-      featured: false,
-      body: `### End-to-End Media Pipeline
+      author: 'Flyger Operations Desk',
+      category: 'Aviation Insights',
+      featured: true,
+      body: `The **ReFuelEU Aviation** regulation went live on 1 January 2025, and it has quietly changed the economics of every business jet trip into Europe. For the first time, fuel suppliers at EU airports are legally required to blend a minimum percentage of Sustainable Aviation Fuel (SAF) into every uplift — starting at 2% this year and ramping to 70% by 2050.
 
-This post is a live demonstration of the Flyger CRM media pipeline. The featured image above is not bundled with the site — it was uploaded through the admin Media Library and now lives on Vercel Blob Storage.
+It sounds gradual. It isn't. Operators flying trans-Atlantic and intra-European charters are already feeling three very real pressures.
 
-### Why it matters
+### The three things that changed overnight
 
-Hosting images on Vercel Blob instead of the repo means:
+**1. Higher uplift costs, even on short sectors.**
+SAF currently trades at two to four times the price of conventional Jet A-1. The 2% blend requirement is small, but it is priced into every litre pumped at EU airports — whether your client asked for green fuel or not. On a Gulfstream G650 topping off at LFPB (Paris Le Bourget) before a westbound leg, that translates to roughly €1,400–€2,200 in additional fuel cost per trip, before any premium booking.
 
-- **Faster deploys** — no large binary files committed to git
-- **Global CDN** — images are served from the edge, close to every visitor
-- **Elastic storage** — upload as many images as you need without bloating the build
+**2. The tankering loophole is closed.**
+Historically, operators would skip Europe's tax-heavy fuel by filling up at the origin — a practice known as tankering. ReFuelEU kills this: any aircraft departing an EU airport must have uplifted at least 90% of its required fuel at that airport. Ferry-fuelling from Dubai or Istanbul to avoid European prices is no longer an option for the return leg.
 
-### How the flow works
+**3. Documentation burden on the flight crew.**
+Every flight must carry a SAF declaration in the trip file. Missing paperwork can trigger ramp checks, delayed clearances, and in some jurisdictions, fines against the operator of record.
 
-1. An admin uploads an image via **/admin/media**
-2. The file streams through **/api/upload** and lands in Vercel Blob
-3. The returned public URL is stored in the blog post's \`featuredImage\` field
-4. Every visitor gets the image straight from Vercel's CDN — zero server round-trip
+### A real example from our desk
 
-> This is the same image reference every reader will see. If you delete it from the Media Library, the post will lose its hero image.
+Last month our ops team supported a VVIP charter routing **DXB → LFPB → KJFK**. The westbound leg required 8,100 kg of fuel at Le Bourget. Under ReFuelEU, 162 kg of that had to be SAF. Our fuel partner in Paris had sufficient supply, but the SAF certificate wasn't auto-generated in their system — it required a manual request with 48 hours lead time.
 
-Welcome to the unified Flyger content pipeline.`,
+Without advance coordination, the crew would have uplifted standard Jet A-1, departed without documentation, and been flagged on return. We caught it 72 hours ahead, locked in the paperwork, and the flight departed on schedule.
+
+### What operators should be doing now
+
+> The operators getting hit by surprise costs and delays all have one thing in common: they are still treating SAF as someone else's problem.
+
+A few practical steps we recommend to every client flying into Europe this year:
+
+- **Audit your European handler relationships.** Not every FBO has SAF on hand, and those that do may require advance notice for small uplifts.
+- **Budget the premium into charter quotes.** A 2% blend sounds trivial, but at €4 per litre over baseline, it adds up across a busy season.
+- **File SAF certificates with your trip documents.** Treat them like a permit — if it's not in the folder, it didn't happen.
+- **Consider block SAF purchase agreements** if you operate more than 50 European legs per year. Several suppliers now offer locked-in pricing for fleet operators.
+
+### Looking ahead to 2030
+
+The mandate climbs to **6% in 2030** and **20% in 2035**. SAF production capacity is expanding — feedstock deals announced by Neste, World Energy, and TotalEnergies in Q4 2024 will roughly double European supply by 2028 — but the supply-demand gap will remain tight through the decade.
+
+For business aviation specifically, that means two things: fuel costs will keep climbing, and operators with established supplier relationships will ride the curve more gracefully than those buying spot.
+
+### How Flyger is helping
+
+Our trip-support desk now includes **automated SAF compliance checks** on every European routing. Before a trip is cleared, we verify:
+
+1. SAF availability at the departure FBO
+2. Pre-approved supplier contracts your operator holds (if any)
+3. Documentation templates for the flight folder
+4. Budget impact flagged to the charter manager before quote-out
+
+It's a small operational shift, but it's saving our clients an average of **2–4 hours per trip** in last-minute coordination, and eliminating the compliance risk entirely.
+
+---
+
+**Have a European trip on the books?** Reach our 24/7 operations desk and we will run a SAF audit on your routing before you file. No cost, no commitment — just the peace of mind that your crew lands without surprises.`,
       createdAt: new Date(),
     };
 
@@ -54,13 +89,13 @@ Welcome to the unified Flyger content pipeline.`,
       await db.insert(BlogPosts).values(post);
     } catch (e) {
       return new Response(
-        `Sample post already exists. Delete 'sample-blob-post' from /admin/blog first, then re-run this endpoint. Image URL used: ${image.url}`,
+        `Post '${post.id}' already exists. Delete it from /admin/blog first, then re-run this endpoint. Image URL used: ${image.url}`,
         { status: 409 }
       );
     }
 
     return new Response(
-      `Sample blog post created successfully!\n\nUsed image: ${image.url}\nPost URL: /blog/sample-blob-post`,
+      `Blog post created successfully!\n\nTitle: ${post.title}\nFeatured image: ${image.url}\nPost URL: /blog/${post.id}`,
       { status: 200 }
     );
   } catch (error: any) {

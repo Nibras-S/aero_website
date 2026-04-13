@@ -53,7 +53,7 @@ function formatBytes(bytes: number, decimals = 2) {
         blobs.map((blob) => (
           <div class="card" id={`card-${blob.url.replace(/[^a-zA-Z0-9]/g, '')}`} style="display: flex; flex-direction: column; overflow: hidden; padding: 0;">
             <div style="height: 160px; overflow: hidden; background: #eee; display: flex; align-items: center; justify-content: center;">
-               <img src={blob.url} alt={blob.pathname} style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" />
+               <img src={blob.url} alt={blob.pathname} style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" decoding="async" />
             </div>
             <div style="padding: 1rem; flex: 1; display: flex; flex-direction: column;">
               <p style="font-weight: 600; font-size: 0.875rem; margin: 0 0 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title={blob.pathname}>

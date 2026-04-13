@@ -1,7 +1,12 @@
 import { getCollection } from "astro:content";
 import { db, BlogPosts } from 'astro:db';
 
-export async function GET() {
+export async function GET({ request }: { request: Request }) {
+  const cookieHeader = request.headers.get('cookie') || '';
+  if (!cookieHeader.includes('flyger_admin_auth=')) {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
+  }
+
   try {
     const posts = await getCollection('blog');
     

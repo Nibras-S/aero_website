@@ -46,11 +46,13 @@ function estimateReadTime(body: string): number {
         <div class="container">
           <a href={`/blog/${featuredPost.id}`} class="featured-card" id="featured-post">
             <div class="featured-card__image-wrap">
-              <img loading="lazy" decoding="async"
+              <img
                 src={featuredPost.featuredImage}
                 alt={featuredPost.title}
                 class="featured-card__image"
                 loading="eager"
+                fetchpriority="high"
+                decoding="async"
               />
               <div class="featured-card__image-overlay"></div>
               <span class="featured-card__badge">Featured</span>
@@ -176,7 +178,7 @@ function estimateReadTime(body: string): number {
   .blog-hero {
     position: relative;
     padding: 10rem 0 5rem;
-    background: #07131f;
+    background: #000000;
     overflow: hidden;
   }
 
@@ -231,7 +233,7 @@ function estimateReadTime(body: string): number {
      FEATURED POST
   ══════════════════════════════════ */
   .featured-section {
-    background: #07131f;
+    background: #000000;
     padding: 0 0 4rem;
   }
 
@@ -360,7 +362,7 @@ function estimateReadTime(body: string): number {
      FILTER BAR
   ══════════════════════════════════ */
   .filter-section {
-    background: #07131f;
+    background: #000000;
     padding: 0 0 3rem;
   }
 
@@ -452,7 +454,7 @@ function estimateReadTime(body: string): number {
      BLOG GRID
   ══════════════════════════════════ */
   .blog-grid-section {
-    background: #07131f;
+    background: #000000;
     padding: 0 0 8rem;
   }
 

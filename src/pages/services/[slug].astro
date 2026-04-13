@@ -407,7 +407,7 @@ if (!service) return Astro.redirect('/trip-support');
     <!-- ═══ HERO ═══ -->
     <section class="hero" aria-label={service.title}>
       <div class="hero__bg">
-        <img loading="lazy" decoding="async" src={service.heroImage} alt="" class="hero__img" loading="eager" />
+        <img src={service.heroImage} alt="" class="hero__img" loading="eager" fetchpriority="high" decoding="async" />
         <div class="hero__overlay" aria-hidden="true"></div>
       </div>
       <div class="hero__content container">

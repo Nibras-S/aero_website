@@ -1,5 +1,6 @@
 ---
 // Footer — Jetvia inspired layout component
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
@@ -19,7 +20,7 @@
       <div class="footer-col">
         <h3>Company</h3>
         <ul>
-          <li><a href="#about">About Us</a></li>
+          <li><a href="/about">About Us</a></li>
           <li><a href="/consultancy">Our Services</a></li>
           <li><a href="/fuel">Fuel Services</a></li>
         </ul>
@@ -53,7 +54,7 @@
         <span>Aviation Partners</span>
         <span>AeroTech Systems</span>
       </div>
-      <p>&copy; 2025 Flyger Aviation Services. All rights reserved.</p>
+      <p>&copy; {currentYear} Flyger Aviation Services. All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -61,7 +62,7 @@
 <style>
   .site-footer {
     position: relative;
-    background: #111111; /* Very dark/black base */
+    background: #000000; /* Perfect black */
     color: #e5e7eb;
     padding-top: 6rem;
     padding-bottom: 2rem;
