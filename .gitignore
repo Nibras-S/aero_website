@@ -2,6 +2,8 @@
 dist/
 # generated types
 .astro/
+# vercel build artifacts — must never be committed
+.vercel/
 
 # dependencies
 node_modules/
