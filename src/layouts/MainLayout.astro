@@ -1,15 +1,8 @@
 ---
 import '../styles/global.css';
 
-export interface Props {
-  title?: string;
-  description?: string;
-}
-
-const {
-  title = 'Flyger — Premium Aviation Services',
-  description = 'Flyger delivers world-class aircraft services, trip support, ground operations, fuel solutions, and global network connectivity.',
-} = Astro.props;
+const title = Astro.props?.title ?? 'Flyger — Premium Aviation Services';
+const description = Astro.props?.description ?? 'Flyger delivers world-class aircraft services, trip support, ground operations, fuel solutions, and global network connectivity.';
 ---
 
 <!doctype html>

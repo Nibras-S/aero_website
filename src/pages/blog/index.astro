@@ -2,15 +2,15 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import Navbar from '../../components/layout/Navbar.astro';
 import Footer from '../../components/layout/Footer.astro';
-import { getCollection } from 'astro:content';
+import { db, BlogPosts, desc } from 'astro:db';
 
-const allPosts = await getCollection('blog');
-const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
-const featuredPost = sortedPosts.find(p => p.data.featured) || sortedPosts[0];
-const regularPosts = sortedPosts.filter(p => p.id !== featuredPost.id);
-const categories = ['All', ...new Set(allPosts.map(p => p.data.category))];
+const allPosts = await db.select().from(BlogPosts).orderBy(desc(BlogPosts.createdAt));
+const sortedPosts = allPosts;
+const featuredPost = sortedPosts.find(p => p.featured) || sortedPosts[0];
+const regularPosts = sortedPosts.filter(p => p.id !== featuredPost?.id);
+const categories = ['All', ...new Set(allPosts.map(p => p.category))];
 
-function formatDate(date: Date): string {
+function formatDate(date: string | Date): string {
   return new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
@@ -47,8 +47,8 @@ function estimateReadTime(body: string): number {
           <a href={`/blog/${featuredPost.id}`} class="featured-card" id="featured-post">
             <div class="featured-card__image-wrap">
               <img loading="lazy" decoding="async"
-                src={featuredPost.data.featuredImage}
-                alt={featuredPost.data.title}
+                src={featuredPost.featuredImage}
+                alt={featuredPost.title}
                 class="featured-card__image"
                 loading="eager"
               />
@@ -56,14 +56,14 @@ function estimateReadTime(body: string): number {
               <span class="featured-card__badge">Featured</span>
             </div>
             <div class="featured-card__body">
-              <span class="featured-card__category">{featuredPost.data.category}</span>
-              <h2 class="featured-card__title">{featuredPost.data.title}</h2>
-              <p class="featured-card__excerpt">{featuredPost.data.excerpt}</p>
+              <span class="featured-card__category">{featuredPost.category}</span>
+              <h2 class="featured-card__title">{featuredPost.title}</h2>
+              <p class="featured-card__excerpt">{featuredPost.excerpt}</p>
               <div class="featured-card__meta">
-                <span class="featured-card__author">{featuredPost.data.author}</span>
+                <span class="featured-card__author">{featuredPost.author}</span>
                 <span class="featured-card__separator">·</span>
-                <time datetime={featuredPost.data.date.toISOString()}>
-                  {formatDate(featuredPost.data.date)}
+                <time datetime={new Date(featuredPost.createdAt).toISOString()}>
+                  {formatDate(featuredPost.createdAt)}
                 </time>
                 <span class="featured-card__separator">·</span>
                 <span>{estimateReadTime(featuredPost.body || '')} min read</span>
@@ -120,27 +120,27 @@ function estimateReadTime(body: string): number {
             <a
               href={`/blog/${post.id}`}
               class="blog-card"
-              data-category={post.data.category}
-              data-title={post.data.title.toLowerCase()}
+              data-category={post.category}
+              data-title={post.title.toLowerCase()}
             >
               <div class="blog-card__image-wrap">
                 <img
-                  src={post.data.featuredImage}
-                  alt={post.data.title}
+                  src={post.featuredImage}
+                  alt={post.title}
                   class="blog-card__image"
                   loading="lazy"
                 />
                 <div class="blog-card__image-overlay"></div>
               </div>
               <div class="blog-card__body">
-                <span class="blog-card__category">{post.data.category}</span>
-                <h3 class="blog-card__title">{post.data.title}</h3>
-                <p class="blog-card__excerpt">{post.data.excerpt}</p>
+                <span class="blog-card__category">{post.category}</span>
+                <h3 class="blog-card__title">{post.title}</h3>
+                <p class="blog-card__excerpt">{post.excerpt}</p>
                 <div class="blog-card__meta">
-                  <span>{post.data.author}</span>
+                  <span>{post.author}</span>
                   <span class="blog-card__dot">·</span>
-                  <time datetime={post.data.date.toISOString()}>
-                    {formatDate(post.data.date)}
+                  <time datetime={new Date(post.createdAt).toISOString()}>
+                    {formatDate(post.createdAt)}
                   </time>
                 </div>
               </div>
