@@ -45,6 +45,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Prevents white flash during overscroll / rubber-band at page top and bottom */
+  background-color: #000000;
 }
 
 body {
@@ -52,4 +54,6 @@ body {
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: 1.6;
+  /* Stops scroll chain from bubbling out of body so the black html never gets briefly touched */
+  overscroll-behavior-y: none;
 }
