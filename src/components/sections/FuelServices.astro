@@ -238,10 +238,20 @@
     position: relative;
     z-index: 1;
     overflow-x: auto;
+    overflow-y: hidden;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    /* iOS rubber-band / Android overscroll fixes:
+       1. contain — blocks scroll-chain from bubbling to the page (no white flash)
+       2. background — if iOS momentum briefly exposes the track area,
+          show the skewed slice color, not the body's near-white bg
+       3. snap — limits how far the rubber-band can drift past the last card */
+    overscroll-behavior-x: contain;
+    background: #f1f5f9;
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
   }
   .fuel-carousel-track::-webkit-scrollbar {
     display: none;
