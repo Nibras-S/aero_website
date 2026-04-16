@@ -45,15 +45,23 @@
 
 html {
   scroll-behavior: smooth;
-  /* Prevents white flash during overscroll / rubber-band at page top and bottom */
+  /* iOS / Android rubber-band-at-page-edge fix:
+     Both html AND body need explicit black bg. iOS Safari's WebKit
+     sometimes paints the overscroll area from body instead of html,
+     so relying on html alone isn't enough. Both = belt-and-suspenders. */
   background-color: #000000;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
-  background-color: var(--bg-main);
+  /* Public page sections are all full-width with their own backgrounds
+     (Hero, Consultancy, blog posts, etc.), so body bg is never visible
+     during normal scrolling. We set it to #000 so that overscroll /
+     rubber-band at top or bottom NEVER exposes a white strip on any device. */
+  background-color: #000000;
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: 1.6;
-  /* Stops scroll chain from bubbling out of body so the black html never gets briefly touched */
   overscroll-behavior-y: none;
 }
