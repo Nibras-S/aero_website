@@ -3,34 +3,28 @@
 // and on every `astro build`.
 //
 // PURPOSE
-//   Restores the 4 baseline blog posts and 5 sample inquiries so the admin
-//   panel and public blog are never empty after a server restart or a fresh
-//   deploy.
+//   Seeds the 4 baseline blog posts so the public blog and admin blog list
+//   are never empty after a server restart or fresh deploy.
+//
+//   Inquiries are intentionally NOT seeded. Real visitor submissions from
+//   the contact form are the only source of inquiry data in production.
 //
 // WHAT THIS DOES
-//   ✅ Blogs and inquiries are guaranteed present after every dev restart
-//   ✅ Same data appears in production builds (until/unless a remote DB is linked)
-//   ✅ Idempotent — duplicates are skipped, so it's safe to re-run
+//   ✅ Blog posts guaranteed present after every dev restart + every build
+//   ✅ Idempotent — blog inserts skip duplicates (UNIQUE slug constraint)
 //
 // WHAT THIS DOES NOT DO
-//   ❌ Persist NEW inquiries submitted by website visitors after a deploy
-//   ❌ Persist NEW blog posts created via the admin UI after a deploy
-//   ❌ Preserve EDITS made to seeded blogs via the admin UI (next restart wipes them)
-//
-// FOR TRUE PRODUCTION PERSISTENCE (when ready):
-//   1. Sign up for a free Turso account: https://turso.tech
-//   2. Run: `npx astro db link`
-//   3. Add the Turso credentials to your .env and Vercel env vars
-//   4. Run: `npx astro db push --remote`
-//   See: https://docs.astro.build/en/guides/astro-db/#libsql
+//   ❌ Seed sample inquiries (removed — production CRM should only show real leads)
+//   ❌ Persist NEW blog posts created via the admin UI (linked remote DB handles that)
+//   ❌ Preserve EDITS made to seeded blogs (next build reruns seed, but try/catch
+//      prevents overwriting existing rows — your edits survive)
 //
 // HOW TO ADD/EDIT CONTENT
 //   - To add a blog post permanently: append a new object to `blogPosts` below
-//   - To remove a sample inquiry: delete its entry from `sampleInquiries`
-//   - Restart the dev server to apply changes
+//   - Restart the dev server / redeploy to apply changes
 // ============================================================================
 
-import { db, BlogPosts, Inquiries } from 'astro:db';
+import { db, BlogPosts } from 'astro:db';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. BLOG POSTS — 4 articles restored from source files
@@ -333,63 +327,8 @@ It's a small operational shift, but it's saving our clients an average of **2–
 // 2. SAMPLE INQUIRIES — 5 realistic aviation industry leads
 // ─────────────────────────────────────────────────────────────────────────────
 
-const ONE_DAY = 24 * 60 * 60 * 1000;
-
-const sampleInquiries = [
-  {
-    name: 'Charles Mendez',
-    email: 'c.mendez@meridianaviation.aero',
-    phone: '+1 201 555 0142',
-    serviceArea: 'trip-planning',
-    message:
-      'Need DXB→TEB routing support for a Gulfstream G650 Apr 22–24. 8 pax including principal. Require fuel uplift planning, slot coordination, and ground handling at both ends.',
-    status: 'New',
-    createdAt: new Date(Date.now() - 1 * ONE_DAY),
-  },
-  {
-    name: 'Sarah Chen',
-    email: 'sarah.chen@pacificwings.com',
-    phone: '+852 5555 1234',
-    serviceArea: 'fuel',
-    message:
-      'Looking for SAF supply at LFPB for our European charter operations starting May. Approximately 12 trips/month, mostly G280 and Challenger 350. Need quote and contract terms.',
-    status: 'In Progress',
-    createdAt: new Date(Date.now() - 4 * ONE_DAY),
-  },
-  {
-    name: 'Hassan Al-Maktoum',
-    email: 'h.almaktoum@drwing.gov.ae',
-    phone: '+971 4 555 8800',
-    serviceArea: 'concierge',
-    message:
-      'State visit logistics for incoming delegation, May 8–12. Will require full VIP handling, security coordination, and overflight permits across UAE-EU corridor. Please contact via secure channel.',
-    status: 'New',
-    createdAt: new Date(Date.now() - 2 * ONE_DAY),
-  },
-  {
-    name: 'Tom Reichmann',
-    email: 'tom.r@bombardier-demo.com',
-    phone: '+1 514 555 7790',
-    serviceArea: 'ground-handling',
-    message:
-      'Static display at Dubai Airshow 2026 for our Global 8000 prototype. Need ground handling, hangar parking, and crew accommodation for 8 days. First time operating into DWC.',
-    status: 'In Progress',
-    createdAt: new Date(Date.now() - 9 * ONE_DAY),
-  },
-  {
-    name: 'Olivia Park',
-    email: 'opark@kald.kr',
-    phone: '+82 2 5555 9911',
-    serviceArea: 'crm',
-    message:
-      'Interested in a Flyger CRM demo for our 30-aircraft fleet operations team. We currently use a mix of Excel and email for trip coordination and want to evaluate a unified platform.',
-    status: 'Closed',
-    createdAt: new Date(Date.now() - 21 * ONE_DAY),
-  },
-];
-
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. SEED FUNCTION
+// 2. SEED FUNCTION
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default async function seed() {
@@ -405,20 +344,7 @@ export default async function seed() {
     }
   }
 
-  // Inquiries use auto-increment numeric IDs, so duplicate detection by id
-  // doesn't apply. Skip the insert entirely if the table already has rows
-  // (avoids piling up duplicate sample inquiries on every restart).
-  const existingInquiries = await db.select().from(Inquiries);
-  let inquiriesAdded = 0;
-  if (existingInquiries.length === 0) {
-    for (const inq of sampleInquiries) {
-      await db.insert(Inquiries).values(inq);
-      inquiriesAdded++;
-    }
-  }
-
   console.log(
-    `[seed] BlogPosts: +${blogsAdded} new (${blogPosts.length} total defined). ` +
-      `Inquiries: +${inquiriesAdded} new (${existingInquiries.length} existing).`
+    `[seed] BlogPosts: +${blogsAdded} new (${blogPosts.length} total defined). Inquiries: not seeded (real data only).`
   );
 }
