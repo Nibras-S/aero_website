@@ -23,22 +23,15 @@ const currentYear = new Date().getFullYear();
           <li><a href="/about">About Us</a></li>
           <li><a href="/consultancy">Our Services</a></li>
           <li><a href="/fuel">Fuel Services</a></li>
-        </ul>
-      </div>
-
-      <!-- 3. Resources -->
-      <div class="footer-col">
-        <h3>Resources</h3>
-        <ul>
           <li><a href="/blog">News & Insights</a></li>
         </ul>
       </div>
 
-      <!-- 4. Contact Us -->
+      <!-- 3. Contact Us -->
       <div class="footer-col">
         <h3>Contact</h3>
         <ul>
-          <li><a href="tel:+971501234567">+971 50 123 4567</a></li>
+          <li><a href="tel:+971522554468">+971 50 123 4567</a></li>
           <li><a href="mailto:ops@flyger.aero">ops@flyger.aero</a></li>
           <li class="contact-address-item">
             DSO-IFZA, IFZA Properties,<br />Dubai Silicon Oasis,<br
@@ -54,7 +47,10 @@ const currentYear = new Date().getFullYear();
         <span>Aviation Partners</span>
         <span>AeroTech Systems</span>
       </div>
-      <p>&copy; {currentYear} Flyger Aviation Services. All rights reserved.</p>
+      <p>
+        &copy; {currentYear} Flyger Aviation Services.<span class="rights-break"
+        > </span><span class="rights-text">All rights reserved.</span>
+      </p>
     </div>
   </div>
 </footer>
@@ -230,22 +226,42 @@ const currentYear = new Date().getFullYear();
   @media (max-width: 640px) {
     .footer-grid {
       grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
+      gap: 2.5rem 1.5rem;
     }
     .footer-brand-col {
-      grid-column: span 2;
+      grid-column: 1 / -1;
+      grid-row: 1;
     }
+    /* Company — row 2, left */
+    .footer-col:nth-child(2) {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    /* Contact — row 2, right (override generic :last-child span) */
+    .footer-col:nth-child(3),
     .footer-col:last-child {
-      grid-column: span 2;
+      grid-column: 2;
+      grid-row: 2;
+    }
+    .contact-address-item {
+      max-width: 100%;
     }
     .footer-bottom {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
+      text-align: center;
       gap: 1rem;
     }
     .footer-legal {
-      flex-direction: column;
-      gap: 0.5rem;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+    .footer-bottom .rights-break {
+      display: block;
+      height: 0;
+      overflow: hidden;
     }
     .footer-container {
       padding: 0 2rem;
