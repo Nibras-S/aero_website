@@ -1,60 +1,57 @@
 ---
-// Footer — Jetvia inspired layout component
 const currentYear = new Date().getFullYear();
+const quickLinks = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Trip Support", href: "/trip-support" },
+  { label: "Consultancy", href: "/consultancy" },
+  { label: "Fuel Services", href: "/fuel" },
+  { label: "News & Insights", href: "/blog" },
+  { label: "Contact Us", href: "/contact-us" },
+];
 ---
 
 <footer class="site-footer">
   <div class="footer-container">
-    <div class="footer-grid">
-      <!-- 1. Brand & Intro -->
-      <div class="footer-col footer-brand-col">
-        <p class="footer-desc">
-          Fly High With Flyger — where every journey begins with precision,
-          reliable aviation support, and unforgettable experiences across the
-          skies.
-        </p>
-        <div class="footer-social" style="display: none;"></div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo" aria-label="Flyger Aviation home">
+          <img src="/images/logo.png" alt="Flyger Aviation" width="92" height="81" loading="lazy" decoding="async" />
+        </a>
+        <p>Precision-led aviation support, dependable ground operations, and seamless journeys across a trusted global network.</p>
+        <span class="operations-badge"><span class="status-dot" aria-hidden="true"></span>24/7 global operations</span>
       </div>
 
-      <!-- 2. Company -->
-      <div class="footer-col">
-        <h3>Company</h3>
-        <ul>
-          <li><a href="/about">About Us</a></li>
-          <li><a href="/consultancy">Our Services</a></li>
-          <li><a href="/fuel">Fuel Services</a></li>
-        </ul>
-      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <h2>Quick links</h2>
+        <ul>{quickLinks.map((link) => <li><a href={link.href}>{link.label}</a></li>)}</ul>
+      </nav>
 
-      <!-- 3. Resources -->
-      <div class="footer-col">
-        <h3>Resources</h3>
-        <ul>
-          <li><a href="/blog">News & Insights</a></li>
-        </ul>
-      </div>
-
-      <!-- 4. Contact Us -->
-      <div class="footer-col">
-        <h3>Contact</h3>
-        <ul>
-          <li><a href="tel:+971501234567">+971 50 123 4567</a></li>
-          <li><a href="mailto:ops@flyger.aero">ops@flyger.aero</a></li>
-          <li class="contact-address-item">
-            DSO-IFZA, IFZA Properties,<br />Dubai Silicon Oasis,<br
-            />Dubai, UAE
-          </li>
-        </ul>
+      <div class="footer-contact">
+        <h2>Contact</h2>
+        <address>
+          <div class="contact-row">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+            <span>DSO-IFZA, IFZA Properties<br />Dubai Silicon Oasis, Dubai, UAE</span>
+          </div>
+          <a class="contact-row" href="mailto:ops@flyger.aero">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
+            <span>ops@flyger.aero</span>
+          </a>
+          <a class="contact-row" href="tel:+971501234567">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92Z"></path></svg>
+            <span>+971 50 123 4567</span>
+          </a>
+        </address>
       </div>
     </div>
 
-    <!-- Bottom Bar -->
     <div class="footer-bottom">
-      <div class="footer-legal">
-        <span>Aviation Partners</span>
-        <span>AeroTech Systems</span>
-      </div>
       <p>&copy; {currentYear} Flyger Aviation Services. All rights reserved.</p>
+      <a class="back-to-top" href="#top" aria-label="Back to top">
+        Back to top
+        <svg aria-hidden="true" viewBox="0 0 20 20"><path d="m5 11 5-5 5 5M10 6v9"></path></svg>
+      </a>
     </div>
   </div>
 </footer>
@@ -62,193 +59,196 @@ const currentYear = new Date().getFullYear();
 <style>
   .site-footer {
     position: relative;
-    background: #000000; /* Perfect black */
-    color: #e5e7eb;
-    padding-top: 6rem;
-    padding-bottom: 2rem;
-    font-family: "Inter", system-ui, sans-serif;
     overflow: hidden;
+    background: radial-gradient(circle at 12% 0%, rgba(75,163,195,.12), transparent 32rem), #05080c;
+    color: #d7e0e7;
+    font-family: var(--font-body, "Inter", system-ui, sans-serif);
   }
-
-  /* Giant Faded Text like Jetvia */
-  .footer-giant-text {
+  .site-footer::before {
     position: absolute;
-    bottom: -0.15em;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: clamp(8rem, 25vw, 25rem); /* Massive responsive scaling */
-    font-weight: 800;
-    line-height: 0.8;
-    color: rgba(255, 255, 255, 0.04); /* Just a faint trace on black */
-    text-transform: uppercase;
-    letter-spacing: -0.05em;
-    pointer-events: none;
-    z-index: 0;
-    width: 100%;
-    text-align: center;
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.06),
-      transparent
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    inset: 0 0 auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(75,163,195,.5), transparent);
+    content: "";
   }
-
-  .footer-container {
-    position: relative;
-    z-index: 10;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 3rem;
-  }
-
-  .footer-grid {
+  .footer-container { width: min(100% - 3rem, 1304px); margin-inline: auto; }
+  .footer-main {
     display: grid;
-    grid-template-columns: 2.5fr 1fr 1fr 1fr;
-    gap: 4rem;
-    padding-bottom: 4rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Faint dark border */
+    grid-template-columns: minmax(280px,1.35fr) minmax(330px,1.35fr) minmax(270px,1fr);
+    gap: clamp(3rem,7vw,7rem);
+    align-items: start;
+    padding: clamp(4.5rem,7vw,7rem) 0 clamp(3.5rem,6vw,5.5rem);
   }
-
-  .footer-col {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .footer-col h3 {
-    font-size: 1rem;
-    font-weight: 300;
-    color: #ffffff;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.02em;
-  }
-
-  .footer-col ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-  }
-
-  .footer-col li {
-    font-size: 0.9rem;
-    color: #9ca3af;
-    display: flex;
-    align-items: flex-start;
-    font-weight: 300;
-    line-height: 1.6;
-  }
-
-  .footer-col a {
-    color: #9ca3af;
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-
-  .footer-col a:hover {
-    color: #ffffff;
-  }
-
-  /* ── 1. Brand & Intro ── */
-  .footer-desc {
-    font-size: 1rem;
-    color: #d1d5db;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    max-width: 380px;
-    font-weight: 300;
-  }
-
-  .footer-social {
-    display: flex;
-    gap: 1rem;
-  }
-  .footer-social a {
-    color: #9ca3af;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    transition:
-      transform 0.2s,
-      background 0.2s,
-      color 0.2s;
-  }
-  .footer-social a:hover {
-    color: #ffffff;
-    border-color: #ffffff;
-    background: rgba(255, 255, 255, 0.05);
-    transform: translateY(-2px);
-  }
-
-  /* ── 4. Contact Column Specific ── */
-  .contact-address-item {
+  .footer-brand, .footer-links, .footer-contact { min-width: 0; }
+  .footer-logo { display: inline-flex; margin: -.7rem 0 1.15rem; }
+  .footer-logo img {
     display: block;
-    max-width: 200px;
-    margin-top: 0.5rem;
+    width: 92px;
+    height: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
   }
-
-  /* ── Bottom Bar ── */
+  .footer-brand > p {
+    max-width: 390px;
+    margin: 0;
+    color: #9baab5;
+    font-size: .95rem;
+    font-weight: 300;
+    line-height: 1.75;
+  }
+  .operations-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .65rem;
+    margin-top: 1.65rem;
+    color: #c9d5dc;
+    font-family: var(--font-label, "Sora", sans-serif);
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #67c7a5;
+    box-shadow: 0 0 0 4px rgba(103,199,165,.11);
+  }
+  .footer-main h2 {
+    margin: 0 0 1.75rem;
+    color: #fff;
+    font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif);
+    font-size: .96rem;
+    font-weight: 600;
+    letter-spacing: -.01em;
+  }
+  .footer-links ul {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: .95rem 2.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .footer-links a, .contact-row, .back-to-top {
+    color: #96a6b2;
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+  .footer-links a {
+    position: relative;
+    display: inline-block;
+    font-size: .9rem;
+    line-height: 1.55;
+  }
+  .footer-links a::after {
+    position: absolute;
+    right: 100%;
+    bottom: -.15rem;
+    left: 0;
+    height: 1px;
+    background: var(--color-primary,#4ba3c3);
+    content: "";
+    transition: right 180ms ease;
+  }
+  .footer-links a:hover, .footer-links a:focus-visible, .contact-row:hover,
+  .contact-row:focus-visible, .back-to-top:hover, .back-to-top:focus-visible { color: #fff; }
+  .footer-links a:hover::after, .footer-links a:focus-visible::after { right: 0; }
+  .footer-contact address {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+    font-style: normal;
+  }
+  .contact-row {
+    display: grid;
+    grid-template-columns: 18px minmax(0,1fr);
+    gap: .8rem;
+    align-items: start;
+    font-size: .88rem;
+    line-height: 1.6;
+  }
+  .contact-row svg {
+    width: 17px;
+    height: 17px;
+    margin-top: .18rem;
+    fill: none;
+    stroke: var(--color-primary,#4ba3c3);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.6;
+  }
   .footer-bottom {
     display: flex;
+    gap: 2rem;
     align-items: center;
     justify-content: space-between;
-    padding: 2.5rem 0 1rem;
-    font-size: 0.85rem;
-    color: #9ca3af;
-    font-weight: 300;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    min-height: 82px;
+    border-top: 1px solid rgba(255,255,255,.09);
+    color: #697985;
+    font-size: .76rem;
   }
-
-  .footer-legal {
-    display: flex;
-    gap: 2.5rem;
+  .footer-bottom p { margin: 0; }
+  .back-to-top {
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: .55rem;
+    align-items: center;
+    color: #84939e;
+    font-family: var(--font-label, "Sora", sans-serif);
+    font-size: .69rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
   }
-
-  /* Responsive */
-  @media (max-width: 1024px) {
-    .footer-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 3.5rem;
+  .back-to-top svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.5;
+  }
+  @media (max-width: 960px) {
+    .footer-main {
+      grid-template-columns: minmax(260px,1fr) minmax(300px,1.2fr);
+      gap: 3.5rem 4rem;
     }
-    .footer-brand-col {
-      grid-column: span 2;
+    .footer-contact {
+      grid-column: 1 / -1;
+      padding-top: 2.75rem;
+      border-top: 1px solid rgba(255,255,255,.09);
     }
-    .footer-giant-text {
-      font-size: 18vw;
-      bottom: 0;
+    .footer-contact address {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 1.5rem 2rem;
     }
   }
-
   @media (max-width: 640px) {
-    .footer-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
+    .footer-container { width: min(100% - 2.5rem,1304px); }
+    .footer-main { grid-template-columns: 1fr; gap: 0; padding: 4rem 0 2.75rem; }
+    .footer-brand { padding-bottom: 3rem; }
+    .footer-links, .footer-contact {
+      padding: 2.75rem 0;
+      border-top: 1px solid rgba(255,255,255,.09);
     }
-    .footer-brand-col {
-      grid-column: span 2;
-    }
-    .footer-col:last-child {
-      grid-column: span 2;
-    }
+    .footer-main h2 { margin-bottom: 1.5rem; }
+    .footer-links ul { gap: .9rem 1.5rem; }
+    .footer-contact { grid-column: auto; padding-bottom: 0; }
+    .footer-contact address { display: flex; gap: 1rem; }
     .footer-bottom {
-      flex-direction: column;
       align-items: flex-start;
-      gap: 1rem;
+      flex-direction: column-reverse;
+      justify-content: center;
+      min-height: 116px;
+      padding: 1.5rem 0;
     }
-    .footer-legal {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .footer-container {
-      padding: 0 2rem;
-    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .footer-links a, .footer-links a::after, .contact-row, .back-to-top { transition: none; }
   }
 </style>
