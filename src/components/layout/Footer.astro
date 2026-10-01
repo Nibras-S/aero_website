@@ -48,6 +48,9 @@ const quickLinks = [
 
     <div class="footer-bottom">
       <p>&copy; {currentYear} Flyger Aviation Services. All rights reserved.</p>
+      <a class="design-credit" href="https://www.n3global.tech/" target="_blank" rel="noopener noreferrer" aria-label="Designed by n3global.tech — opens in a new tab">
+        <span>Designed by</span> n3global.tech
+      </a>
       <a class="back-to-top" href="#top" aria-label="Back to top">
         Back to top
         <svg aria-hidden="true" viewBox="0 0 20 20"><path d="m5 11 5-5 5 5M10 6v9"></path></svg>
@@ -191,6 +194,22 @@ const quickLinks = [
     font-size: .76rem;
   }
   .footer-bottom p { margin: 0; }
+  .design-credit {
+    color: rgba(150,166,178,.48);
+    font-family: var(--font-label, "Sora", sans-serif);
+    font-size: .67rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 180ms ease;
+  }
+  .design-credit span {
+    color: rgba(150,166,178,.32);
+    font-weight: 400;
+  }
+  .design-credit:hover,
+  .design-credit:focus-visible { color: var(--color-primary,#4ba3c3); }
   .back-to-top {
     display: inline-flex;
     flex: 0 0 auto;
