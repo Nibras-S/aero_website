@@ -434,6 +434,45 @@ const services = [
         },
       ],
     },
+    {
+      slug: "aviation-web-software-development",
+      title: "Aviation Web & Software Development",
+      label: "DIGITAL SOLUTIONS",
+      tagline: "Digital products engineered for the way aviation works.",
+      heroImage: "/images/crm-globe.webp",
+      detailImage: "/images/crm-dashboard.webp",
+      overview:
+        "We design and develop modern websites and purpose-built software for aviation companies, operators, service providers, and internal operations teams.",
+      detail:
+        "Our solutions combine aviation understanding with practical product engineering. Whether you need a premium corporate website, a secure customer portal, a live operations dashboard, or a completely bespoke in-house platform, we map your workflow and build a reliable system around it. Every product is responsive, scalable, easy to manage, and designed to reduce manual work while improving visibility across your business.",
+      highlights: [
+        {
+          title: "Aviation Website Development",
+          desc: "Fast, responsive corporate and service websites designed to communicate your capabilities clearly and convert aviation clients.",
+          img: "/images/crm-globe.webp",
+        },
+        {
+          title: "Custom In-House Software",
+          desc: "Bespoke platforms built around your internal processes, from quotation and approval flows to operations and service delivery.",
+          img: "/images/crm-dashboard.webp",
+        },
+        {
+          title: "Workflow Automation",
+          desc: "Connected digital workflows that replace repetitive spreadsheets, emails, and manual handoffs with clear automated processes.",
+          img: "/images/coordination.webp",
+        },
+        {
+          title: "Systems Integration",
+          desc: "Practical integrations that connect your CRM, operational tools, document storage, communications, and financial systems.",
+          img: "/images/document-management.webp",
+        },
+        {
+          title: "Ongoing Support & Improvement",
+          desc: "Continuous maintenance, security updates, performance monitoring, and product enhancements as your operation grows.",
+          img: "/images/reporting.webp",
+        },
+      ],
+    },
   ];
 
 const { slug } = Astro.params;
@@ -628,8 +667,8 @@ if (!service) return Astro.redirect('/trip-support');
         <span class="section-eyebrow">Get Started</span>
         <h2 class="cta-section__heading">Ready to work with us?</h2>
         <p class="cta-section__sub">
-          Contact our team and we'll obtain your clearances safely and
-          efficiently.
+          Contact our team to discuss a solution built around your operational
+          requirements.
         </p>
         <div class="cta-section__actions">
           <a
